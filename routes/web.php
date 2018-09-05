@@ -11,10 +11,19 @@
 |
 */
 
-Route::get('/', function () {
-    return view('home');
-});
+// Route::get('inbox', 'MessageController@inbox');
 
+// Route::get('profile', 'UserController@profile');
+
+// Route::post('/message', function () {
+//     //
+// });
+
+// Route::get('/logout', function () {
+//     //
+// });
+
+/*
 Route::get('/users', function () {
     //
 });
@@ -35,23 +44,7 @@ Route::post('/users/delete/{id}', function () {
     //
 });
 
-Route::post('/login', function () {
-    //
-});
-
-Route::get('/logout', function () {
-    //
-});
-
 Route::get('/messages/new', function () {
-    //
-});
-
-Route::post('/messages', function () {
-    //
-});
-
-Route::get('/messages', function () {
     //
 });
 
@@ -62,3 +55,7 @@ Route::post('/messages/accept/{id}', function () {
 Route::post('/messages/reject/{id}', function () {
     //
 });
+*/
+Auth::routes();
+
+Route::get('/', 'HomeController@index')->name('home');
