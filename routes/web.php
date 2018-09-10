@@ -11,19 +11,19 @@
 |
 */
 
-// Route::get('inbox', 'MessageController@inbox');
+Route::get('profile', 'UserController@profile')->name('profile');
 
-// Route::get('profile', 'UserController@profile');
-
-// Route::post('/message', function () {
-//     //
-// });
-
-// Route::get('/logout', function () {
-//     //
-// });
+Route::get('inbox', 'MessageController@inbox');
 
 /*
+Route::post('/message', function () {
+    //
+});
+
+Route::get('/logout', function () {
+    //
+});
+
 Route::get('/users', function () {
     //
 });
@@ -56,6 +56,7 @@ Route::post('/messages/reject/{id}', function () {
     //
 });
 */
+
 Auth::routes();
 
 Route::get('/', 'HomeController@index')->name('home');

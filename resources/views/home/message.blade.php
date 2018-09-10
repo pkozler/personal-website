@@ -1,31 +1,33 @@
-<section class="bg-dark" id="messages">
+<section class="bg-dark" id="message">
     <div class="container">
+
         <div class="row">
-            <div class="col-lg-8 mx-auto text-center">
+            <div class="col-lg-12 mx-auto text-center text-faded">
                 <h2 class="section-heading">Vzkazy</h2>
                 <hr class="primary">
-                <div id="comment-list"></div>
+                <div id="message-list"></div>
             </div>
         </div>
 
-        <div class="row">
-            <div class="col-lg-8 mx-auto text-center">
-                <div class="disabled-form">
-                    <form class="form-horizontal">
+        <div @guest data-toggle="tooltip" data-html="true" title="<p class='lead'>Pro odeslání vzkazu je vyžadováno přihlášení.</p>" @endguest>
+            <form method="POST">
+                <div class="row">
+                    <div class="col-lg-12 mx-auto text-center">
+
                         <div class="form-group">
-                            <h6 class="text-faded"><big>| </big>Pro odeslání vzkazu je vyžadováno přihlášení...</h6>
+                            <label class="text-faded" for="message-input-content"> Nový vzkaz:</label>
+                            <textarea @guest disabled @endguest class="form-control" id="message-input-content" required="required" rows="5"></textarea>
                         </div>
+
                         <div class="form-group">
-                            <label class="text-faded" for="comment-input-content"> Nový vzkaz:</label>
-                            <textarea disabled="disabled" class="form-control" id="comment-input-content" placeholder="" required="required" rows="5"></textarea>
+                            <button @guest disabled @endguest type="submit" class="page-scroll btn btn-default sr-button pull-right">Odeslat</button>
                         </div>
-                        <div class="form-group">
-                            <button type="submit" disabled="disabled" class="page-scroll btn btn-default sr-button pull-right">Odeslat</button>
-                        </div>
-                    </form>
-                    <a href="http://antispam.er.cz/"><img src="http://as.er.cz/n.gif" width="1" height="1" border="0" alt="Antispam.er.cz" /></a>
+
+                        <a href="http://antispam.er.cz/"><img src="http://as.er.cz/n.gif" width="1" height="1" border="0" alt="Antispam.er.cz" /></a>
+
+                    </div>
                 </div>
-            </div>
+            </form>
         </div>
 
     </div>

@@ -2,7 +2,7 @@
 
 @section('navbar')
 
-<a class="navbar-brand js-scroll-trigger" href="{{ url('/') }}/#page-top">www.petrkozler.cz</a>
+<a class="navbar-brand" href="{{ url('/') }}/#">www.petrkozler.cz</a>
 <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
   <span class="navbar-toggler-icon"></span>
 </button>
@@ -36,17 +36,18 @@
       </a>
 
       <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+        <a class="dropdown-item" href="{{ route('profile') }}">Profile</a>
         <a class="dropdown-item" href="{{ route('logout') }}"
         onclick="event.preventDefault();
         document.getElementById('logout-form').submit();">
         {{ __('Logout') }}
-      </a>
+        </a>
 
-      <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-        @csrf
-      </form>
-    </div>
-  </li>
+        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+          @csrf
+        </form>
+      </div>
+    </li>
   @endguest
 </ul>
 </div>
