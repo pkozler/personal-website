@@ -14,7 +14,7 @@
 	<title>Petr Kozler - osobní stránky</title>
 
 	<!-- Bootstrap core CSS -->
-	<link href="{{ asset('storage/vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
+	<link href="{{ asset('storage/vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet" type="text/css">
 
 	<!-- Custom fonts for this template -->
 	<link href="{{ asset('storage/vendor/font-awesome/css/font-awesome.min.css') }}" rel="stylesheet" type="text/css">
@@ -22,12 +22,13 @@
 	<link href='https://fonts.googleapis.com/css?family=Merriweather:400,300,300italic,400italic,700,700italic,900,900italic' rel='stylesheet' type='text/css'>
 
 	<!-- Plugin CSS -->
-	<link href="{{ asset('storage/vendor/magnific-popup/magnific-popup.css') }}" rel="stylesheet">
+	<link href="{{ asset('storage/vendor/magnific-popup/magnific-popup.css') }}" rel="stylesheet" type="text/css">
 
 	<!-- Custom styles for this template -->
-	<link href="{{ asset('storage/css/creative.min.css') }}" rel="stylesheet">
-	<link href="{{ asset('storage/css/app.css') }}" rel="stylesheet">
+	<link href="{{ asset('storage/css/creative.min.css') }}" rel="stylesheet" type="text/css">
+	<link href="{{ asset('storage/css/app.css') }}" rel="stylesheet" type="text/css">
 
+	<script src='https://www.google.com/recaptcha/api.js' type="text/javascript"></script>
 </head>
 <body id="page-top">
 

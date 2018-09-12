@@ -60,7 +60,7 @@
                         </div>
 
                         <div class="col-md-4 text-md-right">
-                            <a class="btn-link" href="{{ route('password.request') }}"><span class="text-primary">{{ __('Zapomenuté heslo?') }}</span>
+                            <a class="btn-link forgot-password-link" href="{{ route('password.request') }}"><span class="text-primary">{{ __('Zapomenuté heslo?') }}</span>
                             </a>
                         </div>
                     </div>

@@ -6,7 +6,7 @@
 <ul class="navbar-nav ml-auto">
     <li class="nav-item">
       <a class="nav-link" href="{{ route('home') }}"><span class="fa fa-home"></span>&nbsp;{{ __('Domů') }}</a>
-    </li>
+  </li>
 </ul>
 
 @endsection
@@ -72,14 +72,21 @@
                         </div>
                     </div>
 
+                    <div class="form-group row">
+                        <label for="antispam-protection" class="col-md-3 col-form-label text-md-right">{{ __('Ochrana proti spamu') }}</label>
+                        <div class="col-md-7">
+                            <div id="antispam-protection" class="g-recaptcha" data-sitekey="{{env('GOOGLE_RECAPTCHA_KEY')}}"></div>
+                        </div>
+                    </div>
+
                     <div class="form-group row mb-0">
                         <div class="col-md-7 offset-md-3">
-                            <button type="submit" class="btn btn-primary">
-                                {{ __('Zaregistrovat se') }}
-                            </button>
                             <a class="btn btn-light pull-right" href="{{ route('login') }}">
                                 {{ __('Zpět') }}
                             </a>
+                            <button type="submit" class="btn btn-primary pull-right">
+                                {{ __('Zaregistrovat se') }}
+                            </button>
                         </div>
                     </div>
                 </form>

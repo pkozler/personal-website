@@ -8,12 +8,12 @@
     </div>
     <div class="row">
       <div class="col-lg-6 ml-auto text-center">
-        <i class="fa fa-phone fa-3x mb-3 sr-contact"></i>
-        <p><span class="text-primary" id="phone-number"></span></p>
+        <i class="fa fa-phone fa-3x mb-3 sr-contact"></i><br/>
+        <a class="btn btn-link contact-link" id="phone-number"></a>
       </div>
       <div class="col-lg-6 mr-auto text-center">
-        <i class="fa fa-envelope-o fa-3x mb-3 sr-contact"></i>
-        <p><a id="email-address"></a></p>
+        <i class="fa fa-envelope-o fa-3x mb-3 sr-contact"></i><br/>
+        <a class="btn btn-link contact-link" id="email-address"></a>
       </div>
     </div>
   </div>
