@@ -11,52 +11,9 @@
 |
 */
 
-Route::get('profile', 'UserController@profile')->name('profile');
-
-Route::get('inbox', 'MessageController@inbox');
-
-/*
-Route::post('/message', function () {
-    //
-});
-
-Route::get('/logout', function () {
-    //
-});
-
-Route::get('/users', function () {
-    //
-});
-
-Route::post('/users', function () {
-    //
-});
-
-Route::get('/users/{id}', function () {
-    //
-});
-
-Route::post('/users/{id}', function () {
-    //
-});
-
-Route::post('/users/delete/{id}', function () {
-    //
-});
-
-Route::get('/messages/new', function () {
-    //
-});
-
-Route::post('/messages/accept/{id}', function () {
-    //
-});
-
-Route::post('/messages/reject/{id}', function () {
-    //
-});
-*/
-
 Auth::routes();
 
 Route::get('/', 'HomeController@index')->name('home');
+
+//Route::get('profile', 'UserController@profile')->name('profile');
+//Route::get('inbox', 'MessageController@inbox');

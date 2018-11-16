@@ -24,10 +24,11 @@
 	<!-- Plugin CSS -->
 	<link href="{{ asset('storage/vendor/magnific-popup/magnific-popup.css') }}" rel="stylesheet" type="text/css">
 
-	<!-- Custom styles for this template -->
+    <!-- Custom styles for this template -->
 	<link href="{{ asset('storage/css/creative.min.css') }}" rel="stylesheet" type="text/css">
 	<link href="{{ asset('storage/css/app.css') }}" rel="stylesheet" type="text/css">
 
+    <link rel="stylesheet" href="https://cdn.rawgit.com/konpa/devicon/df6431e323547add1b4cf45992913f15286456d3/devicon.min.css">
 	<script src='https://www.google.com/recaptcha/api.js' type="text/javascript"></script>
 </head>
 <body id="page-top">
@@ -47,11 +48,13 @@
 
 	@yield('content')
 
-	<footer class="footer">
+	<footer class="footer bg-dark">
 		<div class="container">
 			<div class="row">
-				@yield('footer')
-			</div>
+                <div class="col-md-12 text-center">
+                    <span class="text-faded" id="copyright">&copy; 2018 Petr Kozler</span>
+                </div>
+            </div>
 		</div>
 	</footer>
 
@@ -67,6 +70,7 @@
 	<!-- Custom scripts for this template -->
 	<script src="{{ asset('storage/js/creative.min.js') }}"></script>
 	<script src="{{ asset('storage/js/app.js') }}"></script>
+    @yield('foot')
 
 </body>
 </html>

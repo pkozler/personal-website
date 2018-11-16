@@ -9,12 +9,16 @@
 <ul>
 	<li><strong>Jméno: </strong>{{ Auth::user()->name }}</li>
 	<li><strong>E-mail: </strong>{{ Auth::user()->email }}</li>
-	<li><strong>Role: </strong>{{ Auth::user()->role }}</li>
 	<li><strong>Registrovaný od: </strong>{{ Auth::user()->created_at }}</li>
+	<li><strong>Role: </strong>{{ Auth::user()->role }}</li>
 </ul>
 
-<p><strong>Odeslané vzkazy:</strong></p>
+<h5>Odeslané vzkazy:</h5>
 
-
+@foreach (Auth::user()->messages() as $message)
+	<hr/>
+    <p><strong>{{ $message->title }}</strong><em>{{ $message->created_at }}</em></p>
+    <p>{{ $message->text }}</p>
+@endforeach
 
 @endsection

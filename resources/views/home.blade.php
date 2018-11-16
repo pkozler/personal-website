@@ -1,5 +1,11 @@
 @extends('layouts.app')
 
+<style>
+    .large-icon {
+        font-size: 100px
+    }
+</style>
+
 @section('navbar')
 
 <a class="navbar-brand" href="{{ url('/') }}/#">www.petrkozler.cz</a>
@@ -74,24 +80,18 @@
 
 @include('home.about')
 
-@include('home.portfolio', ['img1' => asset('storage/img/portfolio/tic-tac-toe.png'), 'img2' => asset('storage/img/portfolio/discussion.png'), 'img3' => asset('storage/img/portfolio/calculator.png'), 'img4' => asset('storage/img/portfolio/publication.png')])
+@include('home.portfolio', ['img1' => asset('storage/img/portfolio/cs.png'), 'img2' => asset('storage/img/portfolio/java.png'), 'img3' => asset('storage/img/portfolio/php.png'), 'img4' => asset('storage/img/portfolio/js.png'), 'img5' => asset('storage/img/portfolio/cpp.png'), 'img6' => asset('storage/img/portfolio/sql.png'), 'img7' => asset('storage/img/portfolio/html.png'), 'img8' => asset('storage/img/portfolio/py.png')])
 
 @include('home.link')
 
 @include('home.contact')
 
-@include('home.message')
+{{--@include('home.message')--}}
 
 @endsection
 
-@section('footer')
+@section('foot')
 
-<div class="col-md-4">
-    <a class="btn btn-outline-danger btn-sm" href="666.petrkozler.cz"><span class="text-muted">#666 edition</span></a>
-    <a class="btn btn-outline-info btn-sm" href="vvv.petrkozler.cz"><span class="text-muted">90's forever</span></a>
-</div>
-<div class="col-md-8 text-right">
-  @include('common.copyright')
-</div>
+    <script src="{{ asset('storage/js/secret.js') }}"></script>
 
 @endsection

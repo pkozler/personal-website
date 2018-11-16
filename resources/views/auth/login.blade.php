@@ -70,9 +70,7 @@
                             <button type="submit" class="btn btn-primary">
                                 {{ __('Přihlásit se') }}
                             </button>
-                            <a class="btn btn-secondary" href="{{ route('register') }}">
-                                {{ __('Vytvořit účet') }}
-                            </a>
+                            {{--<a class="btn btn-secondary" href="{{ route('register') }}">{{ __('Vytvořit účet') }}</a>--}}
                             <a class="btn btn-light pull-right" href="{{ route('home') }}">
                                 {{ __('Zrušit') }}
                             </a>
@@ -83,14 +81,6 @@
             </div>
         </div>
     </div>
-</div>
-
-@endsection
-
-@section('footer')
-
-<div class="col-md-12 text-center">
-    @include('common.copyright')
 </div>
 
 @endsection

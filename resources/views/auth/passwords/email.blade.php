@@ -59,11 +59,3 @@
 </div>
 
 @endsection
-
-@section('footer')
-
-<div class="col-md-12 text-center">
-    @include('common.copyright')
-</div>
-
-@endsection
