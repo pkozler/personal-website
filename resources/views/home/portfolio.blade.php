@@ -7,74 +7,79 @@
             </div>
         </div>
     </div>
+
     <div class="container">
         <div class="row">
-            <div class="col-lg-3 col-md-6 text-center">
+            <div class="col-lg-4 col-md-6 text-center">
                 <div class="service-box mt-5 mx-auto">
-                    {{--<i class="fas fa-4x fa-gem text-primary mb-3 sr-icon-1"></i>--}}
-                    <i class="devicon-dot-net-plain large-icon text-primary mb-3 sr-icon-1"></i>
-                    <h3 class="mb-3">C#</h3>
-                    <p class="text-muted mb-0">C#, .NET WPF, ADO.NET, NUnit</p>
+                    <i class="devicon-dot-net-plain large-icon mb-3 sr-icon-1"></i><br>
+                    <h3 class="mb-3">C#.NET</h3>
+                    <p class="text-muted mb-0">C#, NUnit, WinForms, WPF, EntityFramework</p>
                 </div>
             </div>
-            <div class="col-lg-3 col-md-6 text-center">
+            <div class="col-lg-4 col-md-6 text-center">
                 <div class="service-box mt-5 mx-auto">
-                    {{--<i class="fas fa-4x fa-paper-plane text-primary mb-3 sr-icon-2"></i>--}}
-                    <i class="devicon-java-plain large-icon text-primary mb-3 sr-icon-1"></i>
+                    <i class="devicon-java-plain large-icon mb-3 sr-icon-1"></i><br>
                     <h3 class="mb-3">Java</h3>
-                    <p class="text-muted mb-0">Java SE, JavaFX, Log4j, JUnit, Android SDK</p>
+                    <p class="text-muted mb-0">Java SE, Log4j, JUnit, Swing, JavaFX, Android SDK</p>
                 </div>
             </div>
-            <div class="col-lg-3 col-md-6 text-center">
+            <div class="col-lg-4 col-md-6 text-center">
                 <div class="service-box mt-5 mx-auto">
-                    {{--<i class="fas fa-4x fa-code text-primary mb-3 sr-icon-3"></i>--}}
-                    <i class="devicon-php-plain large-icon text-primary mb-3 sr-icon-1"></i>
+                    <i class="devicon-php-plain large-icon mb-3 sr-icon-1"></i><br>
                     <h3 class="mb-3">PHP</h3>
-                    <p class="text-muted mb-0">PHP, Twig, Doctrine, Slim Framework</p>
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-6 text-center">
-                <div class="service-box mt-5 mx-auto">
-                    {{--<i class="fas fa-4x fa-heart text-primary mb-3 sr-icon-4"></i>--}}
-                    <i class="devicon-jquery-plain large-icon text-primary mb-3 sr-icon-1"></i>
-                    <h3 class="mb-3">JS</h3>
-                    <p class="text-muted mb-0">JavaScript, jQuery</p>
+                    <p class="text-muted mb-0">PHP 5/7, Slim Framework, PHPUnit, Twig, Doctrine, Nette</p>
                 </div>
             </div>
         </div>
+
         <div class="row">
-            <div class="col-lg-3 col-md-6 text-center">
+            <div class="col-lg-4 col-md-6 text-center">
                 <div class="service-box mt-5 mx-auto">
-                    {{--<i class="fas fa-4x fa-gem text-primary mb-3 sr-icon-1"></i>--}}
-                    <i class="devicon-c-plain large-icon text-primary mb-3 sr-icon-1"></i>
-                    <h3 class="mb-3">C</h3>
-                    <p class="text-muted mb-0">C, C POSIX library, x86 assembler</p>
+                    <i class="devicon-mysql-plain large-icon mb-3 sr-icon-1"></i><br>
+                    <h3 class="mb-3">Databáze</h3>
+                    <p class="text-muted mb-0">MySQL, MS-SQL, SQLite, Redis</p>
                 </div>
             </div>
-            <div class="col-lg-3 col-md-6 text-center">
+            <div class="col-lg-4 col-md-6 text-center">
                 <div class="service-box mt-5 mx-auto">
-                    {{--<i class="fas fa-4x fa-paper-plane text-primary mb-3 sr-icon-2"></i>--}}
-                    <i class="devicon-mysql-plain large-icon text-primary mb-3 sr-icon-1"></i>
-                    <h3 class="mb-3">SQL</h3>
-                    <p class="text-muted mb-0">MySQL, MS-SQL</p>
+                    <i class="devicon-jquery-plain large-icon mb-3 sr-icon-1"></i><br>
+                    <h3 class="mb-3">Webdesign</h3>
+                    <p class="text-muted mb-0">HTML 5, CSS 3, JS/jQuery, Bootstrap 3/4, NodeJS</p>
                 </div>
             </div>
-            <div class="col-lg-3 col-md-6 text-center">
+            <div class="col-lg-4 col-md-6 text-center">
                 <div class="service-box mt-5 mx-auto">
-                    {{--<i class="fas fa-4x fa-code text-primary mb-3 sr-icon-3"></i>--}}
-                    <i class="devicon-html5-plain large-icon text-primary mb-3 sr-icon-1"></i>
-                    <h3 class="mb-3">HTML+CSS</h3>
-                    <p class="text-muted mb-0">HTML, CSS, Twitter Bootstrap</p>
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-6 text-center">
-                <div class="service-box mt-5 mx-auto">
-                    {{--<i class="fas fa-4x fa-heart text-primary mb-3 sr-icon-4"></i>--}}
-                    <i class="devicon-devicon-plain large-icon text-primary mb-3 sr-icon-1"></i>
-                    <h3 class="mb-3">Ostatní</h3>
-                    <p class="text-muted mb-0">Python, Bash, Batch, FreePascal</p>
+                    <i class="devicon-c-plain large-icon mb-3 sr-icon-1"></i><br>
+                    <h3 class="mb-3">C(++)</h3>
+                    <p class="text-muted mb-0">GNU C/C++, POSIX Threads, BSD Sockets</p>
                 </div>
             </div>
         </div>
+
+        <div class="row">
+            <div class="col-lg-4 col-md-6 text-center">
+                <div class="service-box mt-5 mx-auto">
+                    <i class="devicon-devicon-plain large-icon mb-3 sr-icon-1"></i><br>
+                    <h3 class="mb-3">Další jazyky</h3>
+                    <p class="text-muted mb-0">Python 3, Free Pascal</p>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6 text-center">
+                <div class="service-box mt-5 mx-auto">
+                    <i class="devicon-windows8-plain large-icon mb-3 sr-icon-1"></i><br>
+                    <h3 class="mb-3">Operační systémy</h3>
+                    <p class="text-muted mb-0">Unix bash, Windows cmd</p>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6 text-center">
+                <div class="service-box mt-5 mx-auto">
+                    <i class="devicon-git-plain large-icon mb-3 sr-icon-1"></i><br>
+                    <h3 class="mb-3">SW nástroje</h3>
+                    <p class="text-muted mb-0">Git, MS Office, LaTeX</p>
+                </div>
+            </div>
+        </div>
+
     </div>
 </section>

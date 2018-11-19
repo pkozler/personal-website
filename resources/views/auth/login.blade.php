@@ -2,12 +2,7 @@
 
 @section('navbar')
 
-<a class="navbar-brand js-scroll-trigger" href="#">www.petrkozler.cz</a>
-<ul class="navbar-nav ml-auto">
-    <li class="nav-item">
-      <a class="nav-link" href="{{ route('home') }}"><span class="fa fa-home"></span>&nbsp;{{ __('Domů') }}</a>
-    </li>
-</ul>
+<a class="navbar-brand js-scroll-trigger" href="{{ route('home') }}"><span class="fa fa-home"></span></a>
 
 @endsection
 
@@ -67,13 +62,13 @@
 
                     <div class="form-group row mb-4">
                         <div class="col-md-7 offset-md-3">
-                            <button type="submit" class="btn btn-primary">
+                            <button type="submit" class="btn btn-primary pull-right">
                                 {{ __('Přihlásit se') }}
                             </button>
                             {{--<a class="btn btn-secondary" href="{{ route('register') }}">{{ __('Vytvořit účet') }}</a>--}}
-                            <a class="btn btn-light pull-right" href="{{ route('home') }}">
-                                {{ __('Zrušit') }}
-                            </a>
+                            {{--<a class="btn btn-light pull-right" href="{{ route('home') }}">--}}
+                                {{--{{ __('Zrušit') }}--}}
+                            {{--</a>--}}
                         </div>
                     </div>
 

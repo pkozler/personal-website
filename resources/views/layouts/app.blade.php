@@ -29,6 +29,9 @@
 	<link href="{{ asset('storage/css/app.css') }}" rel="stylesheet" type="text/css">
 
     <link rel="stylesheet" href="https://cdn.rawgit.com/konpa/devicon/df6431e323547add1b4cf45992913f15286456d3/devicon.min.css">
+
+    @yield('head')
+
 	<script src='https://www.google.com/recaptcha/api.js' type="text/javascript"></script>
 </head>
 <body id="page-top">
@@ -36,11 +39,12 @@
 	<!-- Navigation -->
 	<nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
 		<div class="container">
+            <a class="navbar-brand js-scroll-trigger" href="#page-top">www.petrkozler.cz</a>
 			@yield('navbar')
 		</div>
 	</nav>
 
-	<header class="masthead d-flex">
+	<header class="masthead text-center text-white d-flex">
 		<div class="container my-auto">
 			@yield('header')
 		</div>
