@@ -8,17 +8,17 @@
       </div>
     </div>
     <div class="row">
-        <div class="col-lg-4 ml-auto text-center">
+        <div class="col-lg-4 mx-auto text-center">
             <a class="btn btn-link contact-link text-dark" id="phone-number">
                 <i class="fa fa-phone fa-3x mb-3 sr-contact"></i><br>
                 <p class="contact-text text-primary"></p></a>
         </div>
-        <div class="col-lg-4 mr-auto text-center">
+        <div class="col-lg-4 mx-auto text-center">
             <a class="btn btn-link contact-link text-dark" id="email-address">
                 <i class="fa fa-envelope fa-3x mb-3 sr-contact"></i><br>
                 <p class="contact-text text-primary"></p></a>
         </div>
-        <div class="col-lg-4 mr-auto text-center">
+        <div class="col-lg-4 mx-auto text-center">
             <a class="btn btn-link contact-link text-dark" id="facebook-link">
                 <i class="fa fa-facebook fa-3x mb-3 sr-contact"></i><br>
                 <p class="contact-text text-primary"></p></a>

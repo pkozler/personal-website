@@ -2,7 +2,7 @@
 
 @section('head')
 
-<link href='{{ asset('storage/fonts/wikimedia-at.svg') }}' type='image/svg+xml'>
+{{--<link href='{{ asset('storage/fonts/wikimedia-at.svg') }}' type='image/svg+xml'>--}}
 
 @endsection
 
