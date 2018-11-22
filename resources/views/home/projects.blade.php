@@ -1,15 +1,18 @@
-<section class="p-0" id="screenshots">
+
+<section class="p-0" id="projects">
     <div class="container-fluid p-0">
+
         <div class="row no-gutters">
             <div class="col-lg-12 text-center">
                 <h2 class="section-heading">Ukázky</h2>
                 <hr class="my-4">
             </div>
         </div>
+
         <div class="row no-gutters popup-gallery">
             <div class="col-lg-4 col-sm-6">
-                <a class="portfolio-box" href="{{ $img1f}}">
-                    <img class="img-fluid" src="{{ $img1t }}">
+                <a class="portfolio-box" href="{{ asset('storage/img/photos/fullsize/1.png') }}">
+                    <img class="img-fluid" src="{{ asset('storage/img/photos/thumbnails/1.png') }}">
                     <div class="portfolio-box-caption">
                         <div class="portfolio-box-caption-content">
                             <div class="project-category text-faded">
@@ -23,8 +26,8 @@
                 </a>
             </div>
             <div class="col-lg-4 col-sm-6">
-                <a class="portfolio-box" href="{{ $img2f}}">
-                    <img class="img-fluid" src="{{ $img2t }}">
+                <a class="portfolio-box" href="{{ asset('storage/img/photos/fullsize/2.png') }}">
+                    <img class="img-fluid" src="{{ asset('storage/img/photos/thumbnails/2.png') }}">
                     <div class="portfolio-box-caption">
                         <div class="portfolio-box-caption-content">
                             <div class="project-category text-faded">
@@ -38,8 +41,8 @@
                 </a>
             </div>
             <div class="col-lg-4 col-sm-6">
-                <a class="portfolio-box" href="{{ $img3f}}">
-                    <img class="img-fluid" src="{{ $img3t }}">
+                <a class="portfolio-box" href="{{ asset('storage/img/photos/fullsize/3.png') }}">
+                    <img class="img-fluid" src="{{ asset('storage/img/photos/thumbnails/3.png') }}">
                     <div class="portfolio-box-caption">
                         <div class="portfolio-box-caption-content">
                             <div class="project-category text-faded">
@@ -53,8 +56,8 @@
                 </a>
             </div>
             <div class="col-lg-4 col-sm-6">
-                <a class="portfolio-box" href="{{ $img4f}}">
-                    <img class="img-fluid" src="{{ $img4t }}">
+                <a class="portfolio-box" href="{{ asset('storage/img/photos/fullsize/4.png') }}">
+                    <img class="img-fluid" src="{{ asset('storage/img/photos/thumbnails/4.png') }}">
                     <div class="portfolio-box-caption">
                         <div class="portfolio-box-caption-content">
                             <div class="project-category text-faded">
@@ -68,8 +71,8 @@
                 </a>
             </div>
             <div class="col-lg-4 col-sm-6">
-                <a class="portfolio-box" href="{{ $img5f}}">
-                    <img class="img-fluid" src="{{ $img5t }}">
+                <a class="portfolio-box" href="{{ asset('storage/img/photos/fullsize/5.png') }}">
+                    <img class="img-fluid" src="{{ asset('storage/img/photos/thumbnails/5.png') }}">
                     <div class="portfolio-box-caption">
                         <div class="portfolio-box-caption-content">
                             <div class="project-category text-faded">
@@ -83,8 +86,8 @@
                 </a>
             </div>
             <div class="col-lg-4 col-sm-6">
-                <a class="portfolio-box" href="{{ $img6f}}">
-                    <img class="img-fluid" src="{{ $img6t }}">
+                <a class="portfolio-box" href="{{ asset('storage/img/photos/fullsize/6.png') }}">
+                    <img class="img-fluid" src="{{ asset('storage/img/photos/thumbnails/6.png') }}">
                     <div class="portfolio-box-caption">
                         <div class="portfolio-box-caption-content">
                             <div class="project-category text-faded">
@@ -98,8 +101,8 @@
                 </a>
             </div>
             <div class="col-lg-4 col-sm-6">
-                <a class="portfolio-box" href="{{ $img7f}}">
-                    <img class="img-fluid" src="{{ $img7t }}">
+                <a class="portfolio-box" href="{{ asset('storage/img/photos/fullsize/7.png') }}">
+                    <img class="img-fluid" src="{{ asset('storage/img/photos/thumbnails/7.png') }}">
                     <div class="portfolio-box-caption">
                         <div class="portfolio-box-caption-content">
                             <div class="project-category text-faded">
@@ -113,8 +116,8 @@
                 </a>
             </div>
             <div class="col-lg-4 col-sm-6">
-                <a class="portfolio-box" href="{{ $img8f}}">
-                    <img class="img-fluid" src="{{ $img8t }}">
+                <a class="portfolio-box" href="{{ asset('storage/img/photos/fullsize/8.png') }}">
+                    <img class="img-fluid" src="{{ asset('storage/img/photos/thumbnails/8.png') }}">
                     <div class="portfolio-box-caption">
                         <div class="portfolio-box-caption-content">
                             <div class="project-category text-faded">
@@ -128,8 +131,8 @@
                 </a>
             </div>
             <div class="col-lg-4 col-sm-6">
-                <a class="portfolio-box" href="{{ $img9f}}">
-                    <img class="img-fluid" src="{{ $img9t }}">
+                <a class="portfolio-box" href="{{ asset('storage/img/photos/fullsize/9.png') }}">
+                    <img class="img-fluid" src="{{ asset('storage/img/photos/thumbnails/9.png') }}">
                     <div class="portfolio-box-caption">
                         <div class="portfolio-box-caption-content">
                             <div class="project-category text-faded">
@@ -142,16 +145,7 @@
                     </div>
                 </a>
             </div>
-        </div>
-    </div>
-</section>
 
-<section class="bg-dark text-white">
-    <div class="container text-center">
-        <h3 class="mb-4">Tyto a některé moje další projekty jsou volně dostupné na GitHub profilu:</h3>
-        {{--<br><a class="btn btn-light btn-xl js-scroll-trigger" href="#contact">Kontakt</a>--}}
-        <a class="btn btn-link contact-link" id="github-profile">
-        <i class="fa fa-github fa-4x mb-4 sr-contact"></i><br>
-        <span class="contact-text text-primary"></span></a>
+        </div>
     </div>
 </section>

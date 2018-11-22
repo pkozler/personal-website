@@ -17,19 +17,22 @@ class UserController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth');
+        $this->middleware('auth')->only('log');
     }
 
     /**
-     * Show the current user's profile.
+     * Show the content management UI.
      *
      * @return \Illuminate\Http\Response
      */
-    public function profile()
+    public function index()
     {
-        //$user = Auth::user();
+        return view('admin.sections');
+    }
 
-        return view('profile');
+    public function log()
+    {
+        return view('admin.guests');
     }
 
 }
