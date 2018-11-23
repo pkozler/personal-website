@@ -1,81 +1,46 @@
-@extends('layouts.app')
+@extends('layouts.admin.auth')
 
-@section('navbar')
-    <a class="navbar-brand" href="{{ route('home') }}"><span class="fa fa-home"></span></a>
-@endsection
+@section('form_card', 'card-login')
 
-<header class="masthead text-center text-white d-flex">
-    <div class="container my-auto">
-        <div class="row justify-content-center">
-            <div class="col-md-8">
-                <div class="card bg-dark text-white">
-                    <div class="card-header">{{ __('Přihlášení') }}</div>
+@section('page', 'Přihlášení uživatele')
 
-                    <div class="card-body">
-                        <form method="POST" action="{{ route('login') }}" aria-label="{{ __('Login') }}">
-                            @csrf
+@section('auth_form')
+    <form method="POST" action="{{ route('login') }}" aria-label="{{ __('Login') }}">
+        @csrf
 
-                            <div class="form-group row">
-                                <label for="email" class="col-sm-3 col-form-label text-md-right">{{ __('E-mailová adresa') }}</label>
+        <div class="form-group">
+            <div class="form-label-group">
+                <input type="email" id="inputEmail" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ old('email') }}" placeholder="{{ __('E-mail') }}" required="required" autofocus="autofocus">
+                <label for="inputEmail">{{ __('E-mail') }}</label>
+            </div>
 
-                                <div class="col-md-7">
-                                    <input id="email" type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ old('email') }}" required autofocus>
+            @if ($errors->has('email'))
+                <span class="invalid-feedback"><strong>{{ $errors->first('email') }}</strong></span>
+            @endif
+        </div>
+        <div class="form-group">
+            <div class="form-label-group">
+                <input type="password" id="inputPassword" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" name="password" placeholder="{{ __('Heslo') }}" required="required">
+                <label for="inputPassword">{{ __('Heslo') }}</label>
+            </div>
 
-                                    @if ($errors->has('email'))
-                                        <span class="invalid-feedback">
-                                    <strong>{{ $errors->first('email') }}</strong>
-                                </span>
-                                    @endif
-                                </div>
-                            </div>
-
-                            <div class="form-group row">
-                                <label for="password" class="col-md-3 col-form-label text-md-right">{{ __('Heslo') }}</label>
-
-                                <div class="col-md-7">
-                                    <input id="password" type="password" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" name="password" required>
-
-                                    @if ($errors->has('password'))
-                                        <span class="invalid-feedback">
-                                    <strong>{{ $errors->first('password') }}</strong>
-                                </span>
-                                    @endif
-                                </div>
-                            </div>
-
-                            <div class="form-group row">
-                                <div class="col-md-3 offset-md-3">
-                                    <div class="checkbox">
-                                        <label>
-                                            <input type="checkbox" name="remember" {{ old('remember') ? 'checked' : '' }}> {{ __('Pamatovat si mě') }}
-                                        </label>
-                                    </div>
-                                </div>
-
-                                <div class="col-md-4 text-md-right">
-                                    <a class="btn-link forgot-password-link" href="{{ route('password.request') }}"><span class="text-primary">{{ __('Zapomenuté heslo?') }}</span>
-                                    </a>
-                                </div>
-                            </div>
-
-                            <div class="form-group row mb-4">
-                                <div class="col-md-7 offset-md-3">
-                                    <button type="submit" class="btn btn-primary pull-right">
-                                        {{ __('Přihlásit se') }}
-                                    </button>
-                                    {{--<a class="btn btn-secondary" href="{{ route('register') }}">{{ __('Vytvořit účet') }}</a>--}}
-                                    {{--<a class="btn btn-light pull-right" href="{{ route('home') }}">--}}
-                                    {{--{{ __('Zrušit') }}--}}
-                                    {{--</a>--}}
-                                </div>
-                            </div>
-
-                        </form>
-                    </div>
-                </div>
+            @if ($errors->has('password'))
+                <span class="invalid-feedback"><strong>{{ $errors->first('password') }}</strong></span>
+            @endif
+        </div>
+        <div class="form-group">
+            <div class="checkbox">
+                <label>
+                    <input type="checkbox" value="remember" {{ old('remember') ? 'checked' : '' }}>
+                    {{ __('Pamatovat heslo') }}
+                </label>
             </div>
         </div>
+        <button type="submit" class="btn btn-primary btn-block">{{ __('Přihlásit se') }}</button>
+    </form>
+@endsection
 
-    </div>
-</header>
-
+@section('foot_nav')
+    {{--<a class="d-block small mt-3" href="{{ route('register') }}">{{ __('Založit účet') }}</a>--}}
+    {{--<a class="d-block small mt-3" href="{{ route('password.email') }}">{{ __('Zapomenuté heslo') }}</a>--}}
+@endsection

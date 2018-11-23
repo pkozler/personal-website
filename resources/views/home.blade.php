@@ -1,98 +1,108 @@
 @extends('layouts.app')
 
-@section('head')
-
-{{--<link href='{{ asset('storage/fonts/wikimedia-at.svg') }}' type='image/svg+xml'>--}}
-
+@section('title')
+    @include('partials.brand') - webová prezentace
 @endsection
+
+@section('head')
+    <!-- Custom fonts for this template -->
+    <link href="{{ asset('storage/vendor/font-awesome/css/font-awesome.min.css') }}" rel="stylesheet" type="text/css">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Merriweather:400,300,300italic,400italic,700,700italic,900,900italic' rel='stylesheet' type='text/css'>
+
+    <!-- Plugin CSS -->
+    <link href="{{ asset('storage/vendor/magnific-popup/magnific-popup.css') }}" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="{{ asset('storage/css/creative.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('storage/css/app.css') }}" rel="stylesheet">
+
+    {{--<script src='https://www.google.com/recaptcha/api.js' type="text/javascript"></script>--}}
+@endsection
+
+@section('top') id="page-top" @endsection
 
 @section('navbar')
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
+        <div class="container">
+            <a class="navbar-brand js-scroll-trigger" href="#page-top">@include('partials.brand')</a>
+            <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
+                <span class="navbar-toggler-icon"></span>
+            </button>
 
-<button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
-  <span class="navbar-toggler-icon"></span>
-</button>
-<div class="collapse navbar-collapse" id="navbarResponsive">
-  <!-- Left Side Of Navbar -->
-  <!-- <ul class="navbar-nav mr-auto"></ul> -->
+            <div class="collapse navbar-collapse" id="navbarResponsive">
+                <!-- Right Side Of Navbar -->
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a class="nav-link js-scroll-trigger" href="#profile">O mně</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link js-scroll-trigger" href="#skils">Dovednosti</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link js-scroll-trigger" href="#projectsd">Ukázky</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link js-scroll-trigger" href="#contacts">Kontakt</a>
+                    </li>
 
-  <!-- Right Side Of Navbar -->
-  <ul class="navbar-nav ml-auto">
-    <li class="nav-item">
-      <a class="nav-link js-scroll-trigger" href="#about">O mně</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link js-scroll-trigger" href="#portfolio">Dovednosti</a>
-    </li>
-  <li class="nav-item">
-      <a class="nav-link js-scroll-trigger" href="#screenshots">Ukázky</a>
-  </li>
-    <li class="nav-item">
-      <a class="nav-link js-scroll-trigger" href="#contact">Kontakt</a>
-    </li>
-    <!-- Authentication Links -->
-    @guest
-    <li class="nav-item">
-      <a class="nav-link" href="{{ route('login') }}"><span class="fa fa-sign-in"></span></a>
-    </li>
-    @else
-    <li class="nav-item dropdown">
-      <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-        {{ Auth::user()->name }} <span class="caret"></span>
-      </a>
+                    <!-- Authentication Links -->
+                    @guest
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('login') }}"><span class="fa fa-sign-in"></span></a>
+                        </li>
+                    @else
+                        <li class="nav-item dropdown ">
+                            <a id="navbarDropdown" class="nav-link dropdown-toggle text-primary" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                <span class="fa fa-user"></span>
+                            </a>
 
-      <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-        <a class="dropdown-item" href="{{ route('profile') }}">Profile</a>
-        <a class="dropdown-item" href="{{ route('logout') }}"
-        onclick="event.preventDefault();
-        document.getElementById('logout-form').submit();">
-        {{ __('Logout') }}
-        </a>
+                            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item" href="{{ route('admin') }}"><i class="fas fa-sliders"></i> Administrace</a>
+                                <a class="dropdown-item" href="{{ route('admin.log') }}"><i class="fas fa-history"></i> Záznamy</a>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();"><i class="fa fa-sign-out"></i> Odhlásit se</a>
 
-        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-          @csrf
-        </form>
-      </div>
-    </li>
-  @endguest
-</ul>
-</div>
-
-@endsection
-
-@section('header')
-
-<div class="row text-white text-center">
-  <div class="col-lg-10 mx-auto">
-      <h1 class="text-uppercase">
-          <strong>Petr Kozler</strong>
-      </h1>
-    <hr>
-  </div>
-
-  <div class="col-lg-8 mx-auto">
-    <h3 class="text-faded mb-5">Vítejte na mých webových stránkách!</h3>
-    <a class="btn btn-primary btn-xl js-scroll-trigger" href="#about">Zobrazit profil</a>
-  </div>
-</div>
-
+                                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                    @csrf
+                                </form>
+                            </div>
+                        </li>
+                    @endguest
+                </ul>
+            </div>
+        </div>
+    </nav>
 @endsection
 
 @section('content')
 
-@include('home.about')
-
-
-@include('home.portfolio')
-@include('home.link', ['img1f' => asset('storage/img/portfolio/fullsize/1.png'), 'img2f' => asset('storage/img/portfolio/fullsize/2.png'), 'img3f' => asset('storage/img/portfolio/fullsize/3.png'), 'img4f' => asset('storage/img/portfolio/fullsize/4.png'), 'img5f' => asset('storage/img/portfolio/fullsize/5.png'), 'img6f' => asset('storage/img/portfolio/fullsize/6.png'), 'img7f' => asset('storage/img/portfolio/fullsize/7.png'), 'img8f' => asset('storage/img/portfolio/fullsize/8.png'), 'img9f' => asset('storage/img/portfolio/fullsize/9.png'), 'img1t' => asset('storage/img/portfolio/thumbnails/1.png'), 'img2t' => asset('storage/img/portfolio/thumbnails/2.png'), 'img3t' => asset('storage/img/portfolio/thumbnails/3.png'), 'img4t' => asset('storage/img/portfolio/thumbnails/4.png'), 'img5t' => asset('storage/img/portfolio/thumbnails/5.png'), 'img6t' => asset('storage/img/portfolio/thumbnails/6.png'), 'img7t' => asset('storage/img/portfolio/thumbnails/7.png'), 'img8t' => asset('storage/img/portfolio/thumbnails/8.png'), 'img9t' => asset('storage/img/portfolio/thumbnails/9.png')])
-
-@include('home.contact')
-
-{{--@include('home.message')--}}
+        @include('home.profile')
+        @include('home.skills')
+        @include('home.projects')
+        @include('home.contacts')
 
 @endsection
 
-@section('foot')
+@section('footer')
+    <footer class="footer bg-dark">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 text-center text-faded">
+                    <span id="copyright">@include('partials.copyright')</span>
+                </div>
+            </div>
+        </div>
+    </footer>
+@endsection
 
-    {{--<script src="{{ asset('storage/js/secret.js') }}"></script>--}}
+@section('bottom')
+    <!-- Plugin JavaScript -->
+    <script src="{{ asset('storage/vendor/scrollreveal/scrollreveal.min.js') }}"></script>
+    <script src="{{ asset('storage/vendor/magnific-popup/jquery.magnific-popup.min.js') }}"></script>
 
+    <!-- Custom scripts for this template -->
+    <script src="{{ asset('storage/js/creative.min.js') }}"></script>
+    <script src="{{ asset('storage/js/app.js') }}"></script>
 @endsection

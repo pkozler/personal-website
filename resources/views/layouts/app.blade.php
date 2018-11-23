@@ -11,16 +11,20 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-	<title>Petr Kozler | @yield('title')</title>
+	<title>@yield('title')</title>
 
 	<!-- Bootstrap core CSS -->
 	<link href="{{ asset('storage/vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet" type="text/css">
-	<link href="{{ asset('storage/vendor/font-awesome/css/font-awesome.min.css') }}" rel="stylesheet" type="text/css">
+
+    <!-- Custom fonts for this template-->
+    <link href="{{ asset('storage/vendor/fontawesome-free/css/all.min.css') }}" rel="stylesheet" type="text/css">
+    <link href="https://cdn.rawgit.com/konpa/devicon/df6431e323547add1b4cf45992913f15286456d3/devicon.min.css" rel="stylesheet">
 
     @yield('head')
 
 </head>
-<body id="page-top">
+
+<body @yield('top') >
 
     @yield('navbar')
 	@yield('content')
