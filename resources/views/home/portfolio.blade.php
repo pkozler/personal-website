@@ -1,5 +1,4 @@
-
-<section class="p-0" id="projects">
+<section class="p-0" id="portfolio">
     <div class="container-fluid p-0">
 
         <div class="row no-gutters">
@@ -11,8 +10,8 @@
 
         <div class="row no-gutters popup-gallery">
             <div class="col-lg-4 col-sm-6">
-                <a class="portfolio-box" href="{{ asset('storage/img/photos/fullsize/1.png') }}">
-                    <img class="img-fluid" src="{{ asset('storage/img/photos/thumbnails/1.png') }}">
+                <a class="portfolio-box" href="{{ asset('storage/img/portfolio/fullsize/1.png') }}">
+                    <img class="img-fluid" src="{{ asset('storage/img/portfolio/thumbnails/1.png') }}">
                     <div class="portfolio-box-caption">
                         <div class="portfolio-box-caption-content">
                             <div class="project-category text-faded">
@@ -26,8 +25,8 @@
                 </a>
             </div>
             <div class="col-lg-4 col-sm-6">
-                <a class="portfolio-box" href="{{ asset('storage/img/photos/fullsize/2.png') }}">
-                    <img class="img-fluid" src="{{ asset('storage/img/photos/thumbnails/2.png') }}">
+                <a class="portfolio-box" href="{{ asset('storage/img/portfolio/fullsize/2.png') }}">
+                    <img class="img-fluid" src="{{ asset('storage/img/portfolio/thumbnails/2.png') }}">
                     <div class="portfolio-box-caption">
                         <div class="portfolio-box-caption-content">
                             <div class="project-category text-faded">
@@ -41,8 +40,8 @@
                 </a>
             </div>
             <div class="col-lg-4 col-sm-6">
-                <a class="portfolio-box" href="{{ asset('storage/img/photos/fullsize/3.png') }}">
-                    <img class="img-fluid" src="{{ asset('storage/img/photos/thumbnails/3.png') }}">
+                <a class="portfolio-box" href="{{ asset('storage/img/portfolio/fullsize/3.png') }}">
+                    <img class="img-fluid" src="{{ asset('storage/img/portfolio/thumbnails/3.png') }}">
                     <div class="portfolio-box-caption">
                         <div class="portfolio-box-caption-content">
                             <div class="project-category text-faded">
@@ -56,8 +55,8 @@
                 </a>
             </div>
             <div class="col-lg-4 col-sm-6">
-                <a class="portfolio-box" href="{{ asset('storage/img/photos/fullsize/4.png') }}">
-                    <img class="img-fluid" src="{{ asset('storage/img/photos/thumbnails/4.png') }}">
+                <a class="portfolio-box" href="{{ asset('storage/img/portfolio/fullsize/4.png') }}">
+                    <img class="img-fluid" src="{{ asset('storage/img/portfolio/thumbnails/4.png') }}">
                     <div class="portfolio-box-caption">
                         <div class="portfolio-box-caption-content">
                             <div class="project-category text-faded">
@@ -71,8 +70,8 @@
                 </a>
             </div>
             <div class="col-lg-4 col-sm-6">
-                <a class="portfolio-box" href="{{ asset('storage/img/photos/fullsize/5.png') }}">
-                    <img class="img-fluid" src="{{ asset('storage/img/photos/thumbnails/5.png') }}">
+                <a class="portfolio-box" href="{{ asset('storage/img/portfolio/fullsize/5.png') }}">
+                    <img class="img-fluid" src="{{ asset('storage/img/portfolio/thumbnails/5.png') }}">
                     <div class="portfolio-box-caption">
                         <div class="portfolio-box-caption-content">
                             <div class="project-category text-faded">
@@ -86,8 +85,8 @@
                 </a>
             </div>
             <div class="col-lg-4 col-sm-6">
-                <a class="portfolio-box" href="{{ asset('storage/img/photos/fullsize/6.png') }}">
-                    <img class="img-fluid" src="{{ asset('storage/img/photos/thumbnails/6.png') }}">
+                <a class="portfolio-box" href="{{ asset('storage/img/portfolio/fullsize/6.png') }}">
+                    <img class="img-fluid" src="{{ asset('storage/img/portfolio/thumbnails/6.png') }}">
                     <div class="portfolio-box-caption">
                         <div class="portfolio-box-caption-content">
                             <div class="project-category text-faded">
@@ -101,8 +100,8 @@
                 </a>
             </div>
             <div class="col-lg-4 col-sm-6">
-                <a class="portfolio-box" href="{{ asset('storage/img/photos/fullsize/7.png') }}">
-                    <img class="img-fluid" src="{{ asset('storage/img/photos/thumbnails/7.png') }}">
+                <a class="portfolio-box" href="{{ asset('storage/img/portfolio/fullsize/7.png') }}">
+                    <img class="img-fluid" src="{{ asset('storage/img/portfolio/thumbnails/7.png') }}">
                     <div class="portfolio-box-caption">
                         <div class="portfolio-box-caption-content">
                             <div class="project-category text-faded">
@@ -116,8 +115,8 @@
                 </a>
             </div>
             <div class="col-lg-4 col-sm-6">
-                <a class="portfolio-box" href="{{ asset('storage/img/photos/fullsize/8.png') }}">
-                    <img class="img-fluid" src="{{ asset('storage/img/photos/thumbnails/8.png') }}">
+                <a class="portfolio-box" href="{{ asset('storage/img/portfolio/fullsize/8.png') }}">
+                    <img class="img-fluid" src="{{ asset('storage/img/portfolio/thumbnails/8.png') }}">
                     <div class="portfolio-box-caption">
                         <div class="portfolio-box-caption-content">
                             <div class="project-category text-faded">
@@ -131,8 +130,8 @@
                 </a>
             </div>
             <div class="col-lg-4 col-sm-6">
-                <a class="portfolio-box" href="{{ asset('storage/img/photos/fullsize/9.png') }}">
-                    <img class="img-fluid" src="{{ asset('storage/img/photos/thumbnails/9.png') }}">
+                <a class="portfolio-box" href="{{ asset('storage/img/portfolio/fullsize/9.png') }}">
+                    <img class="img-fluid" src="{{ asset('storage/img/portfolio/thumbnails/9.png') }}">
                     <div class="portfolio-box-caption">
                         <div class="portfolio-box-caption-content">
                             <div class="project-category text-faded">

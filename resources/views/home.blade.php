@@ -38,10 +38,10 @@
                         <a class="nav-link js-scroll-trigger" href="#profile">O mně</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link js-scroll-trigger" href="#skils">Dovednosti</a>
+                        <a class="nav-link js-scroll-trigger" href="#skills">Dovednosti</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link js-scroll-trigger" href="#projectsd">Ukázky</a>
+                        <a class="nav-link js-scroll-trigger" href="#projects">Ukázky</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link js-scroll-trigger" href="#contacts">Kontakt</a>
@@ -78,10 +78,12 @@
 
 @section('content')
 
-        @include('home.profile')
-        @include('home.skills')
-        @include('home.projects')
-        @include('home.contacts')
+        @include('home.welcome')
+        @include('home.about')
+        @include('home.services')
+        @include('home.portfolio')
+        @include('home.reference')
+        @include('home.contact')
 
 @endsection
 
