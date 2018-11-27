@@ -3,56 +3,31 @@
 @section('screen', 'Administrační rozhraní')
 @section('page', 'základní nastavení')
 
-@section('navlinks')
-    <li class="nav-item">
-        <a class="nav-link text-light" href="{{ route('admin') }}"><i class="fas fa-sliders-h">&nbsp;</i>Administrace</a>
-    </li>
-    <li class="nav-item">
-        <a class="nav-link" href="{{ route('admin.log') }}"><i class="fas fa-history">&nbsp;</i>Záznamy</a>
-    </li>
-@endsection
-
 @section('main')
 
-    <!-- Area Chart Example-->
-    <div class="card mb-3">
-        <div class="card-header">
-            <i class="fas fa-table"></i>
-            Seznam sekcí</div>
-        <div class="card-body">
+    @isset($success)
+        <div class="alert alert-info" role="alert">{{ $success }}</div>
+    @endisset
 
-            @if (!$sections)
-                <p>Zatím žádná data...</p>
-            @else
-                <div class="table-responsive">
+    @php($sectionList = \App\Section::all())
+    @foreach ($sectionList as $section)
+            <div class="card mb-3"><a class="btn btn-outline-info" href="{{ route('admin.section', ['id' => $section->id]) }}">
 
-                    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                        <thead>
-                        <tr>
-                            <th>ID</th>
-                            <th>Odkaz</th>
-                            <th>Název</th>
-                        </tr>
-                        </thead>
-
-                        <tbody>
-                        @foreach ($sections as $section)
-                            <tr>
-
-                                <td>{{ $section->id }}</td>
-                                <td>{{ $section->attr_id }}</td>
-                                <td>{{ $section->nav_title}}</td>
-
-                            </tr>
-                        @endforeach
-                        </tbody>
-                    </table>
+                <div class="card-header">
+                        <p class=" lead"><strong>{{ $section->nav_title }}</strong> | <em>{{ $section->attr_id }}</em></p>
                 </div>
-            @endif
 
-        </div>
-        {{--<div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>--}}
-    </div>
-    </div>
+                <div class="card-body">
+                    <div class="text-center text-dark">
+                        <h3 class="card-title">{{ str_limit($section->heading, 32) }}</h3>
+                        <p class="card-text">{{ str_limit($section->paragraph, 64) }}</p>
+                        <p><strong>{{ $section->next_label }}</strong></p>
+                        <p class="text-secondary"><em>{{ $section->bg_image_path }}</em></p>
+                    </div>
+                </div>
+
+                </a>
+            </div>
+    @endforeach
 
 @endsection

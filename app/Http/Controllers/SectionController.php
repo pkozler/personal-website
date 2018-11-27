@@ -22,9 +22,7 @@ class SectionController extends Controller
      */
     public function index()
     {
-        $data = Section::all();
-
-        return view('admin.sections')->with('sections', $data);
+        return view('admin.sections');
     }
 
     /**
@@ -51,12 +49,11 @@ class SectionController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Section  $section
      * @return \Illuminate\Http\Response
      */
-    public function show(Section $section)
+    public function show($id)
     {
-        //
+        return view('admin.content.section', ['currentSection' => Section::findOrFail($id)]);
     }
 
     /**
@@ -74,12 +71,20 @@ class SectionController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Section  $section
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Section $section)
+    public function update(Request $request, $id)
     {
-        //
+        $section = Section::find($id);
+        $section->attr_id = $request->get('attr_id');
+        $section->nav_title = $request->get('nav_title');
+        $section->heading = $request->get('heading');
+        $section->paragraph = $request->get('paragraph');
+        $section->next_label = $request->get('next_label');
+        $section->bg_image_path = $request->get('bg_image_path');
+        $section->save();
+
+        return redirect('admin')->with('success', 'Sekce byla upravena.');
     }
 
     /**
