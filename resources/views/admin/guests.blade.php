@@ -13,7 +13,5 @@
 @endsection
 
 @section('main')
-
-
-
+    <p>{!! nl2br(e($logData)) !!}</p>
 @endsection
