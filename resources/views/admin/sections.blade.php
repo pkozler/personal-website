@@ -40,7 +40,7 @@
                             <tr>
 
                                 <td>{{ $section->id }}</td>
-                                <td>{{ $section->id_attr }}</td>
+                                <td>{{ $section->attr_id }}</td>
                                 <td>{{ $section->nav_title}}</td>
 
                             </tr>

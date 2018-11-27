@@ -18,7 +18,8 @@
 
     <!-- Custom fonts for this template-->
     <link href="{{ asset('storage/vendor/fontawesome-free/css/all.min.css') }}" rel="stylesheet" type="text/css">
-    <link href="https://cdn.rawgit.com/konpa/devicon/df6431e323547add1b4cf45992913f15286456d3/devicon.min.css" rel="stylesheet">
+
+    <link href='//cdn.jsdelivr.net/devicons/1.8.0/css/devicons.min.css' rel="stylesheet" type="text/css">
 
     @yield('head')
 

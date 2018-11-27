@@ -16,7 +16,6 @@ class CreateNotesTable extends Migration
         Schema::create('notes', function (Blueprint $table) {
             $table->increments('id');
             $table->mediumText('description');
-            $table->boolean('is_admin');
             $table->timestamps();
         });
     }
