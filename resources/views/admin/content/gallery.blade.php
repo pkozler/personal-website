@@ -1,4 +1,3 @@
 @extends('layouts.admin.cms')
 
-@section('subtitle')galerie projektů
-@endsection
+@section('page', 'správa obrázků')

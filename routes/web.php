@@ -14,7 +14,7 @@
 Auth::routes();
 
 Route::get('/', 'HomeController@index')->name('home');
-Route::get('log', 'UserController@log')->name('admin.log');
+Route::get('log', 'UserController@log')->name('log');
 
 Route::get('admin', 'SectionController@index')->name('admin');
 Route::get('admin/section/{id}', 'SectionController@show')->name('admin.section');

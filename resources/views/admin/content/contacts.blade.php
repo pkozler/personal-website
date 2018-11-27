@@ -1,4 +1,3 @@
 @extends('layouts.admin.cms')
 
-@section('subtitle')kontaktní údaje
-@endsection
+@section('page', 'správa odkazů')

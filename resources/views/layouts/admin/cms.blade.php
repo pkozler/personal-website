@@ -1,7 +1,12 @@
 @extends('layouts.app')
 
+@php
+    $adminActive = starts_with(\Illuminate\Support\Facades\Route::currentRouteName(), 'admin');
+    $logActive = starts_with(\Illuminate\Support\Facades\Route::currentRouteName(), 'log');
+@endphp
+
 @section('title')
-    @yield('screen') | @include('partials.brand') - @yield('page')
+    {{ $logActive ? 'Záznam aktivity' : 'Administrace' }} | @include('partials.brand') - @yield('page')
 @endsection
 
 @section('head')
@@ -19,19 +24,19 @@
 @section('navbar')
     <nav class="navbar navbar-expand navbar-dark bg-dark static-top">
 
-        <button class="btn btn-link text-secondary" id="sidebarToggle" href="#">
+        <button {{ $adminActive ?: 'disabled' }} class="btn btn-link text-secondary" id="sidebarToggle" href="#">
             <span class="navbar-brand text-info">@include('partials.brand')</span>
             {{--<i class="fas fa-bars"></i>--}}
         </button>
-        <span class="fa-divide text-dark"></span>
+        <span hidden class="fa-divide text-dark"></span>
         {{--<span class="text-white mr-auto">@yield('screen')</span>--}}
 
         <ul class="navbar-nav mr-auto ml-md-0">
             <li class="nav-item">
-                <a class="nav-link" href="{{ route('admin') }}"><i class="fas fa-sliders-h">&nbsp;</i>Administrace</a>
+                <a class="nav-link {{ $logActive ?: 'active' }}" href="{{ route('admin') }}"><i class="fas fa-sliders-h">&nbsp;</i>Administrace</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="{{ route('admin.log') }}"><i class="fas fa-history">&nbsp;</i>Záznamy</a>
+                <a class="nav-link {{ $adminActive ?: 'active' }}" href="{{ route('log') }}"><i class="fas fa-history">&nbsp;</i>Záznamy</a>
             </li>
         </ul>
 
@@ -57,7 +62,56 @@
 <div id="wrapper">
     <!-- Sidebar -->
     <ul class="sidebar navbar-nav">
-        @include('partials.admin.nav')
+        @if ($logActive)
+            <li class="nav-item active">
+                <a class="nav-link" href="{{ route('log') }}">
+                    <i class="fas fa-fw fa-list-ul"></i>
+                    <span>Výpis</span>
+                </a>
+            </li>
+        @elseif ($adminActive)
+            <li class="nav-item active">
+                <a class="nav-link" href="{{ route('admin') }}">
+                    <i class="fas fa-fw fa-list-ol"></i>
+                    <span>Náhled sekcí</span>
+                </a>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="pagesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <i class="fas fa-fw fa-edit"></i>
+                    <span>Popisy</span>
+                </a>
+                <div class="dropdown-menu" aria-labelledby="pagesDropdown">
+                    <h6 class="dropdown-header">Úvodní sekce:</h6>
+
+                    @php($sectionMenu = \App\Section::all())
+                    @foreach ($sectionMenu as $sectionItem)
+                        <a class="dropdown-item text-info" href="{{ route('admin.section', ['id' => $sectionItem->id]) }}">{{ $sectionItem->nav_title }}</a>
+
+                        @if ($loop->first)
+                            <div class="dropdown-divider"></div>
+                            <h6 class="dropdown-header">Ostatní sekce:</h6>
+                        @endif
+                    @endforeach
+                </div>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">
+                    <i class="fas fa-fw fa-clipboard"></i>
+                    <span>Články</span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">
+                    <i class="fas fa-fw fa-image"></i>
+                    <span>Obrázky</span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">
+                    <i class="fas fa-fw fa-link"></i>
+                    <span>Odkazy</span></a>
+            </li>
+        @endif
+
     </ul>
 
     <div id="content-wrapper">
@@ -65,8 +119,10 @@
 
             <!-- Breadcrumbs-->
             <ol class="breadcrumb">
-                <li class="breadcrumb-item"><strong>@yield('screen')</strong></li>
-                <li class="breadcrumb-item active"><strong>@yield('page')</strong></li>
+                <li class="breadcrumb-item"><strong>{{ $logActive ? 'Záznam aktivity' : 'Administrace' }}</strong></li>
+                @if ($adminActive)
+                    <li class="breadcrumb-item active"><strong>@yield('page')</strong></li>
+                @endif
             </ol>
 
             @yield('main')
@@ -97,7 +153,7 @@
     <i class="fas fa-angle-up"></i>
 </a>
 
-<!-- Logout Modal-->
+{{--<!-- Logout Modal-->--}}
 {{--<div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">--}}
     {{--<div class="modal-dialog" role="document">--}}
         {{--<div class="modal-content">--}}
@@ -120,10 +176,10 @@
 
 @section('bottom')
 
-    <!-- Plugin JavaScript -->
-        <script src="{{ asset('storage/vendor/chart.js/Chart.min.js') }}"></script>
-        <script src="{{ asset('storage/vendor/datatables/jquery.dataTables.js') }}"></script>
-        <script src="{{ asset('storage/vendor/datatables/dataTables.bootstrap4.js') }}"></script>
+    {{--<!-- Plugin JavaScript -->--}}
+        {{--<script src="{{ asset('storage/vendor/chart.js/Chart.min.js') }}"></script>--}}
+        {{--<script src="{{ asset('storage/vendor/datatables/jquery.dataTables.js') }}"></script>--}}
+        {{--<script src="{{ asset('storage/vendor/datatables/dataTables.bootstrap4.js') }}"></script>--}}
 
         <!-- Custom scripts for this template -->
         <script src="{{ asset('storage/js/sb-admin.min.js') }}"></script>

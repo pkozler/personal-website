@@ -1,7 +1,6 @@
 @extends('layouts.admin.cms')
 
-@section('screen', 'Administrační rozhraní')
-@section('page', 'základní nastavení')
+@section('page', 'obsah sekcí')
 
 @section('main')
 

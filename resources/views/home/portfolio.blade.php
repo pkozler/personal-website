@@ -1,9 +1,9 @@
-<section class="p-0" id="portfolio">
+<section class="p-0" id="{{ $section->attr_id }}">
     <div class="container-fluid p-0">
 
         <div class="row no-gutters">
             <div class="col-lg-12 text-center">
-                <h2 class="section-heading">Ukázky</h2>
+                <h2 class="section-heading">{{ $section->heading }}</h2>
                 <hr class="my-4">
             </div>
         </div>

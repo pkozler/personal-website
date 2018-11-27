@@ -1,9 +1,8 @@
-
-<section id="services">
+<section id="{{ $section->attr_id }}">
     <div class="container">
         <div class="row">
             <div class="col-lg-12 text-center">
-                <h2 class="section-heading">Dovednosti</h2>
+                <h2 class="section-heading">{{ $section->heading }}</h2>
                 <hr class="my-4">
             </div>
         </div>
@@ -19,6 +18,6 @@
                 </div>
             </div>
         </div>
-
     </div>
+
 </section>

@@ -1,7 +1,6 @@
 @extends('layouts.admin.cms')
 
-@section('screen', 'Záznamy přístupů')
-@section('page', 'poslední aktivita')
+@section('page', 'výpis')
 
 @section('main')
     <p>{!! nl2br(e($logData)) !!}</p>

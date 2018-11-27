@@ -1,4 +1,3 @@
 @extends('layouts.admin.cms')
 
-@section('subtitle')seznam dovedností
-@endsection
+@section('page', 'správa článků')

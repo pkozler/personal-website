@@ -20,6 +20,12 @@
     {{--<script src='https://www.google.com/recaptcha/api.js' type="text/javascript"></script>--}}
 @endsection
 
+@php
+    $sectionList = \App\Section::all();
+    $homeTemplates = ['welcome', 'about', 'services', 'portfolio', 'reference', 'contact'];
+    $templateCount = count($homeTemplates);
+@endphp
+
 @section('top') id="page-top" @endsection
 
 @section('navbar')
@@ -34,18 +40,13 @@
             <div class="collapse navbar-collapse" id="navbarResponsive">
                 <!-- Right Side Of Navbar -->
                 <ul class="navbar-nav ml-auto">
-                    <li class="nav-item">
-                        <a class="nav-link js-scroll-trigger" href="#profile">O mně</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link js-scroll-trigger" href="#skills">Dovednosti</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link js-scroll-trigger" href="#projects">Ukázky</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link js-scroll-trigger" href="#contacts">Kontakt</a>
-                    </li>
+
+                    @foreach($sectionList as $section)
+                        @if ($loop->first) @continue @endif
+                        <li class="nav-item">
+                            <a class="nav-link js-scroll-trigger" href="#{{ $section->attr_id }}">{{ $section->nav_title }}</a>
+                        </li>
+                    @endforeach
 
                     <!-- Authentication Links -->
                     @guest
@@ -60,7 +61,7 @@
 
                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                                 <a class="dropdown-item" href="{{ route('admin') }}"><i class="fas fa-sliders"></i> Administrace</a>
-                                <a class="dropdown-item" href="{{ route('admin.log') }}"><i class="fas fa-history"></i> Záznamy</a>
+                                <a class="dropdown-item" href="{{ route('log') }}"><i class="fas fa-history"></i> Záznamy</a>
                                 <div class="dropdown-divider"></div>
                                 <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();"><i class="fa fa-sign-out"></i> Odhlásit se</a>
 
@@ -78,12 +79,10 @@
 
 @section('content')
 
-        @include('home.welcome')
-        @include('home.about')
-        @include('home.services')
-        @include('home.portfolio')
-        @include('home.reference')
-        @include('home.contact')
+        @foreach($homeTemplates as $idx => $template)
+            @php($nextIdx = ($idx + 1) % $templateCount)
+            @include('home.' . $template, ['section' => $sectionList->get($idx), 'nextSection' => $sectionList->get($nextIdx)])
+        @endforeach
 
 @endsection
 
