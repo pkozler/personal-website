@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use Collective\Html\FormFacade;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\ServiceProvider;
 use Validator;
@@ -17,6 +18,8 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         Schema::defaultStringLength(191);
+        FormFacade::component('bsText', 'components.form.text', ['name', 'label' => null, 'value' => null, 'attributes' => []]);
+        FormFacade::component('bsSubmit', 'components.form.submit', ['value' => null, 'attributes' => []]);
         Validator::extend(
           'recaptcha',
           'App\\Validators\\ReCaptcha@validate'
