@@ -1,4 +1,3 @@
-
 window._ = require('lodash');
 window.Popper = require('popper.js').default;
 
@@ -12,7 +11,10 @@ try {
     window.$ = window.jQuery = require('jquery');
 
     require('bootstrap');
-} catch (e) {}
+} catch (e) {
+    console.log('/n*** REQUIRE EXCEPTION MESSAGE ***/n' + e.toLocaleString() + '/n*** EXCEPTION MESSAGE END /n');
+}
+
 
 /**
  * We'll load the axios HTTP library which allows us to easily issue requests
@@ -37,6 +39,8 @@ if (token) {
 } else {
     console.error('CSRF token not found: https://laravel.com/docs/csrf#csrf-x-csrf-token');
 }
+
+import "jquery.easing";
 
 /**
  * Echo exposes an expressive API for subscribing to channels and listening

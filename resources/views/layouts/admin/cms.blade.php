@@ -10,13 +10,7 @@
 @endsection
 
 @section('head')
-
-    <!-- Plugin CSS -->
-    <link href="{{ asset('storage/vendor/datatables/dataTables.bootstrap4.css') }}" rel="stylesheet">
-
-    <!-- Custom styles for this template -->
-    <link href="{{ asset('storage/css/sb-admin.min.css') }}" rel="stylesheet">
-
+    @include('partials.admin.style')
 @endsection
 
 @section('top') id="page-top" @endsection
@@ -175,13 +169,5 @@
 @endsection
 
 @section('bottom')
-
-    {{--<!-- Plugin JavaScript -->--}}
-        {{--<script src="{{ asset('storage/vendor/chart.js/Chart.min.js') }}"></script>--}}
-        {{--<script src="{{ asset('storage/vendor/datatables/jquery.dataTables.js') }}"></script>--}}
-        {{--<script src="{{ asset('storage/vendor/datatables/dataTables.bootstrap4.js') }}"></script>--}}
-
-        <!-- Custom scripts for this template -->
-        <script src="{{ asset('storage/js/sb-admin.min.js') }}"></script>
-
+    @include('partials.admin.script')
 @endsection

@@ -8,16 +8,31 @@
         </div>
     </div>
 
+    @php
+        $noteList = \App\Note::all();
+        $rowCount = 2;
+        $colCount = count($noteList) / $rowCount;
+    @endphp
+
     <div class="container">
-        <div class="row">
-            <div class="col-lg-3 col-md-6 text-center">
-                <div class="service-box mt-5 mx-auto">
-                    <span class="devicons devicons-code_badge mb-3 large-icon"></span>
-                    <h3 class="mb-3">HTML5 a CSS3</h3>
-                    <p class="text-muted mb-0">Bootstrap...</p>
-                </div>
+        @for($i = 0; $i < $rowCount; $i++)
+            <div class="row">
+
+                @for($j = 0; $j < $colCount; $j++)
+                    @php($note = $noteList->get($i*$colCount + $j))
+
+                    <div class="col-lg-3 col-md-6 text-center">
+                        <div class="service-box mt-5 mx-auto">
+                            <span class=" {{ $note->figure }} mb-3 large-icon"></span>
+                            <h3 class="mb-3">{{ $note->title }}</h3>
+                            <p class="text-muted mb-0">{{ $note->description }}</p>
+                        </div>
+                    </div>
+                @endfor
+
             </div>
-        </div>
+        @endfor
+
     </div>
 
 </section>

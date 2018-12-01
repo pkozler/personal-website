@@ -8,22 +8,30 @@
             </div>
         </div>
 
+        @php
+            $imageList = \App\Image::all();
+        @endphp
+
         <div class="row no-gutters popup-gallery">
-            <div class="col-lg-4 col-sm-6">
-                <a class="portfolio-box" href="{{ asset('storage/img/portfolio/fullsize/1.png') }}">
-                    <img class="img-fluid img-thumbnail" src="{{ asset('storage/img/portfolio/thumbnails/1.png') }}">
-                    <div class="portfolio-box-caption">
-                        <div class="portfolio-box-caption-content">
-                            <div class="project-category text-faded">
-                                Java 8 | C# | C | C++ | Free Pascal | JavaFX
-                            </div>
-                            <div class="project-name">
-                                Aplikace pro správu kódu vytvořených knihoven (bakalářská práce)
+            @foreach($imageList as $idx => $image)
+
+                <div class="col-lg-4 col-sm-6">
+                    <a class="portfolio-box" href="{{ asset('storage/img/portfolio/fullsize/' . $image->path) }}">
+                        <img class="img-fluid img-thumbnail" src="{{ asset('storage/img/portfolio/thumbnails/' . $image->path) }}">
+                        <div class="portfolio-box-caption">
+                            <div class="portfolio-box-caption-content">
+                                <div class="project-category text-faded">
+                                    {{ $image->label_category }}
+                                </div>
+                                <div class="project-name">
+                                    {{ $image->label_name }}
+                                </div>
                             </div>
                         </div>
-                    </div>
-                </a>
-            </div>
+                    </a>
+                </div>
+
+            @endforeach
         </div>
 
     </div>

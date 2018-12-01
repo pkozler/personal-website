@@ -5,19 +5,16 @@
 @endsection
 
 @section('head')
-    <!-- Custom fonts for this template -->
-    <link href="{{ asset('storage/vendor/font-awesome/css/font-awesome.min.css') }}" rel="stylesheet" type="text/css">
-    <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
-    <link href='https://fonts.googleapis.com/css?family=Merriweather:400,300,300italic,400italic,700,700italic,900,900italic' rel='stylesheet' type='text/css'>
+    {{--<!-- Custom fonts -->--}}
+    {{--<link href='https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css' rel="stylesheet">--}}
+    {{--<link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet'>--}}
+    {{--<link href='https://fonts.googleapis.com/css?family=Merriweather:400,300,300italic,400italic,700,700italic,900,900italic' rel='stylesheet'>--}}
 
-    <!-- Plugin CSS -->
-    <link href="{{ asset('storage/vendor/magnific-popup/magnific-popup.css') }}" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link href="{{ asset('css/app-home.css') }}" rel="stylesheet">
 
-    <!-- Custom styles for this template -->
-    <link href="{{ asset('storage/css/creative.min.css') }}" rel="stylesheet">
-    <link href="{{ asset('storage/css/app.css') }}" rel="stylesheet">
-
-    {{--<script src='https://www.google.com/recaptcha/api.js' type="text/javascript"></script>--}}
+    {{--<!-- Anti-spam -->--}}
+    {{--<script src='https://www.google.com/recaptcha/api.js'></script>--}}
 @endsection
 
 @php
@@ -99,11 +96,6 @@
 @endsection
 
 @section('bottom')
-    <!-- Plugin JavaScript -->
-    <script src="{{ asset('storage/vendor/scrollreveal/scrollreveal.min.js') }}"></script>
-    <script src="{{ asset('storage/vendor/magnific-popup/jquery.magnific-popup.min.js') }}"></script>
-
-    <!-- Custom scripts for this template -->
-    <script src="{{ asset('storage/js/creative.min.js') }}"></script>
-    <script src="{{ asset('storage/js/app.js') }}"></script>
+    <!-- Custom JS -->
+    <script src="{{ asset('js/app-home.js') }}"></script>
 @endsection

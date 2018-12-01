@@ -5,10 +5,7 @@
 @endsection
 
 @section('head')
-
-    <!-- Custom styles for this template -->
-    <link href="{{ asset('storage/css/sb-admin.min.css') }}" rel="stylesheet">
-
+    @include('partials.admin.style')
 @endsection
 
 @section('top') class="bg-dark" @endsection
@@ -50,8 +47,5 @@
 @section('footer', '')
 
 @section('bottom')
-
-    <!-- Custom scripts for this template -->
-    <script src="{{ asset('storage/js/sb-admin.min.js') }}"></script>
-
+    @include('partials.admin.script')
 @endsection

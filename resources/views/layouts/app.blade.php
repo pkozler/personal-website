@@ -13,13 +13,8 @@
 
 	<title>@yield('title')</title>
 
-	<!-- Bootstrap core CSS -->
-	<link href="{{ asset('storage/vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet" type="text/css">
-
-    <!-- Custom fonts for this template-->
-    <link href="{{ asset('storage/vendor/fontawesome-free/css/all.min.css') }}" rel="stylesheet" type="text/css">
-
-    <link href='//cdn.jsdelivr.net/devicons/1.8.0/css/devicons.min.css' rel="stylesheet" type="text/css">
+    <!-- Main CSS -->
+    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 
     @yield('head')
 
@@ -31,10 +26,8 @@
 	@yield('content')
     @yield('footer')
 
-	<!-- Bootstrap core JavaScript -->
-	<script src="{{ asset('storage/vendor/jquery/jquery.min.js') }}"></script>
-	<script src="{{ asset('storage/vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
-	<script src="{{ asset('storage/vendor/jquery-easing/jquery.easing.min.js') }}"></script>
+	<!-- Main JS -->
+	<script src="{{ asset('js/app.js') }}"></script>
 
     @yield('bottom')
 
