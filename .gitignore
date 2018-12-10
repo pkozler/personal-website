@@ -14,4 +14,4 @@ yarn-error.log
 .env
 .env.production
 .phpunit.result.cache
-/_cli
+_aux/backups

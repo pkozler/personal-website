@@ -11,9 +11,38 @@ let mix = require('laravel-mix');
  |
  */
 
-mix .js('resources/assets/js/app.js', 'public/js')
-    .extract(['bootstrap', 'jquery'])
-    .sass('resources/assets/sass/app.scss', 'public/css')
-/*    .js('resources/assets/js/admin.js', 'public/js')
-    .sass('resources/assets/sass/admin.scss', 'public/css')*/
+mix .js('resources/assets/js/app.js', 'public/js/')
+    .options({
+        processCssUrls: false
+    })
+    .sass('resources/assets/sass/app.scss', 'public/css/')
+    .options({
+        processCssUrls: false
+    })
+    .js('resources/assets/js/home/template.js', 'public/js/')
+    .options({
+        processCssUrls: false
+    })
+    .sass('resources/assets/sass/home/template.scss', 'public/css/')
+    .options({
+        processCssUrls: false
+    })
+    .js('resources/assets/js/home/custom.js', 'public/js/')
+    .options({
+        processCssUrls: false
+    })
+    .sass('resources/assets/sass/home/custom.scss', 'public/css/')
+    .options({
+        processCssUrls: false
+    })
+    .js('resources/assets/js/admin/template.js', 'public/js/admin/')
+    .options({
+        processCssUrls: false
+    })
+    .sass('resources/assets/sass/admin/template.scss', 'public/css/admin/')
+    .options({
+        processCssUrls: false
+    })
+    // .minify(['public/css/app.css', 'public/css/home/template.css', 'public/css/admin/template.css'])
+    // .minify(['public/js/app.js', 'public/js/home/template.js', 'public/js/admin/template.js'])
 ;
