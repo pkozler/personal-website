@@ -20,7 +20,7 @@
                         <img class="img-fluid img-thumbnail" src="{{ asset('storage/gallery/thumbnails/' . $image->path) }}">
                         <div class="portfolio-box-caption">
                             <div class="portfolio-box-caption-content">
-                                <div class="project-category text-faded">
+                                <div class="project-category">
                                     {{ $image->label_category }}
                                 </div>
                                 <div class="project-name">

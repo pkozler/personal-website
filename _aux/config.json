@@ -1,0 +1,27 @@
+{
+    "path": "C:/Users/Petr/Dropbox/www/personal-website/public/",
+    "styles": [
+        {
+            "file": "css/app.css",
+            "urls": [
+                {
+                    "search": "../webfonts/fa-",
+                    "replacement": "../fonts/vendor/@fortawesome/fontawesome-free/webfa-"
+                }
+            ]
+        },
+        {
+            "file": "css/template.css",
+            "urls": [
+                {
+                    "search": "../img/",
+                    "replacement": "../images/vendor/startbootstrap-creative/"
+                },
+                {
+                    "search": "../fonts/devicons.",
+                    "replacement": "../fonts/vendor/devicons/devicons."
+                }
+            ]
+        }
+    ]
+}

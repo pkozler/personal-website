@@ -10,4 +10,5 @@ class Link extends Model
     {
         return $query->where('attr_ref', 'LIKE', '%'.$keyword.'%');
     }
+
 }

@@ -15,7 +15,6 @@ try {
     console.log('/n*** REQUIRE EXCEPTION MESSAGE ***/n' + e.toLocaleString() + '/n*** EXCEPTION MESSAGE END /n');
 }
 
-
 /**
  * We'll load the axios HTTP library which allows us to easily issue requests
  * to our Laravel back-end. This library automatically handles sending the

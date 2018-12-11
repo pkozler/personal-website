@@ -90,17 +90,17 @@
                 </div>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">
+                <a class="nav-link" href="{{ route('admin.notes') }}">
                     <i class="fas fa-fw fa-clipboard"></i>
                     <span>Články</span></a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">
+                <a class="nav-link" href="{{ route('admin.images') }}">
                     <i class="fas fa-fw fa-image"></i>
                     <span>Obrázky</span></a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">
+                <a class="nav-link" href="{{ route('admin.links') }}">
                     <i class="fas fa-fw fa-link"></i>
                     <span>Odkazy</span></a>
             </li>
