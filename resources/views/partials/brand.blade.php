@@ -1,1 +1,1 @@
-www.petrkozler.cz
+{{ 'www.' . $siteInfo['brand'] }}

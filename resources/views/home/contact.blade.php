@@ -8,10 +8,6 @@
             </div>
         </div>
 
-        @php
-            $contactList = \App\Link::where('attr_id', '!=', $githubLink->attr_id)->get();
-        @endphp
-
         <div class="row">
             @foreach($contactList as $idx => $contact)
                 <div class="col-lg-4 mx-auto text-center">

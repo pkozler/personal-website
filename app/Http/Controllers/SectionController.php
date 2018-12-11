@@ -4,14 +4,13 @@ namespace App\Http\Controllers;
 
 use App\Section;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Schema;
 
 class SectionController extends Controller
 {
-//    protected $sections;
-
     public function __construct()
     {
+        parent::__construct('admin');
+
         $this->middleware('auth');
     }
 
@@ -22,7 +21,7 @@ class SectionController extends Controller
      */
     public function index()
     {
-        return view('admin.sections');
+        return view('admin.sections', $this->getArgs());
     }
 
     /**
@@ -53,7 +52,10 @@ class SectionController extends Controller
      */
     public function show($id)
     {
-        return view('admin.content.section', ['currentSection' => Section::findOrFail($id)]);
+        $current = Section::find($id);
+        $this->addArg('currentSection', $current);
+
+        return view('admin.forms.section', $this->getArgs());
     }
 
     /**
@@ -71,6 +73,7 @@ class SectionController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)

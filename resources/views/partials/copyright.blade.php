@@ -1,1 +1,1 @@
-Copyright &copy Petr Kozler 2018
+&copy {{ $siteInfo['author'] . ' ' . $siteInfo['year'] }}

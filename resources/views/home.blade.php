@@ -19,12 +19,6 @@
     {{--<script src='https://www.google.com/recaptcha/api.js'></script>--}}
 @endsection
 
-@php
-    $sectionList = \App\Section::all();
-    $homeTemplates = ['welcome', 'about', 'services', 'portfolio', 'reference', 'contact'];
-    $templateCount = count($homeTemplates);
-@endphp
-
 @section('top') id="page-top" @endsection
 
 @section('navbar')
@@ -76,15 +70,13 @@
     </nav>
 @endsection
 
-@php
-    $githubLink = \App\Link::search('github')->get()->get(0);
-@endphp
-
 @section('content')
 
-    @foreach($homeTemplates as $idx => $template)
-        @php($nextIdx = ($idx + 1) % $templateCount)
-        @include('home.' . $template, ['section' => $sectionList->get($idx), 'nextSection' => $sectionList->get($nextIdx)])
+    @foreach($sectionList as $i => $section)
+        @include('home.' . $section->attr_id, [
+        'section' => $section,
+        'nextSection' => ($loop->last ? $sectionList->get(0) : $sectionList->get($i + 1))
+        ])
     @endforeach
 
 @endsection

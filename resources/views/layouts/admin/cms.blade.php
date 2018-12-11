@@ -1,12 +1,9 @@
 @extends('layouts.app')
 
-@php
-    $adminActive = starts_with(\Illuminate\Support\Facades\Route::currentRouteName(), 'admin');
-    $logActive = starts_with(\Illuminate\Support\Facades\Route::currentRouteName(), 'log');
-@endphp
+@php($isAdministration = ($pageType['name'] === 'admin'))
 
 @section('title')
-    {{ $logActive ? 'Záznam aktivity' : 'Administrace' }} | @include('partials.brand') - @yield('page')
+    {{ $pageType['desc'] }} | @include('partials.brand') - @yield('page')
 @endsection
 
 @section('head')
@@ -18,7 +15,7 @@
 @section('navbar')
     <nav class="navbar navbar-expand navbar-dark bg-dark static-top">
 
-        <button {{ $adminActive ?: 'disabled' }} class="btn btn-link text-secondary" id="sidebarToggle" href="#">
+        <button {{ $isAdministration ?: 'disabled' }} class="btn btn-link text-secondary" id="sidebarToggle" href="#">
             <span class="navbar-brand text-info">@include('partials.brand')</span>
             {{--<i class="fas fa-bars"></i>--}}
         </button>
@@ -26,12 +23,7 @@
         {{--<span class="text-white mr-auto">@yield('screen')</span>--}}
 
         <ul class="navbar-nav mr-auto ml-md-0">
-            <li class="nav-item">
-                <a class="nav-link {{ $logActive ?: 'active' }}" href="{{ route('admin') }}"><i class="fas fa-sliders-h">&nbsp;</i>Administrace</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link {{ $adminActive ?: 'active' }}" href="{{ route('log') }}"><i class="fas fa-history">&nbsp;</i>Záznamy</a>
-            </li>
+            @include('partials.admin.nav')
         </ul>
 
         <!-- Navbar -->
@@ -56,14 +48,14 @@
 <div id="wrapper">
     <!-- Sidebar -->
     <ul class="sidebar navbar-nav">
-        @if ($logActive)
+        @if(!$isAdministration)
             <li class="nav-item active">
                 <a class="nav-link" href="{{ route('log') }}">
                     <i class="fas fa-fw fa-list-ul"></i>
                     <span>Výpis</span>
                 </a>
             </li>
-        @elseif ($adminActive)
+        @else
             <li class="nav-item active">
                 <a class="nav-link" href="{{ route('admin') }}">
                     <i class="fas fa-fw fa-list-ol"></i>
@@ -78,8 +70,7 @@
                 <div class="dropdown-menu" aria-labelledby="pagesDropdown">
                     <h6 class="dropdown-header">Úvodní sekce:</h6>
 
-                    @php($sectionMenu = \App\Section::all())
-                    @foreach ($sectionMenu as $sectionItem)
+                    @foreach ($sectionList as $sectionItem)
                         <a class="dropdown-item text-info" href="{{ route('admin.section', ['id' => $sectionItem->id]) }}">{{ $sectionItem->nav_title }}</a>
 
                         @if ($loop->first)
@@ -113,8 +104,8 @@
 
             <!-- Breadcrumbs-->
             <ol class="breadcrumb">
-                <li class="breadcrumb-item"><strong>{{ $logActive ? 'Záznam aktivity' : 'Administrace' }}</strong></li>
-                @if ($adminActive)
+                <li class="breadcrumb-item"><strong>{{ $pageType['desc'] }}</strong></li>
+                @if ($isAdministration)
                     <li class="breadcrumb-item active"><strong>@yield('page')</strong></li>
                 @endif
             </ol>
@@ -134,7 +125,7 @@
         </footer>
 
     </div>
-    <!-- /.content-wrapper -->
+    <!-- /.forms-wrapper -->
 
 </div>
 <!-- /#wrapper -->
@@ -150,7 +141,7 @@
 {{--<!-- Logout Modal-->--}}
 {{--<div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">--}}
     {{--<div class="modal-dialog" role="document">--}}
-        {{--<div class="modal-content">--}}
+        {{--<div class="modal-forms">--}}
             {{--<div class="modal-header">--}}
                 {{--<h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>--}}
                 {{--<button class="close" type="button" data-dismiss="modal" aria-label="Close">--}}

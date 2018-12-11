@@ -4,9 +4,17 @@ namespace App\Http\Controllers;
 
 use App\Note;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Config;
 
 class NoteController extends Controller
 {
+    public function __construct()
+    {
+        parent::__construct('admin');
+
+        $this->middleware('auth');
+    }
+
     /**
      * Display a listing of the resource.
      *

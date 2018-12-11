@@ -8,30 +8,30 @@
         </div>
     </div>
 
-    @php
-        $noteList = \App\Note::all();
-        $rowCount = 2;
-        $colCount = count($noteList) / $rowCount;
-    @endphp
-
     <div class="container">
-        @for($i = 0; $i < $rowCount; $i++)
-            <div class="row">
+        @php($n = $noteList->count() and $nRows = 2 and $nCols = intval($n / $nRows) or $noteList = null)
 
-                @for($j = 0; $j < $colCount; $j++)
-                    @php($note = $noteList->get($i*$colCount + $j))
+        @if($noteList)
 
-                    <div class="col-lg-3 col-md-6 text-center">
-                        <div class="service-box mt-5 mx-auto">
-                            <span class=" {{ $note->figure }} mb-3 large-icon"></span>
-                            <h3 class="mb-3">{{ $note->title }}</h3>
-                            <p class="text-muted mb-0">{{ $note->description }}</p>
+            @for($i = 0; $i < $nRows; $i++)
+                <div class="row">
+
+                    @for($j = 0; $j < $nCols; $j++)
+                        @php($note = $noteList->get($i * $nCols + $j))
+
+                        <div class="col-lg-3 col-md-6 text-center">
+                            <div class="service-box mt-5 mx-auto">
+                                <span class=" {{ $note->figure }} mb-3 large-icon"></span>
+                                <h3 class="mb-3">{{ $note->title }}</h3>
+                                <p class="text-muted mb-0">{{ $note->description }}</p>
+                            </div>
                         </div>
-                    </div>
-                @endfor
+                    @endfor
 
-            </div>
-        @endfor
+                </div>
+            @endfor
+
+        @endif
 
     </div>
 

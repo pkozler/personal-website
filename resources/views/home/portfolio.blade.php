@@ -8,10 +8,6 @@
             </div>
         </div>
 
-        @php
-            $imageList = \App\Image::all();
-        @endphp
-
         <div class="row no-gutters popup-gallery">
             @foreach($imageList as $idx => $image)
 
