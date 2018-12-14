@@ -2,7 +2,7 @@
     {{ Form::label($name, $label, ['class' => 'col-sm-3 col-form-label']) }}
 
     <div class="col-sm-9">
-        {{ Form::text($name, $value, array_merge(['class' => 'form-control'], $attributes)) }}
+        {{ Form::textarea($name, $value, array_merge(['class' => 'form-control limited-size', 'rows' =>5], $attributes)) }}
     </div>
 
     @if ($errors->has($name))

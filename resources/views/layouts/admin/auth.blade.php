@@ -5,47 +5,60 @@
 @endsection
 
 @section('head')
-    @include('partials.admin.style')
+    @include('partials.style')
 @endsection
 
-@section('top') class="bg-dark" @endsection
+@section('top') id="page-top" class="bg-dark" @endsection
 
 @section('navbar')
-    <nav class="navbar navbar-expand navbar-dark bg-dark static-top">
+    <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
+        <div class="container-fluid">
+            <a class="navbar-brand btn disabled">@include('partials.brand')</a>
 
-        <a class="navbar-brand  mr-1" href="#"><span class="text-secondary">@include('partials.brand')</span></a>
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                    <a class="nav-link btn disabled text-primary">@yield('page')</a>
+                </li>
+            </ul>
 
-        <div class="d-none d-md-inline-block ml-auto mr-0 mr-md-3 my-2 my-md-0"></div>
+            <!-- Navbar -->
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('home') }}">Zrušit<span class="fa fa-external-link fa-lg ml-1"></span></a>
+                </li>
+            </ul>
 
-        <!-- Navbar -->
-        <ul class="navbar-nav ml-auto ml-md-0">
-            @yield('navlinks')
-
-            <li class="nav-item">
-                <a class="nav-link" href="{{ route('home') }}"><i class="fas fa-home"></i></a>
-            </li>
-        </ul>
-
+        </div>
     </nav>
 @endsection
 
 @section('content')
-    <div class="container">
-        <div class="card @yield('form_card') mx-auto mt-5">
-            <div class="card-header"> @yield('page')</div>
-            <div class="card-body">
-                @yield('auth_form')
+    <section>
+        <div class="container">
 
-                <div class="text-center">
-                    @yield('foot_nav')
+            <div class="row">
+                <div class="offset-lg-3 col-lg-6">
+
+                    <div class="card @yield('form_card') mx-auto mt-5">
+                        <div class="card-header"> @yield('page')</div>
+                        <div class="card-body">
+                            @yield('auth_form')
+
+                            <div class="text-center">
+                                @yield('foot_nav')
+                            </div>
+                        </div>
+                    </div>
+
                 </div>
             </div>
+
         </div>
-    </div>
+    </section>
 @endsection
 
 @section('footer', '')
 
 @section('bottom')
-    @include('partials.admin.script')
+    @include('partials.script')
 @endsection

@@ -1,3 +1,5 @@
-@isset($success)
-    <div class="alert alert-info" role="alert">{{ $success }}</div>
-@endisset
+@if (session('status'))
+    <div class="alert alert-success">
+        {{ session('status') }}
+    </div>
+@endif

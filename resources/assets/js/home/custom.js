@@ -8,7 +8,7 @@ $(function() {
             dataType: "json",
             success: (function (data) {
                 data.forEach(function(item) {
-                    $('#' + item['attr_id']).attr('href', item['attr_ref']);
+                    $('#' + item['attr_id']).prop('href', item['attr_ref']);
                 });
             }),
             error: (function (err) {

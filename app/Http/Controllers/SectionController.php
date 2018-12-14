@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Section;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class SectionController extends Controller
 {
@@ -50,12 +51,9 @@ class SectionController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Section $section)
     {
-        $current = Section::find($id);
-        $this->addArg('currentSection', $current);
-
-        return view('admin.forms.section', $this->getArgs());
+        //
     }
 
     /**
@@ -66,28 +64,36 @@ class SectionController extends Controller
      */
     public function edit(Section $section)
     {
-        //
+        $this->addArg('currentSection', $section);
+
+        return view('admin.forms.section', $this->getArgs());
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int $id
+     * @param  \Illuminate\Http\Request $request
+     * @param Section $section
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Section $section)
     {
-        $section = Section::find($id);
-        $section->attr_id = $request->get('attr_id');
-        $section->nav_title = $request->get('nav_title');
-        $section->heading = $request->get('heading');
-        $section->paragraph = $request->get('paragraph');
-        $section->next_label = $request->get('next_label');
-        $section->bg_image_path = $request->get('bg_image_path');
-        $section->save();
+        $validator = Validator::make($request->all(), [
+            'attr_id' => 'required|max:190',
+            'nav_title' => 'required|max:190',
+            'heading' => 'nullable|max:190',
+            'paragraph' => 'nullable|max:190',
+            'next_label' => 'nullable|max:190',
+            'bg_image_path' => 'nullable|max:190',
+        ]);
 
-        return redirect('admin')->with('success', 'Sekce byla upravena.');
+        if ($validator->fails()) {
+            return back()->withInput()->withErrors($validator);
+        };
+
+        $section->update($request->except('_token'));
+
+        return redirect()->route('admin.sections')->with('status', "Sekce s ID {$section->id} byla úspěšně upravena.");
     }
 
     /**

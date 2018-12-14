@@ -7,7 +7,7 @@
 @endsection
 
 @section('head')
-    @include('partials.admin.style')
+    <link href="{{ asset('css/admin/template.css') }}" rel="stylesheet">
 @endsection
 
 @section('top') id="page-top" @endsection
@@ -15,150 +15,173 @@
 @section('navbar')
     <nav class="navbar navbar-expand navbar-dark bg-dark static-top">
 
-        <button {{ $isAdministration ?: 'disabled' }} class="btn btn-link text-secondary" id="sidebarToggle" href="#">
-            <span class="navbar-brand text-info">@include('partials.brand')</span>
-            {{--<i class="fas fa-bars"></i>--}}
-        </button>
-        <span hidden class="fa-divide text-dark"></span>
-        {{--<span class="text-white mr-auto">@yield('screen')</span>--}}
+        <a @if($isAdministration) id="sidebarToggle" class="navbar-brand btn text-light"
+           @else class="navbar-brand btn text-light disabled"
+           @endif  style="width: 192px !important;">@include('partials.brand')</a>
+        </a>
 
-        <ul class="navbar-nav mr-auto ml-md-0">
-            @include('partials.admin.nav')
-        </ul>
+        <!-- Breadcrumbs-->
+        <div class="border-left border-secondary">
+            <ol class="breadcrumb mb-0 navbar-nav mr-auto bg-transparent">
+                <li class="breadcrumb-item text-info"><strong>{{ $pageType['desc'] }}</strong></li>
+                @if ($isAdministration)
+                    <li class="breadcrumb-item active text-info"><strong>@yield('page')</strong></li>
+                @endif
+            </ol>
+        </div>
 
         <!-- Navbar -->
-        <ul class="navbar-nav ml-auto ml-md-0">
+        <ul class="navbar-nav ml-auto">
+            <li class="nav-item dropdown">
+                <a id="navbarDropdown" class="nav-link dropdown-toggle text-info" href="#" role="button"
+                   data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                    <span class="fa fa-sign-out-alt fa-lg"></span>
+                </a>
 
-            <li class="nav-item">
-                <a class="nav-link" href="{{ route('home') }}"><i class="fas fa-fw fa-home">&nbsp;</i>Domů</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link text-info" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();"><i class="fas fa-sign-out-alt"></i></a>
+                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                    @if($isAdministration)
+                        <a class="dropdown-item" href="{{ route('log') }}">Záznamy</a>
+                    @else
+                        <a class="dropdown-item" href="{{ route('admin') }}">Administrace</a>
+                    @endif
+                    <a class="dropdown-item" href="{{ route('home') }}">Domů</a>
 
-                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                    @csrf
-                </form>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="{{ route('logout') }}"
+                       onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Odhlásit
+                        se</a>
+                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                        @csrf
+                    </form>
+                </div>
             </li>
+
         </ul>
     </nav>
 @endsection
 
 @section('content')
 
-<div id="wrapper">
-    <!-- Sidebar -->
-    <ul class="sidebar navbar-nav">
-        @if(!$isAdministration)
-            <li class="nav-item active">
-                <a class="nav-link" href="{{ route('log') }}">
-                    <i class="fas fa-fw fa-list-ul"></i>
-                    <span>Výpis</span>
-                </a>
-            </li>
-        @else
-            <li class="nav-item active">
-                <a class="nav-link" href="{{ route('admin') }}">
-                    <i class="fas fa-fw fa-list-ol"></i>
-                    <span>Náhled sekcí</span>
-                </a>
-            </li>
-            <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="pagesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    <i class="fas fa-fw fa-edit"></i>
-                    <span>Popisy</span>
-                </a>
-                <div class="dropdown-menu" aria-labelledby="pagesDropdown">
-                    <h6 class="dropdown-header">Úvodní sekce:</h6>
+    <div id="wrapper">
 
-                    @foreach ($sectionList as $sectionItem)
-                        <a class="dropdown-item text-info" href="{{ route('admin.section', ['id' => $sectionItem->id]) }}">{{ $sectionItem->nav_title }}</a>
+        <!-- Sidebar -->
+        @if($isAdministration)
+            <ul class="sidebar navbar-nav">
 
-                        @if ($loop->first)
-                            <div class="dropdown-divider"></div>
-                            <h6 class="dropdown-header">Ostatní sekce:</h6>
-                        @endif
-                    @endforeach
-                </div>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="{{ route('admin.notes') }}">
-                    <i class="fas fa-fw fa-clipboard"></i>
-                    <span>Články</span></a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="{{ route('admin.images') }}">
-                    <i class="fas fa-fw fa-image"></i>
-                    <span>Obrázky</span></a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="{{ route('admin.links') }}">
-                    <i class="fas fa-fw fa-link"></i>
-                    <span>Odkazy</span></a>
-            </li>
+                <li class="nav-item border-dark border-bottom">
+                    <a class="nav-link" href="{{ route('admin') }}">
+                        <i class="fas fa-fw fa-cog"></i>
+                        <span>Nastavení účtu</span>
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('admin.sections') }}">
+                        <i class="fas fa-fw fa-edit"></i>
+                        <span>Hlavní obsah</span>
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('admin.notes') }}">
+                        <i class="fas fa-fw fa-clipboard"></i>
+                        <span>Poznámky</span>
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('admin.images') }}">
+                        <i class="fas fa-fw fa-image"></i>
+                        <span>Obrázky</span>
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('admin.links') }}">
+                        <i class="fas fa-fw fa-link"></i>
+                        <span>Odkazy</span>
+                    </a>
+                </li>
+
+                <li class="nav-item dropdown show border-dark border-top">
+                    <a class="nav-link dropdown-toggle" href="#" id="pagesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" arfa-trash="true">
+                        <i class="fas fa-fw fa-trash"></i>
+                        <span>Odpadkový koš</span>
+                    </a>
+                    <div class="dropdown-menu border border-secondary" aria-labelledby="pagesDropdown" x-placement="bottom-start" style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(5px, 56px, 0px);">
+                        <a class="dropdown-item" href="{{ route('admin.notes.bin') }}">
+                            <i class="fas fa-fw fa-clipboard"></i>
+                            <span>Poznámky</span></a>
+
+                        <div class="dropdown-divider"></div>
+
+                        <a class="dropdown-item" href="{{ route('admin.images.bin') }}">
+                            <i class="fas fa-fw fa-image"></i>
+                            <span>Obrázky</span></a>
+
+                        <div class="dropdown-divider"></div>
+
+                        <a class="dropdown-item" href="{{ route('admin.links.bin') }}">
+                            <i class="fas fa-fw fa-link"></i>
+                            <span>Odkazy</span></a>
+                    </div>
+                </li>
+
+            </ul>
         @endif
 
-    </ul>
+        <div id="content-wrapper">
+            <div class="container-fluid">
 
-    <div id="content-wrapper">
-        <div class="container-fluid">
+                @yield('main')
 
-            <!-- Breadcrumbs-->
-            <ol class="breadcrumb">
-                <li class="breadcrumb-item"><strong>{{ $pageType['desc'] }}</strong></li>
-                @if ($isAdministration)
-                    <li class="breadcrumb-item active"><strong>@yield('page')</strong></li>
-                @endif
-            </ol>
+            </div>
+            <!-- /.container-fluid -->
 
-            @yield('main')
+            <!-- Sticky Footer -->
+            <footer class="sticky-footer" @if(!$isAdministration) style="width: 100%;" @endif >
+                <div class="container my-auto">
+                    <div class="copyright text-center my-auto">
+                        <span>@include('partials.copyright')</span>
+                    </div>
+                </div>
+            </footer>
 
         </div>
-        <!-- /.container-fluid -->
-
-        <!-- Sticky Footer -->
-        <footer class="sticky-footer">
-            <div class="container my-auto">
-                <div class="copyright text-center my-auto">
-                    <span>@include('partials.copyright')</span>
-                </div>
-            </div>
-        </footer>
+        <!-- /.forms-wrapper -->
 
     </div>
-    <!-- /.forms-wrapper -->
-
-</div>
-<!-- /#wrapper -->
+    <!-- /#wrapper -->
 
 @endsection
 
 @section('footer')
-<!-- Scroll to Top Button-->
-<a class="scroll-to-top rounded" href="#page-top">
-    <i class="fas fa-angle-up"></i>
-</a>
+    <!-- Scroll to Top Button-->
+    <a class="scroll-to-top rounded" href="#page-top">
+        <i class="fas fa-angle-up"></i>
+    </a>
 
-{{--<!-- Logout Modal-->--}}
-{{--<div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">--}}
+    {{--<!-- Logout Modal-->--}}
+    {{--<div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">--}}
     {{--<div class="modal-dialog" role="document">--}}
-        {{--<div class="modal-forms">--}}
-            {{--<div class="modal-header">--}}
-                {{--<h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>--}}
-                {{--<button class="close" type="button" data-dismiss="modal" aria-label="Close">--}}
-                    {{--<span aria-hidden="true">×</span>--}}
-                {{--</button>--}}
-            {{--</div>--}}
-            {{--<div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>--}}
-            {{--<div class="modal-footer">--}}
-                {{--<button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>--}}
-                {{--<a class="btn btn-primary" href="login.html">Logout</a>--}}
-            {{--</div>--}}
-        {{--</div>--}}
+    {{--<div class="modal-forms">--}}
+    {{--<div class="modal-header">--}}
+    {{--<h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>--}}
+    {{--<button class="close" type="button" data-dismiss="modal" aria-label="Close">--}}
+    {{--<span aria-hidden="true">×</span>--}}
+    {{--</button>--}}
     {{--</div>--}}
-{{--</div>--}}
+    {{--<div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>--}}
+    {{--<div class="modal-footer">--}}
+    {{--<button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>--}}
+    {{--<a class="btn btn-primary" href="login.html">Logout</a>--}}
+    {{--</div>--}}
+    {{--</div>--}}
+    {{--</div>--}}
+    {{--</div>--}}
 
 @endsection
 
 @section('bottom')
-    @include('partials.admin.script')
+    <script src="{{ asset('js/admin/template.js') }}"></script>
 @endsection

@@ -7,8 +7,8 @@
     @include('partials.admin.flash')
 
     @foreach ($sectionList as $section)
-        <div class="card mb-3">
-            <a class="btn btn-outline-info text-dark" href="{{ route('admin.section', ['id' => $section->id]) }}">
+        <div class="card mb-3 my-3 mx-3">
+                <a class="btn btn-outline-info text-dark bg-light" href="{{ route('admin.section.edit', ['section' => $section]) }}">
 
             <div class="card-header">
                     <p class="lead"><strong>{{ $section->nav_title }}</strong> | <em>{{ $section->attr_id }}</em></p>

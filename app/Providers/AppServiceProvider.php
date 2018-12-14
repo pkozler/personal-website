@@ -21,10 +21,14 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         Schema::defaultStringLength(191);
+
         View::share('siteInfo', Config::get("constants.app"));
         View::share('sectionList', Section::all());
+
         FormFacade::component('bsText', 'components.form.text', ['name', 'label' => null, 'value' => null, 'attributes' => []]);
+        FormFacade::component('bsTextArea', 'components.form.text-area', ['name', 'label' => null, 'value' => null, 'attributes' => []]);
         FormFacade::component('bsSubmit', 'components.form.submit', ['value' => null, 'attributes' => []]);
+
         Validator::extend(
           'recaptcha',
           'App\\Validators\\ReCaptcha@validate'

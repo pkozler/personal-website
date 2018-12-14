@@ -3,8 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests;
-use Illuminate\Support\Facades\Storage;
-use Illuminate\Support\Facades\Config;
+use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
 {
@@ -16,27 +15,21 @@ class UserController extends Controller
      */
     public function __construct()
     {
-        parent::__construct('log');
+        parent::__construct('admin');
 
-        $this->middleware('auth')->only('log');
+        $this->middleware('auth');
     }
 
     /**
-     * Show the forms management UI.
+     * Show the content administration UI.
      *
      * @return \Illuminate\Http\Response
      */
     public function index()
     {
-        //
-    }
+        $this->addArg('account', Auth::user());
 
-    public function log()
-    {
-        $logData = Storage::disk('local')->get('log/access.txt');
-        $this->addArg('logData', $logData);
-
-        return view('admin.guests', $this->getArgs());
+        return view('admin.user', $this->getArgs());
     }
 
 }

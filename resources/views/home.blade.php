@@ -1,18 +1,11 @@
 @extends('layouts.app')
 
 @section('title')
-    @include('partials.brand') - webová prezentace
+    @include('partials.brand') - Webová prezentace
 @endsection
 
 @section('head')
-    {{--<!-- Custom fonts -->--}}
-    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
-    <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet'>
-    <link href='https://fonts.googleapis.com/css?family=Merriweather:400,300,300italic,400italic,700,700italic,900,900italic' rel='stylesheet'>
-
-
-    <!-- Custom CSS -->
-    <link href="{{ asset('css/template.css') }}" rel="stylesheet">
+    @include('partials.style')
     <link href="{{ asset('css/custom.css') }}" rel="stylesheet">
 
     {{--<!-- Anti-spam -->--}}
@@ -44,19 +37,19 @@
                     <!-- Authentication Links -->
                     @guest
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('login') }}"><span class="fa fa-sign-in"></span></a>
+                            <a class="nav-link" href="{{ route('login') }}"><span class="fa fa-sign-in fa-lg"></span></a>
                         </li>
                     @else
                         <li class="nav-item dropdown ">
                             <a id="navbarDropdown" class="nav-link dropdown-toggle text-primary" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                <span class="fa fa-user"></span>
+                                <span class="fa fa-user-circle fa-lg"></span>
                             </a>
 
                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="{{ route('admin') }}"><i class="fas fa-sliders"></i> Administrace</a>
-                                <a class="dropdown-item" href="{{ route('log') }}"><i class="fas fa-history"></i> Záznamy</a>
+                                <a class="dropdown-item" href="{{ route('admin') }}">Administrace</a>
+                                <a class="dropdown-item" href="{{ route('log') }}">Záznamy</a>
                                 <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();"><i class="fa fa-sign-out"></i> Odhlásit se</a>
+                                <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Odhlásit se</a>
 
                                 <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                     @csrf
@@ -64,6 +57,7 @@
                             </div>
                         </li>
                     @endguest
+
                 </ul>
             </div>
         </div>
@@ -94,7 +88,6 @@
 @endsection
 
 @section('bottom')
-    <!-- Custom JS -->
-    <script src="{{ asset('js/template.js') }}"></script>
+    @include('partials.script')
     <script src="{{ asset('js/custom.js') }}"></script>
 @endsection

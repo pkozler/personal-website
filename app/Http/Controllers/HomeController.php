@@ -6,11 +6,9 @@ use App\Http\Requests;
 use App\Image;
 use App\Link;
 use App\Note;
-use App\Section;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Storage;
-use Illuminate\Support\Facades\Config;
 
 class HomeController extends Controller
 {
@@ -22,8 +20,6 @@ class HomeController extends Controller
     public function __construct()
     {
         parent::__construct('home');
-
-        // $this->middleware('auth');
     }
 
     /**
@@ -34,18 +30,26 @@ class HomeController extends Controller
     public function index(Request $request)
     {
         $this->logAccess($request);
+        $viewArgs = $this->loadContent();
 
-        $noteList = Note::all();
-        $imageList = Image::all();
-        $githubLink = Link::search('github')->get()->get(0);
-        $contactList = Link::where('attr_id', '!=', $githubLink->attr_id)->get();
-
-        $this->addArg('noteList', $noteList)
-            ->addArg('imageList', $imageList)
-            ->addArg('githubLink', $githubLink)
-            ->addArg('contactList', $contactList);
+        foreach ($viewArgs as $argName => $argData) {
+            $this->addArg($argName, $argData);
+        }
 
         return view('home', $this->getArgs());
+    }
+
+    private function loadContent() {
+        $githubLink = Link::search('github')->get()->get(0);
+
+        $viewArgs = [
+            'noteList' => Note::all(),
+            'imageList' => Image::all(),
+            'contactList' => Link::where('attr_id', '!=', $githubLink->attr_id)->get(),
+            'githubLink' => $githubLink,
+        ];
+
+        return $viewArgs;
     }
 
     private function logAccess($request) {

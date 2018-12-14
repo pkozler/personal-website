@@ -1,5 +1,5 @@
 let FS = require('fs');
-let CONFIG = 'config.json';
+let CONFIG = '_aux/config.json';
 let ENCODING = 'utf8';
 
 var configObject = JSON.parse(FS.readFileSync(CONFIG, ENCODING));

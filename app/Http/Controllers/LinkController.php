@@ -12,7 +12,7 @@ class LinkController extends Controller
     {
         parent::__construct('admin');
 
-        $this->middleware('auth');
+        $this->middleware('auth')->except('index');
     }
 
     /**

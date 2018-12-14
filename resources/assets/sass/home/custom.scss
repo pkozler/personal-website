@@ -44,5 +44,9 @@ a.contact-link:hover {
 }
 
 .portfolio-box-caption-content {
-    text-shadow: 0px 0px 6px #F05F40, 0px 0px 3px #0B0B0B
+    text-shadow: 0px 0px 6px #F05F40, 0px 0px 3px #0B0B0B;
+}
+
+.btn.btn-link.contact-link {
+    text-transform: none !important;
 }
