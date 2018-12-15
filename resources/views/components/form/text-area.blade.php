@@ -1,4 +1,4 @@
-<div class="form-group row">
+<div class="form-group row text-right">
     {{ Form::label($name, $label, ['class' => 'col-sm-3 col-form-label']) }}
 
     <div class="col-sm-9">

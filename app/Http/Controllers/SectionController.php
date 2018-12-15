@@ -22,38 +22,7 @@ class SectionController extends Controller
      */
     public function index()
     {
-        return view('admin.sections', $this->getArgs());
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Section $section)
-    {
-        //
+        return view('admin.tables.section', $this->getArgs());
     }
 
     /**
@@ -64,7 +33,7 @@ class SectionController extends Controller
      */
     public function edit(Section $section)
     {
-        $this->addArg('currentSection', $section);
+        $this->addArg('section', $section);
 
         return view('admin.forms.section', $this->getArgs());
     }
@@ -93,17 +62,7 @@ class SectionController extends Controller
 
         $section->update($request->except('_token'));
 
-        return redirect()->route('admin.sections')->with('status', "Sekce s ID {$section->id} byla úspěšně upravena.");
+        return redirect()->route('admin.tables.section')->with('status', "Sekce s ID {$section->id} byla úspěšně upravena.");
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Section  $section
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Section $section)
-    {
-        //
-    }
 }

@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Image;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Config;
 
 class ImageController extends Controller
 {
@@ -22,7 +21,8 @@ class ImageController extends Controller
      */
     public function index()
     {
-        //
+        $this->addArg('imageList', Image::all());
+        return view('admin.tables.image', $this->getArgs());
     }
 
     /**

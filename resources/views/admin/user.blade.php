@@ -28,7 +28,7 @@
                     <dd class="col-sm-9">{{ Carbon\Carbon::parse($account->updated_at)->format('d-m-Y H:i:s') }}</dd>
                 </dl>
             @else
-                <p class="text-info">Není k dispozici...</p>
+                <p class="text-primary">Není k dispozici...</p>
             @endif
         </div>
 

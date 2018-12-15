@@ -22,7 +22,8 @@ class NoteController extends Controller
      */
     public function index()
     {
-        //
+        $this->addArg('noteList', Note::all());
+        return view('admin.tables.note', $this->getArgs());
     }
 
     /**

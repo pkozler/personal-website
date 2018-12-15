@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Link;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Config;
 
 class LinkController extends Controller
 {
@@ -15,6 +14,11 @@ class LinkController extends Controller
         $this->middleware('auth')->except('index');
     }
 
+    public function refs()
+    {
+        return Link::all();
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -22,7 +26,8 @@ class LinkController extends Controller
      */
     public function index()
     {
-        return Link::all();
+        $this->addArg('linkList', Link::all());
+        return view('admin.tables.link', $this->getArgs());
     }
 
     /**

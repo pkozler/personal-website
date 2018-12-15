@@ -37,6 +37,9 @@
                     <!-- Authentication Links -->
                     @guest
                         <li class="nav-item">
+                            <!-- invisible anti-spam link-->
+                            <a href="http://antispam.er.cz/" hidden><img src="http://as.er.cz/n.gif" width="1" height="1" border="0" alt="Antispam.er.cz" /></a>
+
                             <a class="nav-link" href="{{ route('login') }}"><span class="fa fa-sign-in fa-lg"></span></a>
                         </li>
                     @else

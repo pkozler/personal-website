@@ -29,7 +29,7 @@ class GuestController extends Controller
         $logData = Storage::disk('local')->get('log/access.txt');
         $this->addArg('logData', $logData);
 
-        return view('admin.guests', $this->getArgs());
+        return view('admin.guest', $this->getArgs());
     }
 
 }

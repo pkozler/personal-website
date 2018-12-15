@@ -21,11 +21,10 @@
         </a>
 
         <!-- Breadcrumbs-->
-        <div class="border-left border-secondary">
-            <ol class="breadcrumb mb-0 navbar-nav mr-auto bg-transparent">
-                <li class="breadcrumb-item text-info"><strong>{{ $pageType['desc'] }}</strong></li>
+            <ol class="breadcrumb mb-0 py-2 navbar-nav mr-auto bg-light border-dark rounded">
+                <li class="breadcrumb-item text-primary">{{ $pageType['desc'] }}</li>
                 @if ($isAdministration)
-                    <li class="breadcrumb-item active text-info"><strong>@yield('page')</strong></li>
+                    <li class="breadcrumb-item text-secondary active">@yield('page')</li>
                 @endif
             </ol>
         </div>
@@ -33,7 +32,7 @@
         <!-- Navbar -->
         <ul class="navbar-nav ml-auto">
             <li class="nav-item dropdown">
-                <a id="navbarDropdown" class="nav-link dropdown-toggle text-info" href="#" role="button"
+                <a id="navbarDropdown" class="nav-link dropdown-toggle text-primary" href="#" role="button"
                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                     <span class="fa fa-sign-out-alt fa-lg"></span>
                 </a>
@@ -101,30 +100,6 @@
                         <i class="fas fa-fw fa-link"></i>
                         <span>Odkazy</span>
                     </a>
-                </li>
-
-                <li class="nav-item dropdown show border-dark border-top">
-                    <a class="nav-link dropdown-toggle" href="#" id="pagesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" arfa-trash="true">
-                        <i class="fas fa-fw fa-trash"></i>
-                        <span>Odpadkový koš</span>
-                    </a>
-                    <div class="dropdown-menu border border-secondary" aria-labelledby="pagesDropdown" x-placement="bottom-start" style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(5px, 56px, 0px);">
-                        <a class="dropdown-item" href="{{ route('admin.notes.bin') }}">
-                            <i class="fas fa-fw fa-clipboard"></i>
-                            <span>Poznámky</span></a>
-
-                        <div class="dropdown-divider"></div>
-
-                        <a class="dropdown-item" href="{{ route('admin.images.bin') }}">
-                            <i class="fas fa-fw fa-image"></i>
-                            <span>Obrázky</span></a>
-
-                        <div class="dropdown-divider"></div>
-
-                        <a class="dropdown-item" href="{{ route('admin.links.bin') }}">
-                            <i class="fas fa-fw fa-link"></i>
-                            <span>Odkazy</span></a>
-                    </div>
                 </li>
 
             </ul>
