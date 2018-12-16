@@ -11,6 +11,8 @@ class Image extends Model
      *
      * @var array
      */
-    protected $fillable = ['path', 'label_category', 'label_name'];
+    protected $fillable = [
+        'path', 'label_category', 'label_name'
+    ];
 
 }

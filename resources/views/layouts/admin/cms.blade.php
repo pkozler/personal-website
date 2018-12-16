@@ -17,17 +17,15 @@
 
         <a @if($isAdministration) id="sidebarToggle" class="navbar-brand btn text-light"
            @else class="navbar-brand btn text-light disabled"
-           @endif  style="width: 192px !important;">@include('partials.brand')</a>
-        </a>
+           @endif style="width: 192px !important;">@include('partials.brand')</a>
 
         <!-- Breadcrumbs-->
-            <ol class="breadcrumb mb-0 py-2 navbar-nav mr-auto bg-light border-dark rounded">
-                <li class="breadcrumb-item text-primary">{{ $pageType['desc'] }}</li>
-                @if ($isAdministration)
-                    <li class="breadcrumb-item text-secondary active">@yield('page')</li>
-                @endif
-            </ol>
-        </div>
+        <ol class="breadcrumb mb-0 py-2 navbar-nav mr-auto bg-light border-dark rounded">
+            <li class="breadcrumb-item text-primary">{{ $pageType['desc'] }}</li>
+            @if ($isAdministration)
+                <li class="breadcrumb-item text-secondary active">@yield('page')</li>
+            @endif
+        </ol>
 
         <!-- Navbar -->
         <ul class="navbar-nav ml-auto">
@@ -46,12 +44,12 @@
                     <a class="dropdown-item" href="{{ route('home') }}">Domů</a>
 
                     <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="{{ route('logout') }}"
-                       onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Odhlásit
-                        se</a>
-                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                        @csrf
-                    </form>
+                        <a class="dropdown-item" href="{{ route('logout') }}"
+                       onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Odhlásit se
+                        </a>
+                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                            @csrf
+                        </form>
                 </div>
             </li>
 
@@ -68,13 +66,6 @@
             <ul class="sidebar navbar-nav">
 
                 <li class="nav-item border-dark border-bottom">
-                    <a class="nav-link" href="{{ route('admin') }}">
-                        <i class="fas fa-fw fa-cog"></i>
-                        <span>Nastavení účtu</span>
-                    </a>
-                </li>
-
-                <li class="nav-item">
                     <a class="nav-link" href="{{ route('admin.sections') }}">
                         <i class="fas fa-fw fa-edit"></i>
                         <span>Hlavní obsah</span>
@@ -95,10 +86,17 @@
                     </a>
                 </li>
 
-                <li class="nav-item">
+                <li class="nav-item border-dark border-bottom">
                     <a class="nav-link" href="{{ route('admin.links') }}">
                         <i class="fas fa-fw fa-link"></i>
                         <span>Odkazy</span>
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('admin') }}">
+                        <i class="fas fa-fw fa-cog"></i>
+                        <span>Nastavení účtu</span>
                     </a>
                 </li>
 

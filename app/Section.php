@@ -11,6 +11,8 @@ class Section extends Model
      *
      * @var array
      */
-    protected $fillable = ['id_attr', 'nav_title', 'heading', 'paragraph', 'next_label', 'bg_image_path'];
+    protected $fillable = [
+        'id_attr', 'nav_title', 'heading', 'paragraph', 'next_label', 'bg_image_path'
+    ];
 
 }

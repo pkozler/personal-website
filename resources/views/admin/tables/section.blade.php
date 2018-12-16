@@ -20,6 +20,7 @@
                         <p><strong>{{ $section->next_label }}</strong></p>
                         <p><em>{{ $section->bg_image_path }}</em></p>
                 </div>
+
             </a>
         </div>
     @endforeach

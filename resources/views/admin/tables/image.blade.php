@@ -1,6 +1,6 @@
 @extends('layouts.admin.cms')
 
-@section('page', 'Seznam fotografií')
+@section('page', 'Seznam obrázků')
 
 @section('main')
 
@@ -19,9 +19,9 @@
 
                     <thead class="thead-light">
                     <tr>
-                        <th>Projekt</th>
-                        <th>Kategorie</th>
                         <th>Obrázek</th>
+                        <th>Název</th>
+                        <th>Kategorie</th>
                         <th colspan="2"></th>
                     </tr>
                     </thead>
@@ -29,15 +29,15 @@
                     <tbody>
                     @foreach($imageList as $image)
                         <tr>
-                            <td>{{ str_limit($image->label_name, 64) }}</td>
-                            <td class="text-secondary">{{ str_limit($image->label_category, 64) }}</td>
-                            <td class="text-monospace"><strong>{{ str_limit($image->path) }}</strong></td>
+                            <td class="text-monospace"><img class="h-25 img-thumbnail" src="{{ asset('storage/gallery/thumbnails/' . $image->path) }}"></td>
+                            <td>{{ str_limit($image->label_name) }}</td>
+                            <td>{{ str_limit($image->label_category) }}</td>
                             <td>
-                                <a class="btn btn-outline-primary" href="{{ route('admin.image.edit', ['image' => $image]) }}"><i class="fa fa-pencil-alt"></i></a></td>
+                                <a class="btn btn-outline-warning" href="{{ route('admin.image.edit', ['image' => $image]) }}"><i class="fa fa-pen"></i></a></td>
                             <td>
                                 <div>
                                     {!! Form::model($image, ['route' => ['admin.image.destroy', $image]]) !!}
-                                    {{ Form::button('<i class="fa fa-ban"></i>', ['class' => 'btn btn-outline-danger']) }}
+                                    {{ Form::button('<i class="fa fa-eraser"></i>', ['class' => 'btn btn-outline-danger']) }}
                                     {!! Form::close() !!}
                                 </div>
                             </td>
@@ -45,8 +45,8 @@
                     @endforeach
 
                     <tr>
-                        <td class="bg-light" colspan="1"><a class="btn btn-outline-success" href="{{ route('admin.image.create') }}"><i
-                                    class="fa fa-pencil-alt"></i> nová položka</a></td>
+                        <td colspan="1"><a class="btn btn-outline-success" href="{{ route('admin.image.create') }}"><i
+                                    class="fa fa-plus"></i> Nová položka</a></td>
                         <td colspan="4"></td>
                     </tr>
                     </tbody>

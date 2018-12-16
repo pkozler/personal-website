@@ -11,6 +11,8 @@ String.prototype.replaceAll = function(search, replacement) {
 
 function fixUrls(cssFile, urlDict) {
 
+    console.log('Načítám obsah souboru: ' + cssFile);
+
     FS.readFile(cssFile, ENCODING, function (err, data) {
         if (err) {
             return console.log(err);
@@ -19,14 +21,22 @@ function fixUrls(cssFile, urlDict) {
         let result = data;
 
         urlDict.forEach(function(item) {
+            console.log(cssFile + ': nahrazuji "\n' + item.search + '" za "' + item.replacement + '"');
             result = result.replaceAll(item.search, item.replacement);
         });
 
-        FS.writeFile(cssFile, result, ENCODING, function (err) {
-            if (err) {
-                return console.log(err);
-            }
-        });
+        if (result == data) {
+            console.log(cssFile + ': Nenalezeny žádné chyby.');
+        }
+        else {console.log(cssFile + ': zapisuji výsledek do souboru.');
+            FS.writeFile(cssFile, result, ENCODING, function (err) {
+                if (err) {
+                    return console.log(err);
+                }
+
+                console.log(cssFile + ': Oprava odkazů byla úspěšně dokončena.');
+            });
+        }
     });
 
 }

@@ -19,10 +19,10 @@
 
                     <thead class="thead-light">
                     <tr>
+                        <th>Ikona</th>
                         <th>ID</th>
                         <th>Adresa</th>
                         <th>Popis</th>
-                        <th>Ikona</th>
                         <th colspan="2"></th>
                     </tr>
                     </thead>
@@ -30,16 +30,16 @@
                     <tbody>
                     @foreach($linkList as $link)
                         <tr>
-                            <td class="bg-light"><strong>{{ $link->attr_id }}</strong></td>
-                            <td>{{ $link->attr_ref }}</td>
-                            <td>{{ $link->text_val }}</td>
-                            <td class="text-secondary">{{ $link->attr_icon }}</td>
+                            <td><div style="font-size: 50px"><i class="{{ $link->attr_icon }}"></i></div></td>
+                            <td>{{ str_limit($link->attr_id) }}</td>
+                            <td>{{ str_limit($link->attr_ref) }}</td>
+                            <td>{{ str_limit($link->text_val) }}</td>
                             <td>
-                                <a class="btn btn-outline-primary" href="{{ route('admin.link.edit', ['link' => $link]) }}"><i class="fa fa-pencil-alt"></i></a></td>
+                                <a class="btn btn-outline-warning" href="{{ route('admin.link.edit', ['link' => $link]) }}"><i class="fa fa-pen"></i></a></td>
                             <td>
                                 <div>
                                     {!! Form::model($link, ['route' => ['admin.link.destroy', $link]]) !!}
-                                    {{ Form::button('<i class="fa fa-ban"></i>', ['class' => 'btn btn-outline-danger']) }}
+                                    {{ Form::button('<i class="fa fa-eraser"></i>', ['class' => 'btn btn-outline-danger']) }}
                                     {!! Form::close() !!}
                                 </div>
                             </td>
@@ -47,9 +47,9 @@
                     @endforeach
 
                     <tr>
-                        <td class="bg-light" colspan="1"><a class="btn btn-outline-success" href="{{ route('admin.link.create') }}"><i
-                                    class="fa fa-pencil-alt"></i> nová položka</a></td>
-                        <td colspan="4"></td>
+                        <td colspan="1"><a class="btn btn-outline-success" href="{{ route('admin.link.create') }}"><i
+                                    class="fa fa-plus"></i> Nová položka</a></td>
+                        <td colspan="5"></td>
                     </tr>
                     </tbody>
 

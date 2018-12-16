@@ -11,7 +11,9 @@ class Link extends Model
      *
      * @var array
      */
-    protected $fillable = ['attr_ref', 'text_val', 'attr_icon	', 'attr_id'];
+    protected $fillable = [
+        'attr_ref', 'text_val', 'attr_icon	', 'attr_id'
+    ];
 
     public function scopeSearch($query, $keyword)
     {

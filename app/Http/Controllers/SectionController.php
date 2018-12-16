@@ -8,9 +8,20 @@ use Illuminate\Support\Facades\Validator;
 
 class SectionController extends Controller
 {
+    private $rules;
+
     public function __construct()
     {
         parent::__construct('admin');
+
+        $this->rules = [
+            'attr_id' => 'required|max:190',
+            'nav_title' => 'required|max:190',
+            'heading' => 'nullable|max:190',
+            'paragraph' => 'nullable|max:190',
+            'next_label' => 'nullable|max:190',
+            'bg_image_path' => 'nullable|max:190',
+        ];
 
         $this->middleware('auth');
     }
@@ -47,14 +58,7 @@ class SectionController extends Controller
      */
     public function update(Request $request, Section $section)
     {
-        $validator = Validator::make($request->all(), [
-            'attr_id' => 'required|max:190',
-            'nav_title' => 'required|max:190',
-            'heading' => 'nullable|max:190',
-            'paragraph' => 'nullable|max:190',
-            'next_label' => 'nullable|max:190',
-            'bg_image_path' => 'nullable|max:190',
-        ]);
+        $validator = Validator::make($request->all(), $this->rules);
 
         if ($validator->fails()) {
             return back()->withInput()->withErrors($validator);
@@ -62,7 +66,7 @@ class SectionController extends Controller
 
         $section->update($request->except('_token'));
 
-        return redirect()->route('admin.tables.section')->with('status', "Sekce s ID {$section->id} byla úspěšně upravena.");
+        return redirect()->route('admin.sections')->with('status', "Sekce s ID {$section->id} byla úspěšně upravena.");
     }
 
 }

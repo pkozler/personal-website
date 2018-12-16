@@ -4,14 +4,24 @@ namespace App\Http\Controllers;
 
 use App\Link;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class LinkController extends Controller
 {
+    private $rules;
+
     public function __construct()
     {
         parent::__construct('admin');
 
-        $this->middleware('auth')->except('index');
+        $this->rules = [
+            'attr_ref' => 'required|max:190',
+            'text_val' => 'required|max:190',
+            'attr_id' => 'nullable|max:190',
+            'attr_icon' => 'nullable|max:190',
+        ];
+
+        $this->middleware('auth')->except('refs');
     }
 
     public function refs()
@@ -37,29 +47,9 @@ class LinkController extends Controller
      */
     public function create()
     {
-        //
-    }
+        $this->addArg('link');
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Link  $link
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Link $link)
-    {
-        //
+        return view('admin.forms.link', $this->getArgs());
     }
 
     /**
@@ -70,7 +60,29 @@ class LinkController extends Controller
      */
     public function edit(Link $link)
     {
-        //
+        $this->addArg('link', $link);
+
+        return view('admin.forms.link', $this->getArgs());
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function store(Request $request)
+    {
+        $validator = Validator::make($request->all(), $this->rules);
+
+        if ($validator->fails()) {
+            return back()->withInput()->withErrors($validator);
+        };
+
+        $link = new Link();
+        $link->update($request->except('_token'));
+
+        return redirect()->route('admin.links')->with('status', "Nový kontaktní údaj byla úspěšně vytvořen.");
     }
 
     /**
@@ -82,7 +94,15 @@ class LinkController extends Controller
      */
     public function update(Request $request, Link $link)
     {
-        //
+        $validator = Validator::make($request->all(), $this->rules);
+
+        if ($validator->fails()) {
+            return back()->withInput()->withErrors($validator);
+        };
+
+        $link->update($request->except('_token'));
+
+        return redirect()->route('admin.links')->with('status', "Odkaz s ID {$link->id} byl úspěšně upraven.");
     }
 
     /**
@@ -93,6 +113,9 @@ class LinkController extends Controller
      */
     public function destroy(Link $link)
     {
-        //
+        $id = $link->id;
+        $link->delete();
+
+        return redirect()->route('admin.links')->with('status', "Odkaz s ID {$id} byl úspěšně odstraněn.");
     }
 }

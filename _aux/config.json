@@ -7,6 +7,10 @@
                 {
                     "search": "../webfonts/fa-",
                     "replacement": "../fonts/vendor/@fortawesome/fontawesome-free/webfa-"
+                },
+                {
+                    "search": "fonts/devicon.",
+                    "replacement": "../fonts/vendor/devicon/devicon."
                 }
             ]
         },
@@ -16,10 +20,6 @@
                 {
                     "search": "../img/",
                     "replacement": "../images/vendor/startbootstrap-creative/"
-                },
-                {
-                    "search": "../fonts/devicons.",
-                    "replacement": "../fonts/vendor/devicons/devicons."
                 }
             ]
         }

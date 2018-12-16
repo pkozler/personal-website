@@ -21,7 +21,7 @@
 
                         <div class="col-lg-3 col-md-6 text-center">
                             <div class="service-box mt-5 mx-auto">
-                                <span class=" {{ $note->figure }} mb-3 large-icon"></span>
+                                <i class="{{ $note->figure }} mb-3 large-icon"></i>
                                 <h3 class="mb-3">{{ $note->title }}</h3>
                                 <p class="text-muted mb-0">{{ $note->description }}</p>
                             </div>
