@@ -27,6 +27,7 @@ class AppServiceProvider extends ServiceProvider
 
         FormFacade::component('bsText', 'components.form.text', ['name', 'label' => null, 'value' => null, 'attributes' => []]);
         FormFacade::component('bsTextArea', 'components.form.text-area', ['name', 'label' => null, 'value' => null, 'attributes' => []]);
+        FormFacade::component('bsFile', 'components.form.file', ['name', 'label' => null, 'value' => null, 'attributes' => []]);
         FormFacade::component('bsSubmit', 'components.form.submit', ['value' => null, 'attributes' => []]);
 
         Validator::extend(

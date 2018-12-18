@@ -14,7 +14,6 @@
 
         <div class="card-body">
             <div class="table-responsive">
-
                 <table class="table table-bordered text-center" width="100%" cellspacing="0">
 
                     <thead class="thead-light">
@@ -29,7 +28,7 @@
                     <tbody>
                     @foreach($imageList as $image)
                         <tr>
-                            <td class="text-monospace"><img class="h-25 img-thumbnail" src="{{ asset('storage/gallery/thumbnails/' . $image->path) }}"></td>
+                            <td class="text-monospace"><img class="h-25 img-thumbnail" src="{{ asset("$thumbsPath/$image->path") }}"></td>
                             <td>{{ str_limit($image->label_name) }}</td>
                             <td>{{ str_limit($image->label_category) }}</td>
                             <td>
@@ -43,7 +42,6 @@
                             </td>
                         </tr>
                     @endforeach
-
                     <tr>
                         <td colspan="1"><a class="btn btn-outline-success" href="{{ route('admin.image.create') }}"><i
                                     class="fa fa-plus"></i> Nová položka</a></td>
@@ -52,7 +50,6 @@
                     </tbody>
 
                 </table>
-
             </div>
         </div>
     </div>

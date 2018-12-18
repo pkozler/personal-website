@@ -16,38 +16,35 @@ a.contact-link:hover {
 }
 
 .profile-photo {
-  width: 150px;
+  width: 160px;
   text-align: center;
   margin: 0 auto;
   border-radius: 50%;
 }
 
 .large-icon {
-  font-size: 160px;
+  font-size: 80px;
+}
+
+.service-box {
   opacity: 0.8;
 }
 
-.large-icon:hover {
+.service-box:hover {
   opacity: 1;
 }
 
-.portfolio-box:hover {
-  opacity: 1;
-}
-
-.portfolio-box {
-  opacity: 0.5;
+.portfolio-box:hover
+.portfolio-box-caption {
+  background-color: rgba(0, 0, 0, 0.5);
 }
 
 .portfolio-box
 .portfolio-box-caption {
-  background: transparent;
-}
-
-.portfolio-box-caption-content {
-  text-shadow: 0px 0px 6px #F05F40, 0px 0px 3px #0B0B0B;
+  background-color: rgba(0, 0, 0, 0.5);
+  color: white;
 }
 
 .btn.btn-link.contact-link {
-  text-transform: none !important;
+  text-transform: none;
 }

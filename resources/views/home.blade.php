@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('title')
-    @include('partials.brand') - Webová prezentace
+    @include('partials.brand') | Webová prezentace
 @endsection
 
 @section('head')

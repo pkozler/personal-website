@@ -12,7 +12,7 @@ class LinkController extends Controller
 
     public function __construct()
     {
-        parent::__construct('admin');
+        parent::__construct(['isAdmin' => true]);
 
         $this->rules = [
             'attr_ref' => 'required|max:190',

@@ -1,9 +1,8 @@
 @extends('layouts.app')
 
-@php($isAdministration = ($pageType['name'] === 'admin'))
-
+@php($pageDesc = $isAdmin ? 'Rozhraní administrace' : 'Záznamy aktivity')
 @section('title')
-    {{ $pageType['desc'] }} | @include('partials.brand') - @yield('page')
+    @include('partials.brand') | $pageDesc @yield('page')
 @endsection
 
 @section('head')
@@ -15,14 +14,14 @@
 @section('navbar')
     <nav class="navbar navbar-expand navbar-dark bg-dark static-top">
 
-        <a @if($isAdministration) id="sidebarToggle" class="navbar-brand btn text-light"
+        <a @if($isAdmin) id="sidebarToggle" class="navbar-brand btn text-light"
            @else class="navbar-brand btn text-light disabled"
            @endif style="width: 192px !important;">@include('partials.brand')</a>
 
         <!-- Breadcrumbs-->
         <ol class="breadcrumb mb-0 py-2 navbar-nav mr-auto bg-light border-dark rounded">
-            <li class="breadcrumb-item text-primary">{{ $pageType['desc'] }}</li>
-            @if ($isAdministration)
+            <li class="breadcrumb-item text-primary">{{ $pageDesc }}</li>
+            @if ($isAdmin)
                 <li class="breadcrumb-item text-secondary active">@yield('page')</li>
             @endif
         </ol>
@@ -36,7 +35,7 @@
                 </a>
 
                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                    @if($isAdministration)
+                    @if($isAdmin)
                         <a class="dropdown-item" href="{{ route('log') }}">Záznamy</a>
                     @else
                         <a class="dropdown-item" href="{{ route('admin') }}">Administrace</a>
@@ -62,7 +61,7 @@
     <div id="wrapper">
 
         <!-- Sidebar -->
-        @if($isAdministration)
+        @if($isAdmin)
             <ul class="sidebar navbar-nav">
 
                 <li class="nav-item border-dark border-bottom">
@@ -112,7 +111,7 @@
             <!-- /.container-fluid -->
 
             <!-- Sticky Footer -->
-            <footer class="sticky-footer" @if(!$isAdministration) style="width: 100%;" @endif >
+            <footer class="sticky-footer" @if(!$isAdmin) style="width: 100%;" @endif >
                 <div class="container my-auto">
                     <div class="copyright text-center my-auto">
                         <span>@include('partials.copyright')</span>
@@ -133,25 +132,6 @@
     <a class="scroll-to-top rounded" href="#page-top">
         <i class="fas fa-angle-up"></i>
     </a>
-
-    {{--<!-- Logout Modal-->--}}
-    {{--<div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">--}}
-    {{--<div class="modal-dialog" role="document">--}}
-    {{--<div class="modal-forms">--}}
-    {{--<div class="modal-header">--}}
-    {{--<h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>--}}
-    {{--<button class="close" type="button" data-dismiss="modal" aria-label="Close">--}}
-    {{--<span aria-hidden="true">×</span>--}}
-    {{--</button>--}}
-    {{--</div>--}}
-    {{--<div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>--}}
-    {{--<div class="modal-footer">--}}
-    {{--<button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>--}}
-    {{--<a class="btn btn-primary" href="login.html">Logout</a>--}}
-    {{--</div>--}}
-    {{--</div>--}}
-    {{--</div>--}}
-    {{--</div>--}}
 
 @endsection
 

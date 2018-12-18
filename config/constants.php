@@ -5,20 +5,15 @@ return [
         'brand' => 'petrkozler.cz',
         'desc' => 'Osobní web / webové CV',
         'author' => 'Petr Kozler',
-        'year' => '2018'
+        'year' => '2018',
     ],
-    'layouts' => [
-        'home' => [
-            'code' => 0,
-            'desc' => 'Webová prezentace'
-        ],
-        'admin' => [
-            'code' => 1,
-            'desc' => 'Rozhraní administrace'
-        ],
-        'log' => [
-            'code' => -1,
-            'desc' => 'Záznamy aktivity'
-        ]
+    'upload' => [
+        'img_dest' => 'images/fullsize',
+        'timg_dest' => 'images/thumbnails',
+        't_width' => 650,
+        't_height' => 350,
+    ],
+    'access' => [
+        'log_file' => 'log/access.txt',
     ]
 ];

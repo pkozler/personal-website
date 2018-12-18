@@ -12,7 +12,7 @@ class NoteController extends Controller
 
     public function __construct()
     {
-        parent::__construct('admin');
+        parent::__construct(['isAdmin' => true]);
 
         $this->rules = [
             'title' => 'required|max:190',

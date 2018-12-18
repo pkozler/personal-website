@@ -4,7 +4,7 @@
 
 @section('page', 'Přihlášení do aplikace')
 
-@section('auth_form')
+@section('form_content')
 
     <form method="POST" action="{{ route('login') }}" aria-label="{{ __('Login') }}">
         @csrf
@@ -36,9 +36,6 @@
         <button type="submit" class="btn btn-primary">Přihlásit se</button>
     </form>
 
-@endsection
-
-@section('foot_nav')
     {{--<a class="d-block small mt-3" href="{{ route('register') }}">{{ __('Založit účet') }}</a>--}}
     {{--<a class="d-block small mt-3" href="{{ route('password.email') }}">{{ __('Zapomenuté heslo') }}</a>--}}
 @endsection

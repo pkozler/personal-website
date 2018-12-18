@@ -19,7 +19,7 @@ class HomeController extends Controller
      */
     public function __construct()
     {
-        parent::__construct('home');
+        parent::__construct();
     }
 
     /**
@@ -47,6 +47,8 @@ class HomeController extends Controller
             'imageList' => Image::all(),
             'contactList' => Link::where('attr_id', '!=', $githubLink->attr_id)->get(),
             'githubLink' => $githubLink,
+            'uploadConfig' => $this->getUploadConfig(false),
+            'nCols' => 4,
         ];
 
         return $viewArgs;

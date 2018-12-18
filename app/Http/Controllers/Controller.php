@@ -14,19 +14,14 @@ class Controller extends BaseController
 
     private $data = [];
 
-    public function __construct($pageTypeName)
+    public function __construct($initArgs = [])
     {
-        // TODO ošetřit neplatný formát proměnné $pageType
-        $pageTypeValues = Config::get("constants.layouts.$pageTypeName");
-        $pageType = array_add($pageTypeValues, 'name', $pageTypeName);
-        $this->addArg('pageType', $pageType);
+        foreach ($initArgs as $k => $v) {
+            $this->addArg($k, $v);
+        }
     }
 
     protected function addArg(string $key, $val = null) {
-        //if (array_has($this->data, $key)) {
-            // TODO ošetřit vkládání na existující klíče
-        //}
-
         $this->data = array_add($this->data, $key, $val);
         return $this;
     }
@@ -34,4 +29,24 @@ class Controller extends BaseController
     protected function getArgs() {
         return $this->data;
     }
+
+    protected function getUploadConfig($input = false) {
+        $config = Config::get("constants.upload");
+
+        $parsedConfig = [
+            'fullsize' => "storage/{$config['img_dest']}",
+            'thumbnails' => "storage/{$config['timg_dest']}",
+        ];
+
+        if (!$input) {
+            return (object) $parsedConfig;
+        }
+        $parsedConfig['tSize'] = (object) [
+            'width' => $config['t_width'],
+            'height' => $config['t_height'],
+        ];
+
+        return (object) $parsedConfig;
+    }
+
 }

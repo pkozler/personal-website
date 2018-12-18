@@ -12,7 +12,7 @@ class SectionController extends Controller
 
     public function __construct()
     {
-        parent::__construct('admin');
+        parent::__construct(['isAdmin' => true]);
 
         $this->rules = [
             'attr_id' => 'required|max:190',

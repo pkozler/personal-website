@@ -23,14 +23,14 @@
     <div class="card-body">
 
         @if ($image)
-            {!! Form::model($image, ['route' => ['admin.image.update', $image]]) !!}
+            {!! Form::model($image, ['route' => ['admin.image.update', $image], 'files' => true]) !!}
         @else
-            {!! Form::open(['route' => ['admin.image.store']]) !!}
+            {!! Form::open(['route' => ['admin.image.store'], 'files' => true]) !!}
         @endif
 
         {{ Form::bsText('label_name', 'Název projektu', $image->label_name ?? '', ['required', 'autofocus']) }}
         {{ Form::bsText('label_category', 'Kategorie projektu', $image->label_category ?? '') }}
-        {{ Form::bsText('path', 'Screenshot projektu', $image->path ?? '', ['required']) }}
+        {{ Form::bsFile('path', 'Screenshot projektu', $image->path ?? '', ['required']) }}
 
         <hr>
 

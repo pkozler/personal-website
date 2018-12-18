@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Storage;
 
 class GuestController extends Controller
@@ -14,7 +15,7 @@ class GuestController extends Controller
      */
     public function __construct()
     {
-        parent::__construct('log');
+        parent::__construct(['isAdmin' => false]);
 
         $this->middleware('auth');
     }
@@ -26,7 +27,8 @@ class GuestController extends Controller
      */
     public function index()
     {
-        $logData = Storage::disk('local')->get('log/access.txt');
+        $logPath = Config::get('constants.access');
+        $logData = Storage::disk('local')->get($logPath['log_file']);
         $this->addArg('logData', $logData);
 
         return view('admin.guest', $this->getArgs());

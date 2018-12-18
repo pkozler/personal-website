@@ -9,7 +9,7 @@
     </div>
 
     <div class="container">
-        @php($n = $noteList->count() and $nRows = 2 and $nCols = intval($n / $nRows) or $noteList = null)
+        @php($n = $noteList->count() and $nRows = ceil($n / $nCols) or $noteList = null)
 
         @if($noteList)
 
@@ -22,7 +22,7 @@
                         <div class="col-lg-3 col-md-6 text-center">
                             <div class="service-box mt-5 mx-auto">
                                 <i class="{{ $note->figure }} mb-3 large-icon"></i>
-                                <h3 class="mb-3">{{ $note->title }}</h3>
+                                <h3 class="mb-3 mt-3">{{ $note->title }}</h3>
                                 <p class="text-muted mb-0">{{ $note->description }}</p>
                             </div>
                         </div>
