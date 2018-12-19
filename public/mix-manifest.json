@@ -1,10 +1,16 @@
 {
     "/js/app.js": "/js/app.js",
     "/css/app.css": "/css/app.css",
-    "/css/template.css": "/css/template.css",
-    "/css/custom.css": "/css/custom.css",
+    "/css/home/template.css": "/css/home/template.css",
+    "/css/home/custom.css": "/css/home/custom.css",
     "/css/admin/template.css": "/css/admin/template.css",
-    "/js/template.js": "/js/template.js",
+    "/js/home/template.js": "/js/home/template.js",
     "/js/admin/template.js": "/js/admin/template.js",
-    "/js/custom.js": "/js/custom.js"
+    "/js/home/custom.js": "/js/home/custom.js",
+    "/css/app.min.css": "/css/app.min.css",
+    "/css/home/template.min.css": "/css/home/template.min.css",
+    "/css/admin/template.min.css": "/css/admin/template.min.css",
+    "/js/app.min.js": "/js/app.min.js",
+    "/js/home/template.min.js": "/js/home/template.min.js",
+    "/js/admin/template.min.js": "/js/admin/template.min.js"
 }

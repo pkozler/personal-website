@@ -36,8 +36,19 @@ a.contact-link:hover {
     opacity: 1;
 }
 
+a.portfolio-box {
+    opacity: 0.8;
+}
+
+a.portfolio-box:hover {
+    opacity: 1;
+}
 .portfolio-box:hover
 .portfolio-box-caption {
+    .portfolio-box-caption-content {
+        text-shadow: 0 0 3px $primary
+    }
+
     background-color: rgba(0, 0, 0, 0.5);
 }
 

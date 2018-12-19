@@ -1,4 +1,5 @@
 let FS = require('fs');
+let PATH = 'C:/Users/Petr/Dropbox/www/personal-website/public/';
 let CONFIG = '_aux/config.json';
 let ENCODING = 'utf8';
 
@@ -42,5 +43,5 @@ function fixUrls(cssFile, urlDict) {
 }
 
 configObject.styles.forEach(function(style) {
-    fixUrls(configObject.path + style.file, style.urls);
+    fixUrls(PATH + style.file, style.urls);
 });

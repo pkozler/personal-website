@@ -15,11 +15,11 @@
             ]
         },
         {
-            "file": "css/template.css",
+            "file": "css/home/template.css",
             "urls": [
                 {
                     "search": "../img/",
-                    "replacement": "../images/vendor/startbootstrap-creative/"
+                    "replacement": "../../images/vendor/startbootstrap-creative/"
                 }
             ]
         }

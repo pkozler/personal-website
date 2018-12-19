@@ -60,74 +60,45 @@
 /******/ 	__webpack_require__.p = "/";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 46);
+/******/ 	return __webpack_require__(__webpack_require__.s = 44);
 /******/ })
 /************************************************************************/
 /******/ ({
 
-/***/ 46:
+/***/ 44:
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(47);
+module.exports = __webpack_require__(45);
 
 
 /***/ }),
 
-/***/ 47:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_startbootstrap_sb_admin_js_sb_admin__ = __webpack_require__(48);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_startbootstrap_sb_admin_js_sb_admin___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_startbootstrap_sb_admin_js_sb_admin__);
-
-
-/***/ }),
-
-/***/ 48:
+/***/ 45:
 /***/ (function(module, exports) {
 
-(function($) {
-  "use strict"; // Start of use strict
+$(function () {
 
-  // Toggle the side navigation
-  $("#sidebarToggle").on('click',function(e) {
-    e.preventDefault();
-    $("body").toggleClass("sidebar-toggled");
-    $(".sidebar").toggleClass("toggled");
-  });
+    function showContact() {
 
-  // Prevent the content wrapper from scrolling when the fixed side navigation hovered over
-  $('body.fixed-nav .sidebar').on('mousewheel DOMMouseScroll wheel', function(e) {
-    if ($(window).width() > 768) {
-      var e0 = e.originalEvent,
-        delta = e0.wheelDelta || -e0.detail;
-      this.scrollTop += (delta < 0 ? 1 : -1) * 30;
-      e.preventDefault();
+        $.ajax({
+            method: "GET",
+            url: "refs",
+            dataType: "json",
+            success: function success(data) {
+                data.forEach(function (item) {
+                    $('#' + item['attr_id']).prop('href', item['attr_ref']);
+                });
+            },
+            error: function error(err) {
+                console.log(err);
+            }
+        });
     }
-  });
 
-  // Scroll to top button appear
-  $(document).on('scroll',function() {
-    var scrollDistance = $(this).scrollTop();
-    if (scrollDistance > 100) {
-      $('.scroll-to-top').fadeIn();
-    } else {
-      $('.scroll-to-top').fadeOut();
-    }
-  });
+    showContact();
 
-  // Smooth scrolling using jQuery easing
-  $(document).on('click', 'a.scroll-to-top', function(event) {
-    var $anchor = $(this);
-    $('html, body').stop().animate({
-      scrollTop: ($($anchor.attr('href')).offset().top)
-    }, 1000, 'easeInOutExpo');
-    event.preventDefault();
-  });
-
-})(jQuery); // End of use strict
-
+    // $('[data-toggle="tooltip"]').tooltip();
+});
 
 /***/ })
 

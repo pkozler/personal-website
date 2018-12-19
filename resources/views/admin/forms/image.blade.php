@@ -30,7 +30,9 @@
 
         {{ Form::bsText('label_name', 'Název projektu', $image->label_name ?? '', ['required', 'autofocus']) }}
         {{ Form::bsText('label_category', 'Kategorie projektu', $image->label_category ?? '') }}
-        {{ Form::bsFile('path', 'Screenshot projektu', $image->path ?? '', ['required']) }}
+
+        @php ($attributes = $image ? [] : ['required'])
+        {{ Form::bsFile('path', 'Screenshot projektu', $image->path ?? null, $attributes) }}
 
         <hr>
 

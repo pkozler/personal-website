@@ -12,13 +12,14 @@ class ImageController extends Controller
 {
     private $rules;
     private $uploadConfig;
+    private $storePath;
 
     public function __construct()
     {
         parent::__construct(['isAdmin' => true]);
 
+        $this->storePath = 'app/public/';
         $this->rules = [
-            'path' => 'required|max:190',
             'label_name' => 'required|max:190',
             'label_category' => 'nullable|max:190',
         ];
@@ -35,7 +36,6 @@ class ImageController extends Controller
      */
     public function index()
     {
-        // TODO zobrazit fotografie v seznamu do <img> elementu
         $this->addArg('imageList', Image::all());
         $this->addArg('thumbsPath', $this->uploadConfig->thumbnails);
 
@@ -75,6 +75,7 @@ class ImageController extends Controller
      */
     public function store(Request $request)
     {
+        $this->rules['path'] = 'required';
         $validator = Validator::make($request->all(), $this->rules);
 
         if ($validator->fails()) {
@@ -86,7 +87,7 @@ class ImageController extends Controller
         $image->path = $file->hashName();
         $image->save();
 
-        return redirect()->route('admin.images')->with('status', "Nový obrázek s ID {$image->id} byl úspěšně vytvořen.");
+        return redirect()->route('admin.images')->with('status', "Nový obrázek galerie s ID {$image->id} byl vytvořen.");
     }
 
     /**
@@ -104,11 +105,20 @@ class ImageController extends Controller
             return back()->withInput()->withErrors($validator);
         };
 
-        $file = $this->handleImageUpload($request);
-        $image = new Image($request->except('_token', 'path'));
-        $image->update(['path' => $file->hashName()]);
+        $file = null;
 
-        return redirect()->route('admin.images')->with('status', "Obrázek s ID {$image->id} byl úspěšně upraven.");
+        if ($request->hasFile('path')) {
+            $file = $this->handleImageUpload($request);
+        }
+
+        if ($file) {
+            $this->handleImageDelete($image);
+            $image->path = $file->hashName();
+        }
+
+        $image->update($request->except('_token', 'path'));
+
+        return redirect()->route('admin.images')->with('status', "Obrázek galerie s ID {$image->id} byl upraven.");
     }
 
     /**
@@ -121,19 +131,38 @@ class ImageController extends Controller
     {
         $id = $image->id ?? 0;
 
-        if ($image->delete()) {
-            return redirect()->route('admin.images')->with('status', "Obrázek s ID $id byl úspěšně odstraněn.");
+        $deleted = $this->handleImageDelete($image);
+
+        if ($deleted) {
+            $image->delete();
+
+            return redirect()->route('admin.images')->with('status', "Obrázek galerie s ID $id byl odstraněn.");
         }
 
         return redirect()->route('admin.images')->with('status', "ID $id: nenalezeno");
     }
 
-    private function handleImageUpload($request) {
-        if (!$request->hasFile('path')) {
-            return;
+    private function handleImageDelete($image) {
+        $path = $image->path ?? null;
+
+        if (!$path) {
+            return false;
         }
 
+        Storage::disk('public')->delete([
+            $this->uploadConfig->fullsize . '/' . $path,
+            $this->uploadConfig->thumbnails . '/' . $path
+        ]);
+
+        return true;
+    }
+
+    private function handleImageUpload($request) {
         $uploaded = $request->file('path');
+
+        if (!$uploaded) {
+            return null;
+        }
 
         Storage::disk('public')->putFile($this->uploadConfig->fullsize, $uploaded);
         $cropped = ImageFacade::make($uploaded);
@@ -142,7 +171,7 @@ class ImageController extends Controller
             $this->uploadConfig->tSize->width, $this->uploadConfig->tSize->height
         );
 
-        Storage::disk('public')->put($this->uploadConfig->thumbnails . '/' . $uploaded->hashName(), $cropped);
+        $cropped->save(storage_path($this->storePath . $this->uploadConfig->thumbnails . '/' . $uploaded->hashName()));
 
         return $uploaded;
     }

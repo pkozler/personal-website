@@ -30,7 +30,6 @@ class NoteController extends Controller
      */
     public function index()
     {
-        // TODO zobrazit ikony 'devicon' v seznamu
         $this->addArg('noteList', Note::all());
 
         return view('admin.tables.note', $this->getArgs());
@@ -75,10 +74,9 @@ class NoteController extends Controller
             return back()->withInput()->withErrors($validator);
         };
 
-        $note = new Note();
-        $note->update($request->except('_token'));
+        $note = Note::create($request->except('_token'));
 
-        return redirect()->route('admin.notes')->with('status', "Nová textová položka byla úspěšně vytvořena.");
+        return redirect()->route('admin.notes')->with('status', "Nová textová položka s ID {$note->id} byla vytvořena.");
     }
 
     /**
@@ -98,7 +96,7 @@ class NoteController extends Controller
 
         $note->update($request->except('_token'));
 
-        return redirect()->route('admin.notes')->with('status', "Text s ID {$note->id} byl úspěšně upraven.");
+        return redirect()->route('admin.notes')->with('status', "Textová položka s ID {$note->id} byla upravena.");
     }
 
     /**
@@ -109,9 +107,12 @@ class NoteController extends Controller
      */
     public function destroy(Note $note)
     {
-        $id = $note->id;
-        $note->delete();
+        $id = $note->id ?? 0;;
 
-        return redirect()->route('admin.notes')->with('status', "Text s ID $id byl úspěšně odstraněn.");
+        if ($note->delete()) {
+            return redirect()->route('admin.notes')->with('status', "Textová položka s ID $id byla odstraněna.");
+        }
+
+        return redirect()->route('admin.notes')->with('status', "ID $id: nenalezeno");
     }
 }

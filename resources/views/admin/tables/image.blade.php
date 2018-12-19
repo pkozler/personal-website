@@ -28,7 +28,7 @@
                     <tbody>
                     @foreach($imageList as $image)
                         <tr>
-                            <td class="text-monospace"><img class="h-25 img-thumbnail" src="{{ asset("$thumbsPath/$image->path") }}"></td>
+                            <td class="text-monospace"><img class="h-25 img-thumbnail" src="{{ asset("storage/$thumbsPath/$image->path") }}"></td>
                             <td>{{ str_limit($image->label_name) }}</td>
                             <td>{{ str_limit($image->label_category) }}</td>
                             <td>
@@ -36,7 +36,7 @@
                             <td>
                                 <div>
                                     {!! Form::model($image, ['route' => ['admin.image.destroy', $image]]) !!}
-                                    {{ Form::button('<i class="fa fa-eraser"></i>', ['class' => 'btn btn-outline-danger']) }}
+                                    {{ Form::button('<i class="fa fa-eraser"></i>', ['type' => 'submit','class' => 'btn btn-outline-danger', 'onclick' => "return confirm('Odstranit obrázek #{$image->id}?');"]) }}
                                     {!! Form::close() !!}
                                 </div>
                             </td>

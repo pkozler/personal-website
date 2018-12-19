@@ -4,6 +4,15 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
+/**
+ * Class Note
+ * @package App
+ *
+ * @property int $id
+ * @property string $description
+ * @property string $title
+ * @property string $figure
+ */
 class Note extends Model
 {
     /**

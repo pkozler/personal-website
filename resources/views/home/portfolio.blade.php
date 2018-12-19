@@ -12,8 +12,8 @@
             @foreach($imageList as $idx => $image)
 
                 <div class="col-lg-4 col-sm-6">
-                        <a class="portfolio-box d-block mb-4 mx-2 h-80" href="{{ "$uploadConfig->fullsize/$image->path" }}">
-                        <img class="img-fluid img-thumbnail rounded-0" src="{{ "$uploadConfig->thumbnails/$image->path" }}">
+                        <a class="portfolio-box d-block mb-4 mx-2 h-80" href="{{ "storage/$uploadConfig->fullsize/$image->path" }}">
+                        <img class="img-fluid img-thumbnail rounded-0" src="{{ "storage/$uploadConfig->thumbnails/$image->path" }}">
 
                         <div class="portfolio-box-caption">
                             <div class="portfolio-box-caption-content">

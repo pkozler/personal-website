@@ -37,7 +37,7 @@
                             <td>
                                 <div>
                                     {!! Form::model($note, ['route' => ['admin.note.destroy', $note]]) !!}
-                                    {{ Form::button('<i class="fa fa-eraser"></i>', ['class' => 'btn btn-outline-danger']) }}
+                                    {{ Form::button('<i class="fa fa-eraser"></i>', ['type' => 'submit', 'class' => 'btn btn-outline-danger', 'onclick' => "return confirm('Odstranit text #{$note->id}?');"]) }}
                                     {!! Form::close() !!}
                                 </div>
                             </td>

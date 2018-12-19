@@ -4,6 +4,18 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
+/**
+ * Class Section
+ * @package App
+ *
+ * @property int $id
+ * @property string $id_attr
+ * @property string $nav_title
+ * @property string $heading
+ * @property string $paragraph
+ * @property string $next_label
+ * @property string $bg_image_path
+ */
 class Section extends Model
 {
     /**

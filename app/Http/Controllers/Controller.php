@@ -34,8 +34,8 @@ class Controller extends BaseController
         $config = Config::get("constants.upload");
 
         $parsedConfig = [
-            'fullsize' => "storage/{$config['img_dest']}",
-            'thumbnails' => "storage/{$config['timg_dest']}",
+            'fullsize' => "{$config['img_dest']}",
+            'thumbnails' => "{$config['timg_dest']}",
         ];
 
         if (!$input) {

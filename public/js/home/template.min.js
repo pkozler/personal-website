@@ -60,70 +60,122 @@
 /******/ 	__webpack_require__.p = "/";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 46);
+/******/ 	return __webpack_require__(__webpack_require__.s = 41);
 /******/ })
 /************************************************************************/
 /******/ ({
 
-/***/ 46:
+/***/ 41:
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(47);
+module.exports = __webpack_require__(42);
 
 
 /***/ }),
 
-/***/ 47:
+/***/ 42:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_startbootstrap_sb_admin_js_sb_admin__ = __webpack_require__(48);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_startbootstrap_sb_admin_js_sb_admin___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_startbootstrap_sb_admin_js_sb_admin__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_startbootstrap_creative_js_creative__ = __webpack_require__(43);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_startbootstrap_creative_js_creative___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_startbootstrap_creative_js_creative__);
 
 
 /***/ }),
 
-/***/ 48:
+/***/ 43:
 /***/ (function(module, exports) {
 
 (function($) {
   "use strict"; // Start of use strict
 
-  // Toggle the side navigation
-  $("#sidebarToggle").on('click',function(e) {
-    e.preventDefault();
-    $("body").toggleClass("sidebar-toggled");
-    $(".sidebar").toggleClass("toggled");
-  });
-
-  // Prevent the content wrapper from scrolling when the fixed side navigation hovered over
-  $('body.fixed-nav .sidebar').on('mousewheel DOMMouseScroll wheel', function(e) {
-    if ($(window).width() > 768) {
-      var e0 = e.originalEvent,
-        delta = e0.wheelDelta || -e0.detail;
-      this.scrollTop += (delta < 0 ? 1 : -1) * 30;
-      e.preventDefault();
-    }
-  });
-
-  // Scroll to top button appear
-  $(document).on('scroll',function() {
-    var scrollDistance = $(this).scrollTop();
-    if (scrollDistance > 100) {
-      $('.scroll-to-top').fadeIn();
-    } else {
-      $('.scroll-to-top').fadeOut();
-    }
-  });
-
   // Smooth scrolling using jQuery easing
-  $(document).on('click', 'a.scroll-to-top', function(event) {
-    var $anchor = $(this);
-    $('html, body').stop().animate({
-      scrollTop: ($($anchor.attr('href')).offset().top)
-    }, 1000, 'easeInOutExpo');
-    event.preventDefault();
+  $('a.js-scroll-trigger[href*="#"]:not([href="#"])').click(function() {
+    if (location.pathname.replace(/^\//, '') == this.pathname.replace(/^\//, '') && location.hostname == this.hostname) {
+      var target = $(this.hash);
+      target = target.length ? target : $('[name=' + this.hash.slice(1) + ']');
+      if (target.length) {
+        $('html, body').animate({
+          scrollTop: (target.offset().top - 56)
+        }, 1000, "easeInOutExpo");
+        return false;
+      }
+    }
+  });
+
+  // Closes responsive menu when a scroll trigger link is clicked
+  $('.js-scroll-trigger').click(function() {
+    $('.navbar-collapse').collapse('hide');
+  });
+
+  // Activate scrollspy to add active class to navbar items on scroll
+  $('body').scrollspy({
+    target: '#mainNav',
+    offset: 57
+  });
+
+  // Collapse Navbar
+  var navbarCollapse = function() {
+    if ($("#mainNav").offset().top > 100) {
+      $("#mainNav").addClass("navbar-shrink");
+    } else {
+      $("#mainNav").removeClass("navbar-shrink");
+    }
+  };
+  // Collapse now if page is not at top
+  navbarCollapse();
+  // Collapse the navbar when page is scrolled
+  $(window).scroll(navbarCollapse);
+
+  // Scroll reveal calls
+  window.sr = ScrollReveal();
+
+  sr.reveal('.sr-icon-1', {
+    delay: 200,
+    scale: 0
+  });
+  sr.reveal('.sr-icon-2', {
+    delay: 400,
+    scale: 0
+  });
+  sr.reveal('.sr-icon-3', {
+    delay: 600,
+    scale: 0
+  });
+  sr.reveal('.sr-icon-4', {
+    delay: 800,
+    scale: 0
+  });
+  sr.reveal('.sr-button', {
+    delay: 200,
+    distance: '15px',
+    origin: 'bottom',
+    scale: 0.8
+  });
+  sr.reveal('.sr-contact-1', {
+    delay: 200,
+    scale: 0
+  });
+  sr.reveal('.sr-contact-2', {
+    delay: 400,
+    scale: 0
+  });
+
+  // Magnific popup calls
+  $('.popup-gallery').magnificPopup({
+    delegate: 'a',
+    type: 'image',
+    tLoading: 'Loading image #%curr%...',
+    mainClass: 'mfp-img-mobile',
+    gallery: {
+      enabled: true,
+      navigateByImgClick: true,
+      preload: [0, 1]
+    },
+    image: {
+      tError: '<a href="%url%">The image #%curr%</a> could not be loaded.'
+    }
   });
 
 })(jQuery); // End of use strict

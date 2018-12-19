@@ -39,7 +39,7 @@
                             <td>
                                 <div>
                                     {!! Form::model($link, ['route' => ['admin.link.destroy', $link]]) !!}
-                                    {{ Form::button('<i class="fa fa-eraser"></i>', ['class' => 'btn btn-outline-danger']) }}
+                                    {{ Form::button('<i class="fa fa-eraser"></i>', ['type' => 'submit', 'class' => 'btn btn-outline-danger', 'onclick' => "return confirm('Odstranit odkaz #{$link->id}?');"]) }}
                                     {!! Form::close() !!}
                                 </div>
                             </td>
