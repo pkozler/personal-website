@@ -14,7 +14,6 @@ use Illuminate\Database\Eloquent\Model;
  * @property string $heading
  * @property string $paragraph
  * @property string $next_label
- * @property string $bg_image_path
  */
 class Section extends Model
 {
@@ -24,7 +23,7 @@ class Section extends Model
      * @var array
      */
     protected $fillable = [
-        'id_attr', 'nav_title', 'heading', 'paragraph', 'next_label', 'bg_image_path'
+        'id_attr', 'nav_title', 'heading', 'paragraph', 'next_label'
     ];
 
 }

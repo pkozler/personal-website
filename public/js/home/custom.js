@@ -60,45 +60,16 @@
 /******/ 	__webpack_require__.p = "/";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 44);
+/******/ 	return __webpack_require__(__webpack_require__.s = 43);
 /******/ })
 /************************************************************************/
 /******/ ({
 
-/***/ 44:
+/***/ 43:
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(45);
+(function webpackMissingModule() { throw new Error("Cannot find module \"C:\\Users\\Petr\\Dropbox\\www\\personal-website\\resources\\assets\\js\\home\\custom.js\""); }());
 
-
-/***/ }),
-
-/***/ 45:
-/***/ (function(module, exports) {
-
-$(function () {
-
-    function showContact() {
-
-        $.ajax({
-            method: "GET",
-            url: "refs",
-            dataType: "json",
-            success: function success(data) {
-                data.forEach(function (item) {
-                    $('#' + item['attr_id']).prop('href', item['attr_ref']);
-                });
-            },
-            error: function error(err) {
-                console.log(err);
-            }
-        });
-    }
-
-    showContact();
-
-    // $('[data-toggle="tooltip"]').tooltip();
-});
 
 /***/ })
 

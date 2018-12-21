@@ -18,7 +18,6 @@
                         <h3 class="card-title">{{ str_limit($section->heading, 32) }}</h3>
                         <p class="card-text">{{ str_limit($section->paragraph, 64) }}</p>
                         <p><strong>{{ $section->next_label }}</strong></p>
-                        <p><em>{{ $section->bg_image_path }}</em></p>
                 </div>
 
             </a>

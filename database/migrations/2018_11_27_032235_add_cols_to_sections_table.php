@@ -18,7 +18,6 @@ class AddColsToSectionsTable extends Migration
             $table->string('heading')->nullable();
             $table->mediumText('paragraph')->nullable();
             $table->string('next_label')->nullable();
-            $table->string('bg_image_path')->nullable();
         });
     }
 

@@ -34,8 +34,6 @@
 
         {{ Form::bsText('next_label', 'Popis odkazu do další sekce', $section->next_label) }}
 
-        {{ Form::bsText('bg_image_path', 'Cesta k obrázku pro umístění na pozadí', $section->bg_image_path) }}
-
         <hr>
 
         {{ Form::bsSubmit('Aktualizovat', ['class' => 'btn btn-primary btn-lg']) }}

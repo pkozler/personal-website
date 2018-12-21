@@ -49,7 +49,6 @@ class HomeController extends Controller
             'contactList' => Link::where('attr_id', '!=', $githubLink->attr_id)->get(),
             'githubLink' => $githubLink,
             'uploadConfig' => $this->getUploadConfig(false),
-            'nCols' => 4,
         ];
 
         return $viewArgs;
