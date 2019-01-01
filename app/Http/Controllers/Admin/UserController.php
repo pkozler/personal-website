@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests;
 use Illuminate\Support\Facades\Auth;
 
-class UserController extends Controller
+class UserController extends AdminController
 {
 
     /**
@@ -15,9 +15,7 @@ class UserController extends Controller
      */
     public function __construct()
     {
-        parent::__construct(['isAdmin' => true]);
-
-        $this->middleware('auth');
+        parent::__construct(null);
     }
 
     /**
@@ -25,11 +23,11 @@ class UserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function __invoke()
     {
-        $this->addArg('account', Auth::user());
+        $account = Auth::user();
 
-        return view('admin.user', $this->getArgs());
+        return $this->getView('settings', compact('account'));
     }
 
 }

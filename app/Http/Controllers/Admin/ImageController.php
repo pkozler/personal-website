@@ -1,32 +1,34 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
 use App\Image;
+use App\Http\Controllers\AdminController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 use Intervention\Image\Facades\Image as ImageFacade;
 
-class ImageController extends Controller
+class ImageController extends AdminController
 {
-    private $rules;
-    private $uploadConfig;
-    private $storePath;
 
+    const
+        PAGE = 'images';
+
+    private $storePath = 'app/public/';
+    private $rules = [
+        'label_name' => 'required|max:190',
+        'label_category' => 'nullable|max:190',
+    ];
+
+    /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
     public function __construct()
     {
-        parent::__construct(['isAdmin' => true]);
-
-        $this->storePath = 'app/public/';
-        $this->rules = [
-            'label_name' => 'required|max:190',
-            'label_category' => 'nullable|max:190',
-        ];
-
-        $this->uploadConfig = parent::getUploadConfig(true);
-
-        $this->middleware('auth');
+        parent::__construct(self::PAGE);
     }
 
     /**
@@ -36,10 +38,11 @@ class ImageController extends Controller
      */
     public function index()
     {
-        $this->addArg('imageList', Image::all());
-        $this->addArg('thumbsPath', $this->uploadConfig->thumbnails);
+        $hasTable = true;
+        $imageList = Image::all();
+        $thumbsPath = $this->uploadConfig->thumbnails;
 
-        return view('admin.tables.image', $this->getArgs());
+        return $this->getListView(compact('hasTable', 'imageList', 'thumbsPath'));
     }
 
     /**
@@ -49,9 +52,9 @@ class ImageController extends Controller
      */
     public function create()
     {
-        $this->addArg('image');
+        $item = null;
 
-        return view('admin.forms.image', $this->getArgs());
+        return $this->getFormView(compact('item'));
     }
 
     /**
@@ -62,9 +65,9 @@ class ImageController extends Controller
      */
     public function edit(Image $image)
     {
-        $this->addArg('image', $image);
+        $item = $image;
 
-        return view('admin.forms.image', $this->getArgs());
+        return $this->getFormView(compact('item'));
     }
 
     /**
@@ -87,7 +90,7 @@ class ImageController extends Controller
         $image->path = $file->hashName();
         $image->save();
 
-        return redirect()->route('admin.images')->with('status', "Nový obrázek galerie s ID {$image->id} byl vytvořen.");
+        return redirect()->route('images')->with('status', "Nový obrázek galerie s ID {$image->id} byl vytvořen.");
     }
 
     /**
@@ -118,7 +121,7 @@ class ImageController extends Controller
 
         $image->update($request->except('_token', 'path'));
 
-        return redirect()->route('admin.images')->with('status', "Obrázek galerie s ID {$image->id} byl upraven.");
+        return redirect()->route('images')->with('status', "Obrázek galerie s ID {$image->id} byl upraven.");
     }
 
     /**
@@ -136,10 +139,10 @@ class ImageController extends Controller
         if ($deleted) {
             $image->delete();
 
-            return redirect()->route('admin.images')->with('status', "Obrázek galerie s ID $id byl odstraněn.");
+            return redirect()->route('images')->with('status', "Obrázek galerie s ID $id byl odstraněn.");
         }
 
-        return redirect()->route('admin.images')->with('status', "ID $id: nenalezeno");
+        return redirect()->route('images')->with('status', "ID $id: nenalezeno");
     }
 
     private function handleImageDelete($image) {
@@ -175,4 +178,5 @@ class ImageController extends Controller
 
         return $uploaded;
     }
+
 }

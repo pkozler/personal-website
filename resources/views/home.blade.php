@@ -5,11 +5,7 @@
 @endsection
 
 @section('head')
-    @include('partials.style')
-    <link href="{{ asset('css/home/custom.css') }}" rel="stylesheet">
-
-    {{--<!-- Anti-spam -->--}}
-    {{--<script src='https://www.google.com/recaptcha/api.js'></script>--}}
+    @include('partials.home.style')
 @endsection
 
 @section('top') id="page-top" @endsection
@@ -91,6 +87,5 @@
 @endsection
 
 @section('bottom')
-    @include('partials.script')
-    <script src="{{ asset('js/home/custom.js') }}"></script>
+    @include('partials.home.script')
 @endsection

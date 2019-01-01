@@ -1,32 +1,33 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
 use App\Link;
+use App\Http\Controllers\AdminController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
-class LinkController extends Controller
+class LinkController extends AdminController
 {
-    private $rules;
 
+    const
+        PAGE = 'links';
+
+    private $rules = [
+        'attr_ref' => 'required|max:190',
+        'text_val' => 'required|max:190',
+        'attr_id' => 'nullable|max:190',
+        'attr_icon' => 'nullable|max:190',
+    ];
+
+    /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
     public function __construct()
     {
-        parent::__construct(['isAdmin' => true]);
-
-        $this->rules = [
-            'attr_ref' => 'required|max:190',
-            'text_val' => 'required|max:190',
-            'attr_id' => 'nullable|max:190',
-            'attr_icon' => 'nullable|max:190',
-        ];
-
-        $this->middleware('auth')->except('refs');
-    }
-
-    public function refs()
-    {
-        return Link::all();
+        parent::__construct(self::PAGE);
     }
 
     /**
@@ -36,9 +37,10 @@ class LinkController extends Controller
      */
     public function index()
     {
-        $this->addArg('linkList', Link::all());
+        $hasTable = true;
+        $linkList = Link::all();
 
-        return view('admin.tables.link', $this->getArgs());
+        return $this->getListView(compact('hasTable','linkList'));
     }
 
     /**
@@ -48,9 +50,9 @@ class LinkController extends Controller
      */
     public function create()
     {
-        $this->addArg('link');
+        $item = null;
 
-        return view('admin.forms.link', $this->getArgs());
+        return $this->getFormView(compact('item'));
     }
 
     /**
@@ -61,9 +63,9 @@ class LinkController extends Controller
      */
     public function edit(Link $link)
     {
-        $this->addArg('link', $link);
+        $item = $link;
 
-        return view('admin.forms.link', $this->getArgs());
+        return $this->getFormView(compact('item'));
     }
 
     /**
@@ -82,7 +84,7 @@ class LinkController extends Controller
 
         $link = Link::create($request->except('_token'));
 
-        return redirect()->route('admin.links')->with('status', "Nový kontaktní údaj s ID {$link->id} byl vytvořen.");
+        return redirect()->route('links')->with('status', "Nový kontaktní údaj s ID {$link->id} byl vytvořen.");
     }
 
     /**
@@ -102,7 +104,7 @@ class LinkController extends Controller
 
         $link->update($request->except('_token'));
 
-        return redirect()->route('admin.links')->with('status', "Kontaktní údaj s ID {$link->id} byl upraven.");
+        return redirect()->route('links')->with('status', "Kontaktní údaj s ID {$link->id} byl upraven.");
     }
 
     /**
@@ -116,9 +118,10 @@ class LinkController extends Controller
         $id = $link->id ?? 0;
 
         if ($link->delete()) {
-            return redirect()->route('admin.links')->with('status', "Kontaktní údaj s ID $id byl odstraněn.");
+            return redirect()->route('links')->with('status', "Kontaktní údaj s ID $id byl odstraněn.");
         }
 
-        return redirect()->route('admin.links')->with('status', "ID $id: nenalezeno");
+        return redirect()->route('links')->with('status', "ID $id: nenalezeno");
     }
+
 }

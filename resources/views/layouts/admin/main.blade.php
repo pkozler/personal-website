@@ -1,8 +1,12 @@
 @extends('layouts.app')
 
-@php($pageDesc = $isAdmin ? 'Rozhraní administrace' : 'Záznamy aktivity')
+@php
+    $pageDesc = $isAdmin ? 'Rozhraní administrace' : 'Záznamy aktivity';
+@endphp
+
 @section('title')
-    @include('partials.brand') | $pageDesc @yield('page')
+    @include('partials.brand') | {{ $pageDesc }}
+    @hasSection('subtitle') - @yield('subtitle') @endif
 @endsection
 
 @section('head')
@@ -21,8 +25,8 @@
         <!-- Breadcrumbs-->
         <ol class="breadcrumb mb-0 py-2 navbar-nav mr-auto bg-light border-dark rounded">
             <li class="breadcrumb-item text-primary">{{ $pageDesc }}</li>
-            @if ($isAdmin)
-                <li class="breadcrumb-item text-secondary active">@yield('page')</li>
+            @hasSection('subtitle')
+                <li class="breadcrumb-item text-secondary active">@yield('subtitle')</li>
             @endif
         </ol>
 
@@ -65,28 +69,28 @@
             <ul class="sidebar navbar-nav">
 
                 <li class="nav-item border-dark border-bottom">
-                    <a class="nav-link" href="{{ route('admin.sections') }}">
+                    <a class="nav-link" href="{{ route('admin.sections.index') }}">
                         <i class="fas fa-fw fa-edit"></i>
                         <span>Hlavní obsah</span>
                     </a>
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ route('admin.notes') }}">
+                    <a class="nav-link" href="{{ route('admin.notes.index') }}">
                         <i class="fas fa-fw fa-clipboard"></i>
                         <span>Poznámky</span>
                     </a>
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ route('admin.images') }}">
+                    <a class="nav-link" href="{{ route('admin.images.index') }}">
                         <i class="fas fa-fw fa-image"></i>
                         <span>Obrázky</span>
                     </a>
                 </li>
 
                 <li class="nav-item border-dark border-bottom">
-                    <a class="nav-link" href="{{ route('admin.links') }}">
+                    <a class="nav-link" href="{{ route('admin.links.index') }}">
                         <i class="fas fa-fw fa-link"></i>
                         <span>Odkazy</span>
                     </a>
@@ -105,7 +109,18 @@
         <div id="content-wrapper">
             <div class="container-fluid">
 
-                @yield('main')
+                @include('partials.admin.flash')
+
+                <div class="card my-3 mx-3">
+
+                    <div class="card-header">
+                        @yield('heading')
+                    </div>
+
+                    <div class="card-body">
+                        @yield('main')
+                    </div>
+                </div>
 
             </div>
             <!-- /.container-fluid -->
@@ -132,7 +147,6 @@
     <a class="scroll-to-top rounded" href="#page-top">
         <i class="fas fa-angle-up"></i>
     </a>
-
 @endsection
 
 @section('bottom')

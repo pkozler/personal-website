@@ -1,29 +1,25 @@
-@extends('layouts.admin.cms')
+@extends('layouts.admin.main')
 
-@section('main')
+@section('subtitle')
+    @yield('form_name')
+@endsection
 
-    <div class="card my-3 mx-3">
-
-        <div class="card-header">
-
-            <div class="row">
-                <div class="col-10">
-                    <h3>
-
-                    </h3>
-                </div>
-
-                <div class="col-2 text-right">
-                    <a class="btn btn-outline-secondary" href="{{ route('') }}"><i class="fas fa-window-close fa-fw"></i></a>
-                </div>
+@section('heading')
+    <div class="row">
+        @hasSection('form_name')
+            <div class="col-10">
+                <h3>
+                    @yield('form_name')
+                </h3>
             </div>
 
-        </div>
-
-        <div class="card-body">
-
-        </div>
-
+            <div class="col-2 text-right">
+                @include('partials.admin.cancel', ['listRoute' => route("admin.$contentType.index")])
+            </div>
+        @endif
     </div>
+@endsection
 
+@section('main')
+    @yield('form_inputs')
 @endsection

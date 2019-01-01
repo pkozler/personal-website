@@ -13,50 +13,35 @@ use Illuminate\Support\Facades\Storage;
 class HomeController extends Controller
 {
     /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
-    public function __construct()
-    {
-        parent::__construct();
-    }
-
-    /**
      * Show the application homepage.
      *
      * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request)
+    public function __invoke(Request $request)
     {
         $this->logAccess($request);
-        $viewArgs = $this->loadContent();
 
-        foreach ($viewArgs as $argName => $argData) {
-            $this->addArg($argName, $argData);
-        }
-
-        return view('home', $this->getArgs());
+        return view('home', $this->loadContent());
     }
 
     private function loadContent() {
         $githubLink = Link::search('github')->get()->get(0);
+        $noteList = Note::all();
+        $imageList = Image::all();
+        $contactList = Link::where('attr_id', '!=', $githubLink->attr_id)->get();
 
-        $viewArgs = [
-            'noteList' => Note::all(),
-            'imageList' => Image::all(),
-            'contactList' => Link::where('attr_id', '!=', $githubLink->attr_id)->get(),
-            'githubLink' => $githubLink,
-            'uploadConfig' => $this->getUploadConfig(false),
-        ];
-
-        return $viewArgs;
+        return compact('noteList', 'imageList', 'contactList', 'githubLink');
     }
 
     private function logAccess($request) {
         $log = Carbon::now()->toDateTimeString() . ' ' . $request->ip();
         Storage::disk('local')->append('log/access.txt', $log);
+    }
+
+    public function refs()
+    {
+        return Link::all();
     }
 
 }

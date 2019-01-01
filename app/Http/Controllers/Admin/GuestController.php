@@ -1,12 +1,13 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Storage;
 
-class GuestController extends Controller
+class GuestController extends AdminController
 {
+
     /**
      * Create a new controller instance.
      *
@@ -14,9 +15,7 @@ class GuestController extends Controller
      */
     public function __construct()
     {
-        parent::__construct(['isAdmin' => false]);
-
-        $this->middleware('auth');
+        parent::__construct(null, false);
     }
 
     /**
@@ -24,13 +23,12 @@ class GuestController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function __invoke()
     {
         $logPath = Config::get('constants.access');
         $logData = Storage::disk('local')->get($logPath['log_file']);
-        $this->addArg('logData', $logData);
 
-        return view('admin.guest', $this->getArgs());
+        return $this->getView('logs', compact('logData'));
     }
 
 }

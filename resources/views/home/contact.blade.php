@@ -1,6 +1,6 @@
 <section id="{{ $section->attr_id }}">
     <div class="container">
-        @php($contactGrid = $contactList->chunk(2))
+        @php($contactGrid = $contactList->chunk($design->linkCols))
 
         @foreach($contactGrid as $contactRow)
             <div class="row">

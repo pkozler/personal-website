@@ -1,4 +1,4 @@
-@extends('layouts.admin.cms')
+@extends('layouts.admin.main')
 
 @section('page', 'Hlavní obrazovka')
 

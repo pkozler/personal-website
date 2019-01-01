@@ -1,6 +1,6 @@
 
 <header class="masthead text-center text-white d-flex"
-        style="background-image: url('storage/images/header.jpg');">
+        style="background-image: url('storage/{{ $design->bgImage }}');">
     <div class="container my-auto">
         <div class="row text-white text-center">
             <div class="col-lg-10 mx-auto">

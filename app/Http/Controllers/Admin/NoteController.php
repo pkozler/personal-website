@@ -1,26 +1,32 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
 use App\Note;
+use App\Http\Controllers\AdminController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
-class NoteController extends Controller
+class NoteController extends AdminController
 {
-    private $rules;
 
+    const
+        PAGE = 'notes';
+
+    private $rules = [
+        'title' => 'required|max:190',
+        'description' => 'required|max:190',
+        'figure' => 'nullable|max:190',
+    ];
+
+    /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
     public function __construct()
     {
-        parent::__construct(['isAdmin' => true]);
-
-        $this->rules = [
-            'title' => 'required|max:190',
-            'description' => 'required|max:190',
-            'figure' => 'nullable|max:190',
-        ];
-
-        $this->middleware('auth');
+        parent::__construct(self::PAGE);
     }
 
     /**
@@ -30,9 +36,10 @@ class NoteController extends Controller
      */
     public function index()
     {
-        $this->addArg('noteList', Note::all());
+        $hasTable = true;
+        $noteList = Note::all();
 
-        return view('admin.tables.note', $this->getArgs());
+        return $this->getListView(compact('hasTable','noteList'));
     }
 
     /**
@@ -42,9 +49,9 @@ class NoteController extends Controller
      */
     public function create()
     {
-        $this->addArg('note');
+        $item = null;
 
-        return view('admin.forms.note', $this->getArgs());
+        return $this->getFormView(compact('item'));
     }
 
     /**
@@ -55,9 +62,9 @@ class NoteController extends Controller
      */
     public function edit(Note $note)
     {
-        $this->addArg('note', $note);
+        $item = $note;
 
-        return view('admin.forms.note', $this->getArgs());
+        return $this->getFormView(compact('item'));
     }
 
     /**
@@ -76,7 +83,7 @@ class NoteController extends Controller
 
         $note = Note::create($request->except('_token'));
 
-        return redirect()->route('admin.notes')->with('status', "Nová textová položka s ID {$note->id} byla vytvořena.");
+        return redirect()->route('notes')->with('status', "Nová textová položka s ID {$note->id} byla vytvořena.");
     }
 
     /**
@@ -96,7 +103,7 @@ class NoteController extends Controller
 
         $note->update($request->except('_token'));
 
-        return redirect()->route('admin.notes')->with('status', "Textová položka s ID {$note->id} byla upravena.");
+        return redirect()->route('notes')->with('status', "Textová položka s ID {$note->id} byla upravena.");
     }
 
     /**
@@ -110,9 +117,10 @@ class NoteController extends Controller
         $id = $note->id ?? 0;;
 
         if ($note->delete()) {
-            return redirect()->route('admin.notes')->with('status', "Textová položka s ID $id byla odstraněna.");
+            return redirect()->route('notes')->with('status', "Textová položka s ID $id byla odstraněna.");
         }
 
-        return redirect()->route('admin.notes')->with('status', "ID $id: nenalezeno");
+        return redirect()->route('notes')->with('status', "ID $id: nenalezeno");
     }
+
 }

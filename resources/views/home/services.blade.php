@@ -9,7 +9,7 @@
     </div>
 
     <div class="container">
-        @php($noteGrid = $noteList->chunk(4))
+        @php($noteGrid = $noteList->chunk($design->noteCols))
 
         @foreach($noteGrid as $noteRow)
             <div class="row">

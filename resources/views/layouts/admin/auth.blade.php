@@ -1,13 +1,13 @@
     @extends('layouts.app')
 
+    @php($pageDesc = 'Přihlášení do aplikace')
+
     @section('title')
-        @include('partials.brand') | @yield('page')
+        @include('partials.brand') | {{ $pageDesc }}
     @endsection
 
-    {{-- TODO refaktorovat! --}}
-
     @section('head')
-        @include('partials.style')
+        @include('partials.home.style')
     @endsection
 
     @section('top') id="page-top" class="bg-dark" @endsection
@@ -19,7 +19,7 @@
 
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item">
-                        <a class="nav-link btn disabled text-primary">@yield('page')</a>
+                        <a class="nav-link btn disabled text-primary">{{ $pageDesc }}</a>
                     </li>
                 </ul>
 
@@ -42,7 +42,7 @@
                     <div class="offset-lg-3 col-lg-6">
 
                         <div class="card @yield('form_card') mx-auto mt-5">
-                            <div class="card-header"> @yield('page')</div>
+                            <div class="card-header">{{ $pageDesc }}</div>
                             <div class="card-body">
                                 @yield('form_content')
 
@@ -68,5 +68,5 @@
     @endsection
 
     @section('bottom')
-        @include('partials.script')
+        @include('partials.home.script')
     @endsection

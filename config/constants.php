@@ -15,5 +15,10 @@ return [
     ],
     'access' => [
         'log_file' => 'log/access.txt',
+    ],
+    'design' => [
+        'bg_img' => 'images/header.jpg',
+        'note_cols' => 4,
+        'link_cols' => 2,
     ]
 ];
