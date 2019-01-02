@@ -14,10 +14,9 @@
 Auth::routes();
 
 // hlavní části aplikace
-
 Route::get('/', 'HomeController')->name('home');
-Route::get('admin', 'UserController')->name('admin');
-Route::get('log', 'GuestController')->name('log');
+Route::get('admin', 'Admin\UserController')->name('admin');
+Route::get('log', 'Admin\GuestController')->name('log');
 
 // načtení kontaktních odkazů do hlavní stránky
 Route::get('refs', 'HomeController@refs')->name('refs');
@@ -42,8 +41,6 @@ Route::namespace('Admin')->group(function () {
                 'show'
             ]);
 
-
         });
     });
-
 });

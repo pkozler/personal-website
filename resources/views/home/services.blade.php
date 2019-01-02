@@ -15,7 +15,7 @@
             <div class="row">
 
                 @foreach($noteRow as $note)
-                    <div class="col-lg-3 col-md-6 text-center">
+                    <div class="col-lg-{{ $design->noteColSize }} col-md-{{ $design->noteColAltSize }} text-center">
                         <div class="service-box mt-5 mx-auto">
                             <i class="{{ $note->figure }} mb-3 large-icon"></i>
                             <h3 class="mb-3 mt-3">{{ $note->title }}</h3>
@@ -27,5 +27,4 @@
             </div>
         @endforeach
     </div>
-
 </section>

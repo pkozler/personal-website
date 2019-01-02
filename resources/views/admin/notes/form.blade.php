@@ -1,4 +1,4 @@
-@extends('layouts.admin.main')
+@extends('layouts.admin.content.form')
 
 @section('form_name')
 
@@ -13,9 +13,10 @@
 @section('form_inputs')
 
     @if ($note)
-        {!! Form::model($note, ['route' => ["admin.$contentType.update", $note]]) !!}
+        {!! Form::model($note, ['route' => ["admin.$contentType.update", $note], 'method' => 'POST']) !!}
+        @method('PUT')
     @else
-        {!! Form::open(['route' => ["$contentType.store"]]) !!}
+        {!! Form::open(['route' => ["admin.$contentType.store"]]) !!}
     @endif
 
     {{ Form::bsText('title', 'Typ položky v nadpisu', old('name'), ['required', 'autofocus']) }}

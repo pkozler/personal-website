@@ -13549,7 +13549,7 @@ module.exports = function xhrAdapter(config) {
         data: responseData,
         // IE sends 1223 instead of 204 (https://github.com/axios/axios/issues/201)
         status: request.status === 1223 ? 204 : request.status,
-        statusText: request.status === 1223 ? 'No Admin' : request.statusText,
+        statusText: request.status === 1223 ? 'No Content' : request.statusText,
         headers: responseHeaders,
         config: config,
         request: request
@@ -13600,7 +13600,7 @@ module.exports = function xhrAdapter(config) {
     if ('setRequestHeader' in request) {
       utils.forEach(requestHeaders, function setRequestHeader(val, key) {
         if (typeof requestData === 'undefined' && key.toLowerCase() === 'content-type') {
-          // Remove Admin-Type if data is undefined
+          // Remove Content-Type if data is undefined
           delete requestHeaders[key];
         } else {
           // Otherwise add header to the request
@@ -33803,7 +33803,7 @@ module.exports = function(module) {
         var html = this.config.html;
 
         if (typeof content === 'object' && (content.nodeType || content.jquery)) {
-          // Admin is a DOM node or a jQuery
+          // Content is a DOM node or a jQuery
           if (html) {
             if (!$$$1(content).parent().is($element)) {
               $element.empty().append(content);
@@ -35449,7 +35449,7 @@ var ignoreDuplicateOf = [
  *
  * ```
  * Date: Wed, 27 Aug 2014 08:58:49 GMT
- * Admin-Type: application/json
+ * Content-Type: application/json
  * Connection: keep-alive
  * Transfer-Encoding: chunked
  * ```

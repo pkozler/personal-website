@@ -1,4 +1,4 @@
-@extends('layouts.admin.main')
+@extends('layouts.admin.content.form')
 
 @section('form_name')
 
@@ -13,9 +13,10 @@
 @section('form_inputs')
 
     @if ($image)
-        {!! Form::model($image, ['route' => ["admin.$contentType.update", $image], 'files' => true]) !!}
+        {!! Form::model($image, ['route' => ["admin.$contentType.update", $image], 'method' => 'POST', 'files' => true]) !!}
+        @method('PUT')
     @else
-        {!! Form::open(['route' => ["$contentType.store"], 'files' => true]) !!}
+        {!! Form::open(['route' => ["admin.$contentType.store"], 'files' => true]) !!}
     @endif
 
     {{ Form::bsText('label_name', 'Název projektu', old('label_name'), ['required', 'autofocus']) }}

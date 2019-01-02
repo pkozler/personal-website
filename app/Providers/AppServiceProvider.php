@@ -9,7 +9,6 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
 use Validator;
-use App\Validators\ReCaptcha;
 
 class AppServiceProvider extends ServiceProvider
 {

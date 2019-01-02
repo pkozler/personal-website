@@ -40,9 +40,8 @@ class ImageController extends AdminController
     {
         $hasTable = true;
         $imageList = Image::all();
-        $thumbsPath = $this->uploadConfig->thumbnails;
 
-        return $this->getListView(compact('hasTable', 'imageList', 'thumbsPath'));
+        return $this->getListView(compact('hasTable', 'imageList'));
     }
 
     /**
@@ -52,9 +51,9 @@ class ImageController extends AdminController
      */
     public function create()
     {
-        $item = null;
+        $image = null;
 
-        return $this->getFormView(compact('item'));
+        return $this->getFormView(compact('image'));
     }
 
     /**
@@ -65,9 +64,7 @@ class ImageController extends AdminController
      */
     public function edit(Image $image)
     {
-        $item = $image;
-
-        return $this->getFormView(compact('item'));
+        return $this->getFormView(compact('image'));
     }
 
     /**
@@ -90,7 +87,7 @@ class ImageController extends AdminController
         $image->path = $file->hashName();
         $image->save();
 
-        return redirect()->route('images')->with('status', "Nový obrázek galerie s ID {$image->id} byl vytvořen.");
+        return redirect()->route('admin.images.index')->with('status', "Nový obrázek galerie s ID {$image->id} byl vytvořen.");
     }
 
     /**
@@ -121,7 +118,7 @@ class ImageController extends AdminController
 
         $image->update($request->except('_token', 'path'));
 
-        return redirect()->route('images')->with('status', "Obrázek galerie s ID {$image->id} byl upraven.");
+        return redirect()->route('admin.images.index')->with('status', "Obrázek galerie s ID {$image->id} byl upraven.");
     }
 
     /**
@@ -139,10 +136,10 @@ class ImageController extends AdminController
         if ($deleted) {
             $image->delete();
 
-            return redirect()->route('images')->with('status', "Obrázek galerie s ID $id byl odstraněn.");
+            return redirect()->route('admin.images.index')->with('status', "Obrázek galerie s ID $id byl odstraněn.");
         }
 
-        return redirect()->route('images')->with('status', "ID $id: nenalezeno");
+        return redirect()->route('admin.images.index')->with('status', "ID $id: nenalezeno");
     }
 
     private function handleImageDelete($image) {

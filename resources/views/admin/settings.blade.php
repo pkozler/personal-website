@@ -1,18 +1,13 @@
 @extends('layouts.admin.main')
 
-@section('page', 'Hlavní obrazovka')
+@section('heading')
+    <h3>Nastavení účtu:</h3>
+@endsection
 
 @section('main')
 
     @include('partials.admin.flash')
 
-    <div class="card mb-3">
-
-        <div class="card-header">
-            <h3>Nastavení účtu</h3>
-        </div>
-
-        <div class="card-body">
             @if ($account)
                 <dl class="row">
                     <dt class="col-sm-3">Nickname</dt>
@@ -30,8 +25,5 @@
             @else
                 <p class="text-primary">Není k dispozici...</p>
             @endif
-        </div>
-
-    </div>
 
 @endsection

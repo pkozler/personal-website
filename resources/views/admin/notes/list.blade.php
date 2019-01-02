@@ -1,4 +1,4 @@
-@extends('layouts.admin.main')
+@extends('layouts.admin.content.list')
 
 @section('list_name', 'Seznam textů')
 
@@ -21,7 +21,8 @@
                 <a class="btn btn-outline-warning" href="{{ route("admin.$contentType.edit", ['note' => $note]) }}"><i class="fa fa-pen"></i></a></td>
             <td>
                 <div>
-                    {!! Form::model($note, ['route' => ["admin.$contentType.destroy", $note]]) !!}
+                    {!! Form::model($note, ['route' => ["admin.$contentType.destroy", $note], 'method' => 'POST']) !!}
+                    @method('DELETE')
                     {{ Form::button('<i class="fa fa-eraser"></i>', ['type' => 'submit', 'class' => 'btn btn-outline-danger', 'onclick' => "return confirm('Odstranit text #{$note->id}?');"]) }}
                     {!! Form::close() !!}
                 </div>

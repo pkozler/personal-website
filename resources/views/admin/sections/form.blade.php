@@ -1,4 +1,4 @@
-@extends('layouts.admin.main')
+@extends('layouts.admin.content.form')
 
 @section('form_name')
 
@@ -8,7 +8,8 @@
 
 @section('form_inputs')
 
-    {!! Form::model($section, ['route' => ["admin.$contentType.update", $section]]) !!}
+    {!! Form::model($section, ['route' => ["admin.$contentType.update", $section], 'method' => 'POST']) !!}
+    @method('PUT')
 
     {{ Form::bsText('attr_id', 'Textové ID sekce v HTML kódu stránky', old('attr_id'), ['required', 'autofocus']) }}
 

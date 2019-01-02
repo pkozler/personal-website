@@ -1,4 +1,4 @@
-@extends('layouts.admin.main')
+@extends('layouts.admin.content.list')
 
 @section('list_name', 'Seznam odkazů')
 
@@ -23,7 +23,8 @@
                 <a class="btn btn-outline-warning" href="{{ route("admin.$contentType.edit", ['link' => $link]) }}"><i class="fa fa-pen"></i></a></td>
             <td>
                 <div>
-                    {!! Form::model($link, ['route' => ["admin.$contentType.destroy", $link]]) !!}
+                    {!! Form::model($link, ['route' => ["admin.$contentType.destroy", $link], 'method' => 'POST']) !!}
+                    @method('DELETE')
                     {{ Form::button('<i class="fa fa-eraser"></i>', ['type' => 'submit', 'class' => 'btn btn-outline-danger', 'onclick' => "return confirm('Odstranit odkaz #{$link->id}?');"]) }}
                     {!! Form::close() !!}
                 </div>

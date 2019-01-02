@@ -1,4 +1,4 @@
-@extends('layouts.admin.main')
+@extends('layouts.admin.content.list')
 
 @section('list_name', 'Sekce')
 

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Section;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
+use App\Http\Controllers\AdminController;
 
 class SectionController extends AdminController
 {
@@ -40,7 +41,7 @@ class SectionController extends AdminController
     {
         $hasTable = false;
 
-        return $this->getListView(compact('hasTable'));
+        return parent::getListView(compact('hasTable'));
     }
 
     /**
@@ -51,9 +52,7 @@ class SectionController extends AdminController
      */
     public function edit(Section $section)
     {
-        $item = $section;
-
-        return $this->getFormView(compact('item'));
+        return $this->getFormView(compact('section'));
     }
 
     /**
@@ -73,7 +72,7 @@ class SectionController extends AdminController
 
         $section->update($request->except('_token'));
 
-        return redirect()->route('admin.sections')->with('status', "Sekce s ID {$section->id} byla úspěšně upravena.");
+        return redirect()->route('admin.sections.index')->with('status', "Sekce s ID {$section->id} byla úspěšně upravena.");
     }
 
 }

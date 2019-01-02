@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Http\Controllers\AdminController;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Storage;
 

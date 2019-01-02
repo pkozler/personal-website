@@ -18,7 +18,8 @@ return [
     ],
     'design' => [
         'bg_img' => 'images/header.jpg',
-        'note_cols' => 4,
-        'link_cols' => 2,
+        'note_cols' => 3,
+        'link_cols' => 3,
+        'col_max_size' => 12
     ]
 ];

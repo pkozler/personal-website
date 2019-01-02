@@ -49,9 +49,9 @@ class NoteController extends AdminController
      */
     public function create()
     {
-        $item = null;
+        $note = null;
 
-        return $this->getFormView(compact('item'));
+        return $this->getFormView(compact('note'));
     }
 
     /**
@@ -62,9 +62,7 @@ class NoteController extends AdminController
      */
     public function edit(Note $note)
     {
-        $item = $note;
-
-        return $this->getFormView(compact('item'));
+        return $this->getFormView(compact('note'));
     }
 
     /**
@@ -83,7 +81,7 @@ class NoteController extends AdminController
 
         $note = Note::create($request->except('_token'));
 
-        return redirect()->route('notes')->with('status', "Nová textová položka s ID {$note->id} byla vytvořena.");
+        return redirect()->route('admin.notes.index')->with('status', "Nová textová položka s ID {$note->id} byla vytvořena.");
     }
 
     /**
@@ -103,7 +101,7 @@ class NoteController extends AdminController
 
         $note->update($request->except('_token'));
 
-        return redirect()->route('notes')->with('status', "Textová položka s ID {$note->id} byla upravena.");
+        return redirect()->route('admin.notes.index')->with('status', "Textová položka s ID {$note->id} byla upravena.");
     }
 
     /**
@@ -117,10 +115,10 @@ class NoteController extends AdminController
         $id = $note->id ?? 0;;
 
         if ($note->delete()) {
-            return redirect()->route('notes')->with('status', "Textová položka s ID $id byla odstraněna.");
+            return redirect()->route('admin.notes.index')->with('status', "Textová položka s ID $id byla odstraněna.");
         }
 
-        return redirect()->route('notes')->with('status', "ID $id: nenalezeno");
+        return redirect()->route('admin.notes.index')->with('status', "ID $id: nenalezeno");
     }
 
 }

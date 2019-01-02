@@ -50,9 +50,9 @@ class LinkController extends AdminController
      */
     public function create()
     {
-        $item = null;
+        $link = null;
 
-        return $this->getFormView(compact('item'));
+        return $this->getFormView(compact('link'));
     }
 
     /**
@@ -63,9 +63,7 @@ class LinkController extends AdminController
      */
     public function edit(Link $link)
     {
-        $item = $link;
-
-        return $this->getFormView(compact('item'));
+        return $this->getFormView(compact('link'));
     }
 
     /**
@@ -84,7 +82,7 @@ class LinkController extends AdminController
 
         $link = Link::create($request->except('_token'));
 
-        return redirect()->route('links')->with('status', "Nový kontaktní údaj s ID {$link->id} byl vytvořen.");
+        return redirect()->route('admin.links.index')->with('status', "Nový kontaktní údaj s ID {$link->id} byl vytvořen.");
     }
 
     /**
@@ -104,7 +102,7 @@ class LinkController extends AdminController
 
         $link->update($request->except('_token'));
 
-        return redirect()->route('links')->with('status', "Kontaktní údaj s ID {$link->id} byl upraven.");
+        return redirect()->route('admin.links.index')->with('status', "Kontaktní údaj s ID {$link->id} byl upraven.");
     }
 
     /**
@@ -118,10 +116,10 @@ class LinkController extends AdminController
         $id = $link->id ?? 0;
 
         if ($link->delete()) {
-            return redirect()->route('links')->with('status', "Kontaktní údaj s ID $id byl odstraněn.");
+            return redirect()->route('admin.links.index')->with('status', "Kontaktní údaj s ID $id byl odstraněn.");
         }
 
-        return redirect()->route('links')->with('status', "ID $id: nenalezeno");
+        return redirect()->route('admin.links.index')->with('status', "ID $id: nenalezeno");
     }
 
 }
